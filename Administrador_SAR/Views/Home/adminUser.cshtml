@@ -1,0 +1,326 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Admin Usuario";
+}
+<div class="header">
+    <div class="header-left">
+        <div class="menu-icon dw dw-menu"></div>
+        <div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
+    </div>
+    <div class="header-right">
+        <div class="user-info-dropdown">
+            <div class="dropdown">
+                <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                    <span class="user-icon">
+                        <img src="vendors/images/photo1.jpg" alt="">
+                    </span>
+                    <span class="user-name">César Martínez</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                    <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
+                    <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
+                    <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
+                    <a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i> Log Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-header">
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <h1>Administración de Usuario</h1>
+        </div>
+        <div class="col-md-6 col-sm-12 text-right">
+            <button type="button" class="btn btn-success">Agregar</button>
+        </div>
+    </div>
+</div>
+<div class="card-box mb-30">
+    <div class="pd-20">
+    </div>
+    <div class="pb-20">
+        <table class="data-table table stripe hover " style="font-size:10px">
+            <thead>
+                <tr>
+                    <th class="table-plus datatable-nosort" style="width:15%">Nombre</th>
+                    <th style="width:15%">Apellido</th>
+                    <th style="width:10%">Genero</th>
+                    <th style="width:10%">Cargo</th>
+                    <th style="width:10%">País</th>
+                    <th style="width:10%">Correo</th>
+                    <th style="width:10%">Estatus</th>
+                    <th style="width:10%">Telefono</th>
+                    <th class="datatable-nosort" style="width:10%">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="table-plus">Guillermo Alberto</td>
+                    <td>Gradiz Gonzalez</td>
+                    <td>Masculino</td>
+                    <td>Ingeniero de Obra</td>
+                    <td>Guatemala</td>
+                    <td>ggradiz@rodiosbo.com</td>
+                    <td>Activo </td>
+                    <td>56122492</td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                <i class="dw dw-more"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Ver</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Editar</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Deshabilitar</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">Chirleth Mileny</td>
+                    <td>Cruz Cruz</td>
+                    <td>Femenino</td>
+                    <td>Asistente Administrativo</td>
+                    <td>Guatemala</td>
+                    <td>chirleth.cruz@rodiosbo.com</td>
+                    <td>Activo</td>
+                    <td>(en blanco)</td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                <i class="dw dw-more"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Ver</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">Rosbin Omar</td>
+                    <td>Salazar Pacay</td>
+                    <td>Masculino</td>
+                    <td>Asitente de Seguridad y Calidad</td>
+                    <td>Guatemala</td>
+                    <td>rsalazar@rodiosbo.com</td>
+                    <td>Activo</td>
+                    <td>34325028</td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                <i class="dw dw-more"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Ver</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-Editar2"></i> Edit</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Deshabilitar</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">Cristobal de Jesús</td>
+                    <td>Castellanos Blanco</td>
+                    <td>Masculino</td>
+                    <td>Auxiliar de Ingenieria</td>
+                    <td>Guatemala</td>
+                    <td>ccastellanos@rodiosbo.com</td>
+                    <td>Activo</td>
+                    <td>4298-9666</td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                <i class="dw dw-more"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Ver</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Editar</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Deshabilitar</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">Santiago José</td>
+                    <td>González Rubio</td>
+                    <td>Masculino</td>
+                    <td>Auxiliar de Obra</td>
+                    <td>Guatemala</td>
+                    <td>sgonzalez@rodiosbo.com</td>
+                    <td>Activo</td>
+                    <td>3602-2937</td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                <i class="dw dw-more"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Ver</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Editar</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Deshabilitar</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">Nidia Victoria</td>
+                    <td>Jiménez López</td>
+                    <td>Femenino</td>
+                    <td>Coordinador de Gestión Humana</td>
+                    <td>Guatemala</td>
+                    <td>njimenez@rodiosbo.com</td>
+                    <td>Activo</td>
+                    <td>42418754</td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                <i class="dw dw-more"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Ver</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Editar</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Deshabilitar</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">Addy Skarleth</td>
+                    <td>Gramajo Polanco</td>
+                    <td>Femenino</td>
+                    <td>Dibujante</td>
+                    <td>Guatemala</td>
+                    <td>agramajo@rodiosbo.com</td>
+                    <td>Activo</td>
+                    <td>5575-3381</td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                <i class="dw dw-more"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Ver</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Editar</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Deshabilitar</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">Melvin Alexander</td>
+                    <td>Cruz Véliz</td>
+                    <td>Masculino</td>
+                    <td>Gerente Administrativo</td>
+                    <td>Guatemala</td>
+                    <td>mcruz@rodiosbo.com</td>
+                    <td>Activo</td>
+                    <td>(en blanco)</td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                <i class="dw dw-more"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Ver</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Editar</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Deshabilitar</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">Herbert Fernando</td>
+                    <td>Castillo Rodas</td>
+                    <td>Masculino</td>
+                    <td>Ingeniero Auxiliar Depto. Proyectos</td>
+                    <td>Guatemala</td>
+                    <td>hcastillo@rodiosbo.com</td>
+                    <td>Activo</td>
+                    <td>4287-2249</td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                <i class="dw dw-more"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Ver</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Editar</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Deshabilitar</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">Ramses Hassan</td>
+                    <td>Guzmán Castro</td>
+                    <td>Masculino</td>
+                    <td>Ingeniero de Calidad</td>
+                    <td>Guatemala</td>
+                    <td>mromero@rodiosbo.com</td>
+                    <td>Activo</td>
+                    <td>96381301</td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                <i class="dw dw-more"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Ver</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Editar</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Deshabilitar</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">Alexander Elias</td>
+                    <td>Vergara Castillo</td>
+                    <td>Masculino</td>
+                    <td>Jefe de Mantenimiento</td>
+                    <td>Guatemala</td>
+                    <td>alexander.vergara@rodiosbo.com</td>
+                    <td>Activo</td>
+                    <td>395-28</td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                <i class="dw dw-more"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Ver</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Editar</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Deshabilitar</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">Ana Rosa</td>
+                    <td>Gonzalez Jimenez</td>
+                    <td>Femenino</td>
+                    <td>Jefe de QHSE de Panamá</td>
+                    <td>Guatemala</td>
+                    <td>agonzalez@rodiosbo.com</td>
+                    <td>Activo</td>
+                    <td>3446738yyggggg-{</td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                <i class="dw dw-more"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Ver</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Editar</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Deshabilitar</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

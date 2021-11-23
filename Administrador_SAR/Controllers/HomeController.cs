@@ -26,5 +26,19 @@ namespace Administrador_SAR.Controllers
 
             return View();
         }
+
+        public ActionResult adminProject()
+        {
+            ViewBag.Message = "Admin page.";
+
+            return View();
+        }
+        public ActionResult adminUser()
+        {
+            ViewBag.Message = "Admin page.";
+
+            return View();
+        }
+
     }
 }

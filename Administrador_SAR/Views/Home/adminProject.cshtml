@@ -1,0 +1,391 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Admin Obras";
+}
+<div class="header">
+    <div class="header-left">
+        <div class="menu-icon dw dw-menu"></div>
+        <div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
+    </div>
+    <div class="header-right">
+        <div class="user-info-dropdown">
+            <div class="dropdown">
+                <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                    <span class="user-icon">
+                        <img src="vendors/images/photo1.jpg" alt="">
+                    </span>
+                    <span class="user-name">César Martínez</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                    <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
+                    <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
+                    <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
+                    <a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i> Log Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-header">
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <h1>Administración de Obras</h1>
+        </div>
+        <div class="col-md-6 col-sm-12 text-right">
+            <button type="button" data-toggle="modal" data-target="#bd-example-modal-lg" class="btn btn-success">Agregar</button>
+        </div>
+    </div>
+</div>
+<div class="card-box mb-30">
+    <div class="pd-20">
+    </div>
+    <div class="pb-20">
+        <table class="data-table table stripe hover " style="font-size:10px">
+            <thead>
+                <tr>
+                    <th class="table-plus datatable-nosort" style="width:15%">Nombre</th>
+                    <th style="width:35%">Descripción</th>
+                    <th style="width:10%">País</th>
+                    <th style="width:10%">Ubicación</th>
+                    <th style="width:10%">Estado</th>
+                    <th style="width:15%">Encargado</th>
+                    <th style="width:5%">N° de incidencias</th>
+                    <th class="datatable-nosort" style="width:10%">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="table-plus">Reparación de calle</td>
+                    <td>Se realiza sellado de hoyos en calle 5 de nov</td>
+                    <td>El Salvador</td>
+                    <td>13.995367430454461, -88.77148177398159</td>
+                    <td>En progreso</td>
+                    <td>Ing. Chacón</td>
+                    <td>3</td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                <i class="dw dw-more"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Ver</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Editar</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Deshabilitar</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">Limpieza y aseo</td>
+                    <td>se realizara una limpieza general del edificio sede local de bank of america</td>
+                    <td>Nicaragua</td>
+                    <td>13.995367430986321, -88.71238137739815 </td>
+                    <td>finalizado</td>
+                    <td>Ing. Garcia</td>
+                    <td>4</td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                <i class="dw dw-more"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Ver</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">construccion de edificio</td>
+                    <td>edificacion de la cede de grupo Q</td>
+                    <td>Guatemala</td>
+                    <td>15.696745, -90.244605</td>
+                    <td>sin iniciar</td>
+                    <td>Ing. Palacios</td>
+                    <td>1</td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                <i class="dw dw-more"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Ver</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-Editar2"></i> Edit</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Deshabilitar</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">construccion de acueducto</td>
+                    <td>instalacion de un acueducto de drenaje</td>
+                    <td>Belice</td>
+                    <td>16.988158, -88.683613</td>
+                    <td>en progreso</td>
+                    <td>Ing. Cabezas</td>
+                    <td>6</td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                <i class="dw dw-more"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Ver</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Editar</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Deshabilitar</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">despeje de follaje</td>
+                    <td>se eliminaran ramas de arboles que presentan un peligro estructural a las casas cercanas</td>
+                    <td>El Salvador</td>
+                    <td>13.468876, -88.546361</td>
+                    <td>En progreso</td>
+                    <td>Ing. Zolano</td>
+                    <td>2</td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                <i class="dw dw-more"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Ver</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Editar</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Deshabilitar</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">Reparacion de sistemas electricos</td>
+                    <td>se realizara un remplazo de la instalacion electrica obsoleta en instalacion de supermercado Cosco</td>
+                    <td>Mexico</td>
+                    <td>19.441361, -99.212818</td>
+                    <td>Sin iniciar</td>
+                    <td>Ing. Lopéz</td>
+                    <td>1</td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                <i class="dw dw-more"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Ver</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Editar</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Deshabilitar</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">Remplazo de postes de energia</td>
+                    <td>se remplazaran postes dañados y de madera por postes de concreto nuevos</td>
+                    <td>panama</td>
+                    <td>8.534373, -81.471772</td>
+                    <td>finalizado</td>
+                    <td>Ing. Sibrian</td>
+                    <td>5</td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                <i class="dw dw-more"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Ver</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Editar</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Deshabilitar</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">instalacion de fibra negra</td>
+                    <td>se instalara una coneccion pri ada de fibra optica para Wallmart</td>
+                    <td>Honduras</td>
+                    <td>15.467350, -87.978116</td>
+                    <td>En progreso</td>
+                    <td>Ing. Escamilla</td>
+                    <td>1</td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                <i class="dw dw-more"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Ver</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Editar</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Deshabilitar</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">Limpieza de rio</td>
+                    <td>sanitizacion de rio lempa</td>
+                    <td>El salvador</td>
+                    <td>13.909250, -88.944258</td>
+                    <td>Sin iniciar</td>
+                    <td>Ing. Peñas</td>
+                    <td>2</td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                <i class="dw dw-more"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Ver</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Editar</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Deshabilitar</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">Reparación de rotonda</td>
+                    <td>se suministra mantenimiento a la rotonda centro america</td>
+                    <td>El salvador</td>
+                    <td>13.776198, -89.191510</td>
+                    <td>Finalizado</td>
+                    <td>Ing. Segovia</td>
+                    <td>1</td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                <i class="dw dw-more"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Ver</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Editar</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Deshabilitar</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">mantenimiento puente</td>
+                    <td>reparacion y matenimiento del puente Gracias a Dios</td>
+                    <td>El salvador</td>
+                    <td>13.766206, -89.161466</td>
+                    <td>En progreso</td>
+                    <td>Ing. Juarez</td>
+                    <td>1</td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                <i class="dw dw-more"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Ver</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Editar</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Deshabilitar</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">re carpeteo de calle</td>
+                    <td>reparacion de baches y recarpeteo en carretera troncal del norte</td>
+                    <td>El Salvador</td>
+                    <td>14.04755587132328, -89.15153583144453</td>
+                    <td>finalizado</td>
+                    <td>Ing. Avilez</td>
+                    <td>3</td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                <i class="dw dw-more"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Ver</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Editar</a>
+                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Deshabilitar</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal -->
+
+<div class="modal fade bs-example-modal-lg" id="bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myLargeModalLabel">Agregar nueva Obra</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group">
+                                <label>Nombre</label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-sm-12">
+                            <div class="form-group">
+                                <label>Descripción</label>
+                                <textarea class="form-control" rows="2" style="height:50px;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group">
+                                <label>Encargado</label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group">
+                                <label>País</label>
+                                <select class="custom-select">
+                                    <option selected="">Seleccione...</option>
+                                    <option value="1">El Salvador</option>
+                                    <option value="2">Nicaragua</option>
+                                    <option value="3">Guatemala</option>
+                                    <option value="3">Costa Rica</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group">
+                                <label>Estado</label>
+                                <select class="custom-select">
+                                    <option selected="">Seleccione...</option>
+                                    <option value="1">En progreso</option>
+                                    <option value="2">Finalizado</option>
+                                    <option value="3">Sin iniciar</option>
+                                    <option value="3">Anulado</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label>Coordenadas</label>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $("#miModal").modal("show");
+</script>
+

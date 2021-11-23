@@ -1,4 +1,4 @@
-$('document').ready(function(){
+﻿$('document').ready(function(){
 	$('.data-table').DataTable({
 		scrollCollapse: true,
 		autoWidth: false,
@@ -17,7 +17,15 @@ $('document').ready(function(){
 			}
 		},
 	});
-
+	$('#event_table').DataTable({
+		data: dataSet,
+		columns: columns，
+		// Deje que la tabla muestre una barra de desplazamiento horizontal, en este momento los datos en el encabezado y la tabla se dividirán en dos partes.
+		sScrollX: true，
+		// Hacer que el ancho de la tabla no sea adaptable y corregir el ancho. Si no configura el encabezado y los datos de la tabla se separarán
+		// Los datos en la tabla son adaptativos, el ancho del encabezado de la tabla es fijo
+		bAutoWidth: true，
+	});
 	$('.data-table-export').DataTable({
 		scrollCollapse: true,
 		autoWidth: false,
