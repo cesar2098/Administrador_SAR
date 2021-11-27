@@ -1,0 +1,380 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Administrar Recursos";
+}
+
+<div class="header">
+    <div class="header-left">
+        <div class="menu-icon dw dw-menu"></div>
+        <div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
+    </div>
+    <div class="header-right">
+        <div class="user-info-dropdown">
+            <div class="dropdown">
+                <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                    <span class="user-icon">
+                        <img src="vendors/images/photo1.jpg" alt="">
+                    </span>
+                    <span class="user-name">César Martínez</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                    <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Perfil</a>
+                    <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Configuraciones</a>
+                    @*<a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>*@
+                    <a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i>Cerrar Sesión</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-header">
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <h1>Administrar Recursos</h1>
+        </div>
+        @*<div class="col-md-6 col-sm-12 text-right">
+                <button type="button" data-toggle="modal" data-target="#bd-example-modal-lg" class="btn btn-success">Agregar</button>
+            </div>*@
+    </div>
+</div>
+
+<div class="card-box mb-30">
+    <div class="pd-20">
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+                    <button type="button" data-toggle="modal" data-target="#bd-example-modal-lg" class="btn btn-success">Agregar</button>
+                
+            <table class="data-table checkbox-datatable table stripe hover nowrap" style="font-size:10px">
+                <thead>
+                    <tr>
+                        <th colspan="3" style="text-align:center;">Killers</th>
+                    </tr>
+                </thead>
+                <thead>
+                    <tr>
+                        <th class="table-plus datatable-nosort">Id</th>
+                        <th>Nombre</th>
+                        <th class="datatable-nosort">Activo</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td class="table-plus">1</td>
+                    <td>CAIDA DE ALTURA</td>
+                    <td>
+                        <div class="dt-checkbox">
+                            <input type="checkbox" name="select_all" value="1" id="example-select-all" checked>
+                            <span class="dt-checkbox-label"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">2</td>
+                    <td>GOLPEADO POR OBJETO EN MOVIMIENTO</td>
+                    <td>
+                        <div class="dt-checkbox">
+                            <input type="checkbox" name="select_all" value="1" id="example-select-all" checked>
+                            <span class="dt-checkbox-label"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">3</td>
+                    <td>CAÍDA DE OBJETOS</td>
+                    <td>
+                        <div class="dt-checkbox">
+                            <input type="checkbox" name="select_all" value="1" id="example-select-all" checked>
+                            <span class="dt-checkbox-label"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">4</td>
+                    <td>PLATAFORMA DE TRABAJO</td>
+                    <td>
+                        <div class="dt-checkbox">
+                            <input type="checkbox" name="select_all" value="1" id="example-select-all" checked>
+                            <span class="dt-checkbox-label"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">5</td>
+                    <td>UTILIZAR EQUIPOS MODIFICADOS</td>
+                    <td>
+                        <div class="dt-checkbox">
+                            <input type="checkbox" name="select_all" value="1" id="example-select-all">
+                            <span class="dt-checkbox-label"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">6</td>
+                    <td>ACCIDENTE DE TRÁNSITO</td>
+                    <td>
+                        <div class="dt-checkbox">
+                            <input type="checkbox" name="select_all" value="1" id="example-select-all">
+                            <span class="dt-checkbox-label"></span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <form action="/" method="post">
+                <div class="text-right">
+                    <button type="button" data-toggle="modal" data-target="#bd-example-modal-lg" class="btn btn-success">Agregar</button>
+                </div>
+            </form>
+            <table class="data-table checkbox-datatable table stripe hover nowrap" style="font-size:10px">
+                <thead>
+                    <tr>
+                        <th colspan="3" style="text-align:center;">Factors</th>
+                    </tr>
+                </thead>
+                <thead>
+                    <tr>
+                        <th class="table-plus datatable-nosort">Id</th>
+                        <th>Descripción</th>
+                        <th class="datatable-nosort">Activo</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td class="table-plus">1</td>
+                    <td>IMPRUDENCIA DEL TRABAJADOR</td>
+                    <td>
+                        <div class="dt-checkbox">
+                            <input type="checkbox" name="select_all" value="1" id="example-select-all" checked>
+                            <span class="dt-checkbox-label"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">2</td>
+                    <td>FALTA DE ORDEN Y LIMPIEZA</td>
+                    <td>
+                        <div class="dt-checkbox">
+                            <input type="checkbox" name="select_all" value="1" id="example-select-all" checked>
+                            <span class="dt-checkbox-label"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">3</td>
+                    <td>AUSENCIA DE PROTECCIONES INDIVIDUALES</td>
+                    <td>
+                        <div class="dt-checkbox">
+                            <input type="checkbox" name="select_all" value="1" id="example-select-all" checked>
+                            <span class="dt-checkbox-label"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">4</td>
+                    <td>FALLO DE MAQUINARIA</td>
+                    <td>
+                        <div class="dt-checkbox">
+                            <input type="checkbox" name="select_all" value="1" id="example-select-all" checked>
+                            <span class="dt-checkbox-label"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">5</td>
+                    <td>DEFECTOS DE MATERIALES</td>
+                    <td>
+                        <div class="dt-checkbox">
+                            <input type="checkbox" name="select_all" value="1" id="example-select-all">
+                            <span class="dt-checkbox-label"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">6</td>
+                    <td>MANIPULACIÓN DEFICIENTE</td>
+                    <td>
+                        <div class="dt-checkbox">
+                            <input type="checkbox" name="select_all" value="1" id="example-select-all" checked>
+                            <span class="dt-checkbox-label"></span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="pd-20">
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <form action="/" method="post">
+                <div class="text-right">
+                    <button type="button" data-toggle="modal" data-target="#bd-example-modal-lg" class="btn btn-success">Agregar</button>
+                </div>
+            </form>
+            <table class="data-table checkbox-datatable table stripe hover nowrap" style="font-size:10px">
+                <thead>
+                    <tr>
+                        <th colspan="3" style="text-align:center;">Categoria</th>
+                    </tr>
+                </thead>
+                <thead>
+                    <tr>
+                        <th class="table-plus datatable-nosort">Id</th>
+                        <th>Descripción</th>
+                        <th class="datatable-nosort">Activo</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td class="table-plus">1</td>
+                    <td>CAIDA DE ALTURA</td>
+                    <td>
+                        <div class="dt-checkbox">
+                            <input type="checkbox" name="select_all" value="1" id="example-select-all" checked>
+                            <span class="dt-checkbox-label"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">2</td>
+                    <td>ORDEN Y LIMPIEZA</td>
+                    <td>
+                        <div class="dt-checkbox">
+                            <input type="checkbox" name="select_all" value="1" id="example-select-all" checked>
+                            <span class="dt-checkbox-label"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">3</td>
+                    <td>VALIDACIÓN DE TERRENO</td>
+                    <td>
+                        <div class="dt-checkbox">
+                            <input type="checkbox" name="select_all" value="1" id="example-select-all">
+                            <span class="dt-checkbox-label"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">4</td>
+                    <td>GENERAL</td>
+                    <td>
+                        <div class="dt-checkbox">
+                            <input type="checkbox" name="select_all" value="1" id="example-select-all" checked>
+                            <span class="dt-checkbox-label"></span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <form action="/" method="post">
+                <div class="text-right">
+                    <button type="button" data-toggle="modal" data-target="#bd-example-modal-lg" class="btn btn-success">Agregar</button>
+                </div>
+            </form>
+            <table class="data-table checkbox-datatable table stripe hover nowrap" style="font-size:10px">
+                <thead>
+                    <tr>
+                        <th colspan="3" style="text-align:center;">Paises</th>
+                    </tr>
+                </thead>
+                <thead>
+                    <tr>
+                        <th class="table-plus datatable-nosort">Id</th>
+                        <th>Nombre</th>
+                        <th class="datatable-nosort">Activo</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td class="table-plus">1</td>
+                    <td>El Salvador</td>
+                    <td>
+                        <div class="dt-checkbox">
+                            <input type="checkbox" name="select_all" value="1" id="example-select-all" checked>
+                            <span class="dt-checkbox-label"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">2</td>
+                    <td>Honduras</td>
+                    <td>
+                        <div class="dt-checkbox">
+                            <input type="checkbox" name="select_all" value="1" id="example-select-all" checked>
+                            <span class="dt-checkbox-label"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">3</td>
+                    <td>Nicaragua</td>
+                    <td>
+                        <div class="dt-checkbox">
+                            <input type="checkbox" name="select_all" value="1" id="example-select-all" checked>
+                            <span class="dt-checkbox-label"></span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <form action="/" method="post">
+                <div class="text-right">
+                    <button type="button" data-toggle="modal" data-target="#bd-example-modal-lg" class="btn btn-success">Agregar</button>
+                </div>
+            </form>
+            <table class="data-table checkbox-datatable table stripe hover nowrap" style="font-size:10px">
+                <thead>
+                    <tr>
+                        <th colspan="3" style="text-align:center;">Situaciones</th>
+                    </tr>
+                </thead>
+                <thead>
+                    <tr>
+                        <th class="table-plus datatable-nosort">Id</th>
+                        <th>Descripción</th>
+                        <th class="datatable-nosort">Activo</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td class="table-plus">1</td>
+                    <td>ACTO INSEGURO</td>
+                    <td>
+                        <div class="dt-checkbox">
+                            <input type="checkbox" name="select_all" value="1" id="example-select-all" checked>
+                            <span class="dt-checkbox-label"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">2</td>
+                    <td>CONDICIÓN INSEGURA</td>
+                    <td>
+                        <div class="dt-checkbox">
+                            <input type="checkbox" name="select_all" value="1" id="example-select-all" checked>
+                            <span class="dt-checkbox-label"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-plus">3</td>
+                    <td>VALIDACIÓN DE TERRENO</td>
+                    <td>
+                        <div class="dt-checkbox">
+                            <input type="checkbox" name="select_all" value="1" id="example-select-all">
+                            <span class="dt-checkbox-label"></span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>        
+    </div>
+</div>
+
+
+
+

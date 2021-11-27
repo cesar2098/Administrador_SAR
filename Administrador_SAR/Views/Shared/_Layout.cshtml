@@ -11,10 +11,9 @@
     <link href="~/vendors/styles/icon-font.min.css" rel="stylesheet" />
     <link href="~/vendors/fonts/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link href="~/vendors/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="~/vendors/styles/style.css" rel="stylesheet" />
-    <link href="~/src/plugins/datatables/css/responsive.bootstrap4.min.css" rel="stylesheet" />
     <link href="~/src/plugins/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
-
+    <link href="~/src/plugins/datatables/css/responsive.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/vendors/styles/style.css" rel="stylesheet" />
     <title>@ViewBag.Title - SAR </title>
 </head>
 <body>
@@ -127,7 +126,7 @@
                         </a>
                     </li>
                     <li class="dropdown">
-                        <a href="" class="dropdown-toggle no-arrow">
+                        <a href="@Url.Action("adminTables","")" class="dropdown-toggle no-arrow">
                             <span class="micon dw dw-edit-file"></span><span class="mtext"> Admin Recursos </span>
                         </a>
                     </li>

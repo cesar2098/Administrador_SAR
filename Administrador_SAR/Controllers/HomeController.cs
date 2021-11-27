@@ -40,5 +40,12 @@ namespace Administrador_SAR.Controllers
             return View();
         }
 
+        public ActionResult adminTables()
+        {
+            ViewBag.Message = "Admin page.";
+
+            return View();
+        }
+
     }
 }

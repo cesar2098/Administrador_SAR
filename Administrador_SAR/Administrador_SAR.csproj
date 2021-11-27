@@ -759,6 +759,9 @@
     <Content Include="Views\login\login.cshtml" />
     <Content Include="Views\Home\adminProject.cshtml" />
     <Content Include="Views\Home\adminUser.cshtml" />
+    <Content Include="Views\Home\editProject.cshtml" />
+    <Content Include="Views\Home\editUser.cshtml" />
+    <Content Include="Views\Home\adminTables.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
