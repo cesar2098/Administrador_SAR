@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link href="~/vendors/styles/core.css" rel="stylesheet" />
+    <link href="~/vendors/styles/icon-font.css" rel="stylesheet" />
+    <link href="~/vendors/styles/style.css" rel="stylesheet" />
+    <title>@ViewBag.Title - SAR </title>
+</head>
+<body class="login-page">
+    <div class="login-header box-shadow">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <div class="brand-logo">
+                <a href="login.html">
+                    <img src="~/vendors/images/rodio2.png" alt="" class="dark-logo">
+                </a>
+            </div>
+            <div class="login-menu">
+                @*<ul>
+                    <li><a href="@Url.Action("register","")">Register</a></li>
+                </ul>*@
+            </div>
+        </div>
+    </div>
+    <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
+        @RenderBody()
+    </div>
+
+    <!-- js -->
+    <script src="~/vendors/scripts/core.js"></script>
+    <script src="~/vendors/scripts/script.min.js"></script>
+    <script src="~/vendors/scripts/process.js"></script>
+    <script src="~/vendors/scripts/layout-settings.js"></script>
+</body>
+</html>

@@ -12,38 +12,37 @@ namespace Administrador_SAR.Controllers
         {
             return View();
         }
+        public ActionResult dashboard()
+        {
+            return View();
+        }
 
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-
             return View();
         }
 
         public ActionResult adminProject()
         {
             ViewBag.Message = "Admin page.";
-
             return View();
         }
         public ActionResult adminUser()
         {
             ViewBag.Message = "Admin page.";
-
             return View();
         }
 
         public ActionResult adminTables()
         {
             ViewBag.Message = "Admin page.";
-
             return View();
         }
 

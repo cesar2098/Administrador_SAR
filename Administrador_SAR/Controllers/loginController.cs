@@ -1,99 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+﻿using Administrador_SAR.Models;
+using Administrador_SAR.Services;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Administrador_SAR.Controllers
 {
-    public class loginController : Controller
+    public class LoginController : Controller
     {
-        //// GET: login
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
+        private readonly LoginServices _service;
+        public LoginController()
+        {
+            _service = new LoginServices();
+        }
+         
+        [HttpGet]
+        public ActionResult login()
+        {
+            if (Session["UserName"] != null)
+            {
+                return RedirectToAction("Dashboard", "Home");
+            }
+            return View();
+        }
 
-        //// GET: login/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
+        [HttpPost]
+        public async Task<ActionResult> login(LoginModelRequest model)
+        {
+            //Hacer validaciones
+            var result = await  _service.SigIn(model);
+            if (result == null)
+            {
+                //Agrgar usuario a session
+                Session["UserId"] = 1;
+                Session["UserName"] = "Daniel";
+                return RedirectToAction("Dashboard", "Home");
+            }
 
-        //// GET: login/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
+            return View(model);
+            
+        }
 
-        //// POST: login/Create
-        //[HttpPost]
-        //public ActionResult Create(FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add insert logic here
+        public ActionResult register()
+        {
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        //// GET: login/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: login/Edit/5
-        //[HttpPost]
-        //public ActionResult Edit(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add update logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        //// GET: login/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: login/Delete/5
-        //[HttpPost]
-        //public ActionResult Delete(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add delete logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        //public ActionResult Login(String email, string password)
-        //{
-        //    Database db = new DataBase();
-        //    db.Usuario.FirstOrDefault(e => e.Email == email && password == password)
-
-        //    return View();
-        //}
+            return View();
+        }
 
     }
 }

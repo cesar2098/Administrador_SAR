@@ -14,6 +14,8 @@
     <link href="~/src/plugins/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
     <link href="~/src/plugins/datatables/css/responsive.bootstrap4.min.css" rel="stylesheet" />
     <link href="~/vendors/styles/style.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <title>@ViewBag.Title - SAR </title>
 </head>
 <body>
@@ -110,23 +112,23 @@
                             <span class="micon dw dw-analytics-4"></span><span class="mtext">Dashboard</span>
                         </a>
                         <ul class="submenu">
-                            <li><a href="@Url.Action("Index","")">Graficas Dashboard</a></li>
+                            <li><a href="@Url.Action("dashboard","Home")">Graficas Dashboard</a></li>
                             <li><a href="index2.html">Descarga de Reportes 1</a></li>
                             <li><a href="index3.html">Descarga de Reportes 2</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="@Url.Action("adminProject","")" class="dropdown-toggle no-arrow">
+                        <a href="@Url.Action("adminProject","Home")" class="dropdown-toggle no-arrow">
                             <span class="micon dw dw-edit-1"></span><span class="mtext">Obras</span>
                         </a>
                     </li>
                     <li>
-                        <a href="@Url.Action("adminUser","")" class="dropdown-toggle no-arrow">
+                        <a href="@Url.Action("adminUser","Home")" class="dropdown-toggle no-arrow">
                             <span class="micon dw dw-user1"></span><span class="mtext">Usuarios</span>
                         </a>
                     </li>
                     <li class="dropdown">
-                        <a href="@Url.Action("adminTables","")" class="dropdown-toggle no-arrow">
+                        <a href="@Url.Action("adminTables","Home")" class="dropdown-toggle no-arrow">
                             <span class="micon dw dw-edit-file"></span><span class="mtext"> Admin Recursos </span>
                         </a>
                     </li>
@@ -143,6 +145,7 @@
     </div>
 
     <!-- js -->
+   
     <script src="~/vendors/scripts/core.js"></script>
     <script src="~/vendors/scripts/script.min.js"></script>
     <script src="~/vendors/scripts/process.js"></script>

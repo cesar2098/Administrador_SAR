@@ -1,0 +1,151 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Página de Inicio";
+}
+<link href="~/src/styles/style2.css" rel="stylesheet" />
+<div class="header">
+    <div class="header-left">
+        <div class="menu-icon dw dw-menu"></div>
+        <div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
+    </div>
+    <div class="header-right">
+        <div class="user-info-dropdown">
+            <div class="dropdown">
+                <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                    <span class="user-icon">
+                        <img src="vendors/images/photo1.jpg" alt="">
+                    </span>
+                    <span class="user-name">César Martínez</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                    <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i>Perfil</a>
+                    <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i>Configuraciones</a>
+                    <a class="dropdown-item" href="faq.html">@*<i class="dw dw-help"></i> Help*@</a>
+                    <a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i>Cerrar Sesión</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div>
+        <div>
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-3 col-sm-12">
+                        <div class="dropdown">
+                            <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                Seleccione el país
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <div class="custom-control dropdown-item custom-checkbox mb-12">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                    <label class="custom-control-label" for="customCheck1">El Salvador</label>
+                                </div>
+                                <div class="custom-control dropdown-item custom-checkbox mb-12">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                    <label class="custom-control-label" for="customCheck2">Guatemala</label>
+                                </div>
+                                <div class="custom-control dropdown-item custom-checkbox mb-12">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck3">
+                                    <label class="custom-control-label" for="customCheck3">Nicaragua</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <div class="dropdown">
+                            <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                Seleccione la obra
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <div class="custom-control dropdown-item custom-checkbox mb-12">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                    <label class="custom-control-label" for="customCheck1">Obra 1</label>
+                                </div>
+                                <div class="custom-control dropdown-item custom-checkbox mb-12">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                    <label class="custom-control-label" for="customCheck2">Obra 2</label>
+                                </div>
+                                <div class="custom-control dropdown-item custom-checkbox mb-12">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck3">
+                                    <label class="custom-control-label" for="customCheck3">Obra 3</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <div class="dropdown">
+                            <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                Seleccione la categoría
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <div class="custom-control dropdown-item custom-checkbox mb-12">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                    <label class="custom-control-label" for="customCheck1">Orden y Limpieza</label>
+                                </div>
+                                <div class="custom-control dropdown-item custom-checkbox mb-12">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                    <label class="custom-control-label" for="customCheck2">Validación de terreno</label>
+                                </div>
+                                <div class="custom-control dropdown-item custom-checkbox mb-12">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck3">
+                                    <label class="custom-control-label" for="customCheck3">Remodelación de edificio</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <div class="dropdown">
+                            <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                Seleccione rango de fechas
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <div class="custom-control dropdown-item custom-checkbox mb-12">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                    <label class="custom-control-label" for="customCheck1">Mensual</label>
+                                </div>
+                                <div class="custom-control dropdown-item custom-checkbox mb-12">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                    <label class="custom-control-label" for="customCheck2">Semanal</label>
+                                </div>
+                                <div class="custom-control dropdown-item custom-checkbox mb-12">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck3">
+                                    <label class="custom-control-label" for="customCheck3">ía</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div id="graficoBarras"></div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div id="graficaPorcentaje"></div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12 col-sm-12" style="text-align: center;">
+            <div id="graficoPie"></div>
+        </div>
+    </div>
+    <br>
+</div>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script src="~/src/scripts/funciones.js"></script>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
