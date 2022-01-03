@@ -1,0 +1,2129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RSDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__EFMigrationsHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryId" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Gender" Type="int" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Role" Type="int" Nullable="false" />
+          <Property Name="VerificationToken" Type="varchar" MaxLength="150" />
+          <Property Name="Verified" Type="datetime2" Precision="7" />
+          <Property Name="ResetToken" Type="varchar" MaxLength="150" />
+          <Property Name="ResetTokenExpires" Type="datetime2" Precision="7" />
+          <Property Name="PasswordReset" Type="datetime2" Precision="7" />
+          <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Updated" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="Alerts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreatorUser" Type="int" Nullable="false" />
+          <Property Name="AlertTypeId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="50" />
+          <Property Name="SubTitle" Type="varchar" MaxLength="50" />
+          <Property Name="Message" Type="varchar" MaxLength="250" />
+          <Property Name="CreatedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreatedTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AlertStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="150" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AlertTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AlertUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="AlertId" Type="int" Nullable="false" />
+          <Property Name="AlertStatusId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Comments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ReportId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreatedTime" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Countries">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountId" Type="int" Nullable="false" />
+          <Property Name="ReportId" Type="int" Nullable="false" />
+          <Property Name="TypeEventId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreatedTime" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EventTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Evidences">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReportId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Url" Type="varchar" MaxLength="1000" />
+          <Property Name="UploadedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UploadedTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="EvidenceType" Type="bit" Nullable="false" />
+          <Property Name="FileName" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Factors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="150" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Killers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuestionSecurityVisit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdSecurityVisit" Type="int" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="RefreshToken">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountId" Type="int" Nullable="false" />
+          <Property Name="Token" Type="nvarchar(max)" />
+          <Property Name="Expires" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreatedByIp" Type="nvarchar(max)" />
+          <Property Name="Revoked" Type="datetime2" Precision="7" />
+          <Property Name="RevokedByIp" Type="nvarchar(max)" />
+          <Property Name="ReplacedByToken" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ReportFollowUp">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="150" />
+          <Property Name="ReportId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reports">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreatedTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="WorkPlaceId" Type="int" Nullable="false" />
+          <Property Name="SituationId" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="KillerId" Type="int" Nullable="false" />
+          <Property Name="FatorId" Type="int" Nullable="false" />
+          <Property Name="CorrectiveComment" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SecurityVisit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="250" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="SecurityVisitQuestionsReport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReportId" Type="int" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Si" Type="bit" />
+          <Property Name="No" Type="bit" />
+          <Property Name="Np" Type="bit" />
+          <Property Name="Comment" Type="varchar" MaxLength="250" />
+          <Property Name="InitialDate" Type="datetime" />
+          <Property Name="RealDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Situations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="150" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StatusReports">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="UserWorkPlaces">
+          <Key>
+            <PropertyRef Name="WorkPlaceId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="WorkPlaceId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="UserType" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VisitManagersCommitment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="250" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="VisitManagersCommitmentReport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountId" Type="int" />
+          <Property Name="WorkPlaceId" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreateTime" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="VisitManagersCommitmentResults">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReportId" Type="int" />
+          <Property Name="Title" Type="varchar" MaxLength="250" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+          <Property Name="Comment" Type="varchar" MaxLength="500" />
+          <Property Name="Url" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="VisitSecurityReport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountId" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedTime" Type="time" Precision="7" />
+          <Property Name="WorkPlaceId" Type="int" />
+          <Property Name="SecurityVisitId" Type="int" />
+        </EntityType>
+        <EntityType Name="WorkPlaces">
+          <Key>
+            <PropertyRef Name="WorkPlaceId" />
+          </Key>
+          <Property Name="WorkPlaceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreatedTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="CountryId" Type="int" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Latitude" Type="float" Nullable="false" />
+          <Property Name="Longitude" Type="float" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Accounts_Countries_CountryId">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Alerts_Accounts_CreatorUser">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="Alerts" Type="Self.Alerts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Alerts">
+              <PropertyRef Name="CreatorUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Alerts_AlertTypes_AlertTypeId">
+          <End Role="AlertTypes" Type="Self.AlertTypes" Multiplicity="1" />
+          <End Role="Alerts" Type="Self.Alerts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AlertTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Alerts">
+              <PropertyRef Name="AlertTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AlertUsers_Accounts_UserId">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="AlertUsers" Type="Self.AlertUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AlertUsers">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AlertUsers_Alerts_AlertId">
+          <End Role="Alerts" Type="Self.Alerts" Multiplicity="1" />
+          <End Role="AlertUsers" Type="Self.AlertUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alerts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AlertUsers">
+              <PropertyRef Name="AlertId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AlertUsers_AlertStatus_AlertStatusId">
+          <End Role="AlertStatus" Type="Self.AlertStatus" Multiplicity="1" />
+          <End Role="AlertUsers" Type="Self.AlertUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AlertStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AlertUsers">
+              <PropertyRef Name="AlertStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Accounts_UserId">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Reports_ReportId">
+          <End Role="Reports" Type="Self.Reports" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="ReportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_Accounts_AccountId">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_Reports_ReportId">
+          <End Role="Reports" Type="Self.Reports" Multiplicity="1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="ReportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evidences_Accounts_UserId">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="Evidences" Type="Self.Evidences" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Evidences">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evidences_Reports_ReportId">
+          <End Role="Reports" Type="Self.Reports" Multiplicity="1" />
+          <End Role="Evidences" Type="Self.Evidences" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Evidences">
+              <PropertyRef Name="ReportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionSecurityVisit_SecurityVisit">
+          <End Role="SecurityVisit" Type="Self.SecurityVisit" Multiplicity="0..1" />
+          <End Role="QuestionSecurityVisit" Type="Self.QuestionSecurityVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SecurityVisit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionSecurityVisit">
+              <PropertyRef Name="IdSecurityVisit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RefreshToken_Accounts_AccountId">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="RefreshToken" Type="Self.RefreshToken" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RefreshToken">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportFollowUp_Reports_ReportId">
+          <End Role="Reports" Type="Self.Reports" Multiplicity="1" />
+          <End Role="ReportFollowUp" Type="Self.ReportFollowUp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReportFollowUp">
+              <PropertyRef Name="ReportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_Accounts_UserId">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_Categories_CategoryId">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_Factors_FatorId">
+          <End Role="Factors" Type="Self.Factors" Multiplicity="1" />
+          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Factors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="FatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_Killers_KillerId">
+          <End Role="Killers" Type="Self.Killers" Multiplicity="1" />
+          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Killers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="KillerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_Situations_SituationId">
+          <End Role="Situations" Type="Self.Situations" Multiplicity="1" />
+          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Situations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="SituationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_StatusReports_StatusId">
+          <End Role="StatusReports" Type="Self.StatusReports" Multiplicity="1" />
+          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusReports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_WorkPlaces_WorkPlaceId">
+          <End Role="WorkPlaces" Type="Self.WorkPlaces" Multiplicity="1" />
+          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkPlaces">
+              <PropertyRef Name="WorkPlaceId" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="WorkPlaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SecurityVisitQuestionsReport_VisitSecurityReport">
+          <End Role="VisitSecurityReport" Type="Self.VisitSecurityReport" Multiplicity="0..1" />
+          <End Role="SecurityVisitQuestionsReport" Type="Self.SecurityVisitQuestionsReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VisitSecurityReport">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SecurityVisitQuestionsReport">
+              <PropertyRef Name="ReportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserWorkPlaces_Accounts_UserId">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="UserWorkPlaces" Type="Self.UserWorkPlaces" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserWorkPlaces">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserWorkPlaces_WorkPlaces_WorkPlaceId">
+          <End Role="WorkPlaces" Type="Self.WorkPlaces" Multiplicity="1" />
+          <End Role="UserWorkPlaces" Type="Self.UserWorkPlaces" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkPlaces">
+              <PropertyRef Name="WorkPlaceId" />
+            </Principal>
+            <Dependent Role="UserWorkPlaces">
+              <PropertyRef Name="WorkPlaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VisitManagersCommitmentReport_Accounts">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+          <End Role="VisitManagersCommitmentReport" Type="Self.VisitManagersCommitmentReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VisitManagersCommitmentReport">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VisitManagersCommitmentReport_WorkPlaces">
+          <End Role="WorkPlaces" Type="Self.WorkPlaces" Multiplicity="0..1" />
+          <End Role="VisitManagersCommitmentReport" Type="Self.VisitManagersCommitmentReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkPlaces">
+              <PropertyRef Name="WorkPlaceId" />
+            </Principal>
+            <Dependent Role="VisitManagersCommitmentReport">
+              <PropertyRef Name="WorkPlaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VisitManagersCommitmentResults_VisitManagersCommitmentReport">
+          <End Role="VisitManagersCommitmentReport" Type="Self.VisitManagersCommitmentReport" Multiplicity="0..1" />
+          <End Role="VisitManagersCommitmentResults" Type="Self.VisitManagersCommitmentResults" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VisitManagersCommitmentReport">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VisitManagersCommitmentResults">
+              <PropertyRef Name="ReportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VisitSecurityReport_Accounts">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+          <End Role="VisitSecurityReport" Type="Self.VisitSecurityReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VisitSecurityReport">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VisitSecurityReport_SecurityVisit">
+          <End Role="SecurityVisit" Type="Self.SecurityVisit" Multiplicity="0..1" />
+          <End Role="VisitSecurityReport" Type="Self.VisitSecurityReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SecurityVisit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VisitSecurityReport">
+              <PropertyRef Name="SecurityVisitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VisitSecurityReport_WorkPlaces">
+          <End Role="WorkPlaces" Type="Self.WorkPlaces" Multiplicity="0..1" />
+          <End Role="VisitSecurityReport" Type="Self.VisitSecurityReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkPlaces">
+              <PropertyRef Name="WorkPlaceId" />
+            </Principal>
+            <Dependent Role="VisitSecurityReport">
+              <PropertyRef Name="WorkPlaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkPlaces_Countries_CountryId">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
+          <End Role="WorkPlaces" Type="Self.WorkPlaces" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="WorkPlaces">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RSDBModelStoreContainer">
+          <EntitySet Name="__EFMigrationsHistory" EntityType="Self.__EFMigrationsHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Alerts" EntityType="Self.Alerts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AlertStatus" EntityType="Self.AlertStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AlertTypes" EntityType="Self.AlertTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AlertUsers" EntityType="Self.AlertUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventTypes" EntityType="Self.EventTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Evidences" EntityType="Self.Evidences" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Factors" EntityType="Self.Factors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Killers" EntityType="Self.Killers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionSecurityVisit" EntityType="Self.QuestionSecurityVisit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RefreshToken" EntityType="Self.RefreshToken" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReportFollowUp" EntityType="Self.ReportFollowUp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reports" EntityType="Self.Reports" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SecurityVisit" EntityType="Self.SecurityVisit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SecurityVisitQuestionsReport" EntityType="Self.SecurityVisitQuestionsReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Situations" EntityType="Self.Situations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusReports" EntityType="Self.StatusReports" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserWorkPlaces" EntityType="Self.UserWorkPlaces" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VisitManagersCommitment" EntityType="Self.VisitManagersCommitment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VisitManagersCommitmentReport" EntityType="Self.VisitManagersCommitmentReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VisitManagersCommitmentResults" EntityType="Self.VisitManagersCommitmentResults" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VisitSecurityReport" EntityType="Self.VisitSecurityReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkPlaces" EntityType="Self.WorkPlaces" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Accounts_Countries_CountryId" Association="Self.FK_Accounts_Countries_CountryId">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Alerts_Accounts_CreatorUser" Association="Self.FK_Alerts_Accounts_CreatorUser">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Alerts" EntitySet="Alerts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Alerts_AlertTypes_AlertTypeId" Association="Self.FK_Alerts_AlertTypes_AlertTypeId">
+            <End Role="AlertTypes" EntitySet="AlertTypes" />
+            <End Role="Alerts" EntitySet="Alerts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AlertUsers_Accounts_UserId" Association="Self.FK_AlertUsers_Accounts_UserId">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="AlertUsers" EntitySet="AlertUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AlertUsers_Alerts_AlertId" Association="Self.FK_AlertUsers_Alerts_AlertId">
+            <End Role="Alerts" EntitySet="Alerts" />
+            <End Role="AlertUsers" EntitySet="AlertUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AlertUsers_AlertStatus_AlertStatusId" Association="Self.FK_AlertUsers_AlertStatus_AlertStatusId">
+            <End Role="AlertStatus" EntitySet="AlertStatus" />
+            <End Role="AlertUsers" EntitySet="AlertUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Accounts_UserId" Association="Self.FK_Comments_Accounts_UserId">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Reports_ReportId" Association="Self.FK_Comments_Reports_ReportId">
+            <End Role="Reports" EntitySet="Reports" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_Accounts_AccountId" Association="Self.FK_Events_Accounts_AccountId">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_Reports_ReportId" Association="Self.FK_Events_Reports_ReportId">
+            <End Role="Reports" EntitySet="Reports" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evidences_Accounts_UserId" Association="Self.FK_Evidences_Accounts_UserId">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Evidences" EntitySet="Evidences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evidences_Reports_ReportId" Association="Self.FK_Evidences_Reports_ReportId">
+            <End Role="Reports" EntitySet="Reports" />
+            <End Role="Evidences" EntitySet="Evidences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionSecurityVisit_SecurityVisit" Association="Self.FK_QuestionSecurityVisit_SecurityVisit">
+            <End Role="SecurityVisit" EntitySet="SecurityVisit" />
+            <End Role="QuestionSecurityVisit" EntitySet="QuestionSecurityVisit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RefreshToken_Accounts_AccountId" Association="Self.FK_RefreshToken_Accounts_AccountId">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="RefreshToken" EntitySet="RefreshToken" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportFollowUp_Reports_ReportId" Association="Self.FK_ReportFollowUp_Reports_ReportId">
+            <End Role="Reports" EntitySet="Reports" />
+            <End Role="ReportFollowUp" EntitySet="ReportFollowUp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_Accounts_UserId" Association="Self.FK_Reports_Accounts_UserId">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Reports" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_Categories_CategoryId" Association="Self.FK_Reports_Categories_CategoryId">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Reports" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_Factors_FatorId" Association="Self.FK_Reports_Factors_FatorId">
+            <End Role="Factors" EntitySet="Factors" />
+            <End Role="Reports" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_Killers_KillerId" Association="Self.FK_Reports_Killers_KillerId">
+            <End Role="Killers" EntitySet="Killers" />
+            <End Role="Reports" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_Situations_SituationId" Association="Self.FK_Reports_Situations_SituationId">
+            <End Role="Situations" EntitySet="Situations" />
+            <End Role="Reports" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_StatusReports_StatusId" Association="Self.FK_Reports_StatusReports_StatusId">
+            <End Role="StatusReports" EntitySet="StatusReports" />
+            <End Role="Reports" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_WorkPlaces_WorkPlaceId" Association="Self.FK_Reports_WorkPlaces_WorkPlaceId">
+            <End Role="WorkPlaces" EntitySet="WorkPlaces" />
+            <End Role="Reports" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SecurityVisitQuestionsReport_VisitSecurityReport" Association="Self.FK_SecurityVisitQuestionsReport_VisitSecurityReport">
+            <End Role="VisitSecurityReport" EntitySet="VisitSecurityReport" />
+            <End Role="SecurityVisitQuestionsReport" EntitySet="SecurityVisitQuestionsReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserWorkPlaces_Accounts_UserId" Association="Self.FK_UserWorkPlaces_Accounts_UserId">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="UserWorkPlaces" EntitySet="UserWorkPlaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserWorkPlaces_WorkPlaces_WorkPlaceId" Association="Self.FK_UserWorkPlaces_WorkPlaces_WorkPlaceId">
+            <End Role="WorkPlaces" EntitySet="WorkPlaces" />
+            <End Role="UserWorkPlaces" EntitySet="UserWorkPlaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitManagersCommitmentReport_Accounts" Association="Self.FK_VisitManagersCommitmentReport_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="VisitManagersCommitmentReport" EntitySet="VisitManagersCommitmentReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitManagersCommitmentReport_WorkPlaces" Association="Self.FK_VisitManagersCommitmentReport_WorkPlaces">
+            <End Role="WorkPlaces" EntitySet="WorkPlaces" />
+            <End Role="VisitManagersCommitmentReport" EntitySet="VisitManagersCommitmentReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitManagersCommitmentResults_VisitManagersCommitmentReport" Association="Self.FK_VisitManagersCommitmentResults_VisitManagersCommitmentReport">
+            <End Role="VisitManagersCommitmentReport" EntitySet="VisitManagersCommitmentReport" />
+            <End Role="VisitManagersCommitmentResults" EntitySet="VisitManagersCommitmentResults" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitSecurityReport_Accounts" Association="Self.FK_VisitSecurityReport_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="VisitSecurityReport" EntitySet="VisitSecurityReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitSecurityReport_SecurityVisit" Association="Self.FK_VisitSecurityReport_SecurityVisit">
+            <End Role="SecurityVisit" EntitySet="SecurityVisit" />
+            <End Role="VisitSecurityReport" EntitySet="VisitSecurityReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitSecurityReport_WorkPlaces" Association="Self.FK_VisitSecurityReport_WorkPlaces">
+            <End Role="WorkPlaces" EntitySet="WorkPlaces" />
+            <End Role="VisitSecurityReport" EntitySet="VisitSecurityReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkPlaces_Countries_CountryId" Association="Self.FK_WorkPlaces_Countries_CountryId">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="WorkPlaces" EntitySet="WorkPlaces" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RSDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__EFMigrationsHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryId" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Gender" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Role" Type="Int32" Nullable="false" />
+          <Property Name="VerificationToken" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Verified" Type="DateTime" Precision="7" />
+          <Property Name="ResetToken" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ResetTokenExpires" Type="DateTime" Precision="7" />
+          <Property Name="PasswordReset" Type="DateTime" Precision="7" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Updated" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="Countries" Relationship="Self.FK_Accounts_Countries_CountryId" FromRole="Accounts" ToRole="Countries" />
+          <NavigationProperty Name="Alerts" Relationship="Self.FK_Alerts_Accounts_CreatorUser" FromRole="Accounts" ToRole="Alerts" />
+          <NavigationProperty Name="AlertUsers" Relationship="Self.FK_AlertUsers_Accounts_UserId" FromRole="Accounts" ToRole="AlertUsers" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Accounts_UserId" FromRole="Accounts" ToRole="Comments" />
+          <NavigationProperty Name="Events" Relationship="Self.FK_Events_Accounts_AccountId" FromRole="Accounts" ToRole="Events" />
+          <NavigationProperty Name="Evidences" Relationship="Self.FK_Evidences_Accounts_UserId" FromRole="Accounts" ToRole="Evidences" />
+          <NavigationProperty Name="RefreshToken" Relationship="Self.FK_RefreshToken_Accounts_AccountId" FromRole="Accounts" ToRole="RefreshToken" />
+          <NavigationProperty Name="Reports" Relationship="Self.FK_Reports_Accounts_UserId" FromRole="Accounts" ToRole="Reports" />
+          <NavigationProperty Name="UserWorkPlaces" Relationship="Self.FK_UserWorkPlaces_Accounts_UserId" FromRole="Accounts" ToRole="UserWorkPlaces" />
+          <NavigationProperty Name="VisitManagersCommitmentReport" Relationship="Self.FK_VisitManagersCommitmentReport_Accounts" FromRole="Accounts" ToRole="VisitManagersCommitmentReport" />
+          <NavigationProperty Name="VisitSecurityReport" Relationship="Self.FK_VisitSecurityReport_Accounts" FromRole="Accounts" ToRole="VisitSecurityReport" />
+        </EntityType>
+        <EntityType Name="Alerts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatorUser" Type="Int32" Nullable="false" />
+          <Property Name="AlertTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreatedTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK_Alerts_Accounts_CreatorUser" FromRole="Alerts" ToRole="Accounts" />
+          <NavigationProperty Name="AlertTypes" Relationship="Self.FK_Alerts_AlertTypes_AlertTypeId" FromRole="Alerts" ToRole="AlertTypes" />
+          <NavigationProperty Name="AlertUsers" Relationship="Self.FK_AlertUsers_Alerts_AlertId" FromRole="Alerts" ToRole="AlertUsers" />
+        </EntityType>
+        <EntityType Name="AlertStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AlertUsers" Relationship="Self.FK_AlertUsers_AlertStatus_AlertStatusId" FromRole="AlertStatus" ToRole="AlertUsers" />
+        </EntityType>
+        <EntityType Name="AlertTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Alerts" Relationship="Self.FK_Alerts_AlertTypes_AlertTypeId" FromRole="AlertTypes" ToRole="Alerts" />
+        </EntityType>
+        <EntityType Name="AlertUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="AlertId" Type="Int32" Nullable="false" />
+          <Property Name="AlertStatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK_AlertUsers_Accounts_UserId" FromRole="AlertUsers" ToRole="Accounts" />
+          <NavigationProperty Name="Alerts" Relationship="Self.FK_AlertUsers_Alerts_AlertId" FromRole="AlertUsers" ToRole="Alerts" />
+          <NavigationProperty Name="AlertStatus" Relationship="Self.FK_AlertUsers_AlertStatus_AlertStatusId" FromRole="AlertUsers" ToRole="AlertStatus" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Reports" Relationship="Self.FK_Reports_Categories_CategoryId" FromRole="Categories" ToRole="Reports" />
+        </EntityType>
+        <EntityType Name="Comments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ReportId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreatedTime" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK_Comments_Accounts_UserId" FromRole="Comments" ToRole="Accounts" />
+          <NavigationProperty Name="Reports" Relationship="Self.FK_Comments_Reports_ReportId" FromRole="Comments" ToRole="Reports" />
+        </EntityType>
+        <EntityType Name="Countries">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK_Accounts_Countries_CountryId" FromRole="Countries" ToRole="Accounts" />
+          <NavigationProperty Name="WorkPlaces" Relationship="Self.FK_WorkPlaces_Countries_CountryId" FromRole="Countries" ToRole="WorkPlaces" />
+        </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountId" Type="Int32" Nullable="false" />
+          <Property Name="ReportId" Type="Int32" Nullable="false" />
+          <Property Name="TypeEventId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreatedTime" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK_Events_Accounts_AccountId" FromRole="Events" ToRole="Accounts" />
+          <NavigationProperty Name="Reports" Relationship="Self.FK_Events_Reports_ReportId" FromRole="Events" ToRole="Reports" />
+        </EntityType>
+        <EntityType Name="EventTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Evidences">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReportId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Url" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="UploadedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UploadedTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="EvidenceType" Type="Boolean" Nullable="false" />
+          <Property Name="FileName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK_Evidences_Accounts_UserId" FromRole="Evidences" ToRole="Accounts" />
+          <NavigationProperty Name="Reports" Relationship="Self.FK_Evidences_Reports_ReportId" FromRole="Evidences" ToRole="Reports" />
+        </EntityType>
+        <EntityType Name="Factors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Reports" Relationship="Self.FK_Reports_Factors_FatorId" FromRole="Factors" ToRole="Reports" />
+        </EntityType>
+        <EntityType Name="Killers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Reports" Relationship="Self.FK_Reports_Killers_KillerId" FromRole="Killers" ToRole="Reports" />
+        </EntityType>
+        <EntityType Name="QuestionSecurityVisit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdSecurityVisit" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="SecurityVisit" Relationship="Self.FK_QuestionSecurityVisit_SecurityVisit" FromRole="QuestionSecurityVisit" ToRole="SecurityVisit" />
+        </EntityType>
+        <EntityType Name="RefreshToken">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountId" Type="Int32" Nullable="false" />
+          <Property Name="Token" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Expires" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreatedByIp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Revoked" Type="DateTime" Precision="7" />
+          <Property Name="RevokedByIp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ReplacedByToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK_RefreshToken_Accounts_AccountId" FromRole="RefreshToken" ToRole="Accounts" />
+        </EntityType>
+        <EntityType Name="ReportFollowUp">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ReportId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Reports" Relationship="Self.FK_ReportFollowUp_Reports_ReportId" FromRole="ReportFollowUp" ToRole="Reports" />
+        </EntityType>
+        <EntityType Name="Reports">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreatedTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="WorkPlaceId" Type="Int32" Nullable="false" />
+          <Property Name="SituationId" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="KillerId" Type="Int32" Nullable="false" />
+          <Property Name="FatorId" Type="Int32" Nullable="false" />
+          <Property Name="CorrectiveComment" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK_Reports_Accounts_UserId" FromRole="Reports" ToRole="Accounts" />
+          <NavigationProperty Name="Categories" Relationship="Self.FK_Reports_Categories_CategoryId" FromRole="Reports" ToRole="Categories" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Reports_ReportId" FromRole="Reports" ToRole="Comments" />
+          <NavigationProperty Name="Events" Relationship="Self.FK_Events_Reports_ReportId" FromRole="Reports" ToRole="Events" />
+          <NavigationProperty Name="Evidences" Relationship="Self.FK_Evidences_Reports_ReportId" FromRole="Reports" ToRole="Evidences" />
+          <NavigationProperty Name="Factors" Relationship="Self.FK_Reports_Factors_FatorId" FromRole="Reports" ToRole="Factors" />
+          <NavigationProperty Name="Killers" Relationship="Self.FK_Reports_Killers_KillerId" FromRole="Reports" ToRole="Killers" />
+          <NavigationProperty Name="ReportFollowUp" Relationship="Self.FK_ReportFollowUp_Reports_ReportId" FromRole="Reports" ToRole="ReportFollowUp" />
+          <NavigationProperty Name="Situations" Relationship="Self.FK_Reports_Situations_SituationId" FromRole="Reports" ToRole="Situations" />
+          <NavigationProperty Name="StatusReports" Relationship="Self.FK_Reports_StatusReports_StatusId" FromRole="Reports" ToRole="StatusReports" />
+          <NavigationProperty Name="WorkPlaces" Relationship="Self.FK_Reports_WorkPlaces_WorkPlaceId" FromRole="Reports" ToRole="WorkPlaces" />
+        </EntityType>
+        <EntityType Name="SecurityVisit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="QuestionSecurityVisit" Relationship="Self.FK_QuestionSecurityVisit_SecurityVisit" FromRole="SecurityVisit" ToRole="QuestionSecurityVisit" />
+          <NavigationProperty Name="VisitSecurityReport" Relationship="Self.FK_VisitSecurityReport_SecurityVisit" FromRole="SecurityVisit" ToRole="VisitSecurityReport" />
+        </EntityType>
+        <EntityType Name="SecurityVisitQuestionsReport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReportId" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Si" Type="Boolean" />
+          <Property Name="No" Type="Boolean" />
+          <Property Name="Np" Type="Boolean" />
+          <Property Name="Comment" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="InitialDate" Type="DateTime" Precision="3" />
+          <Property Name="RealDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="VisitSecurityReport" Relationship="Self.FK_SecurityVisitQuestionsReport_VisitSecurityReport" FromRole="SecurityVisitQuestionsReport" ToRole="VisitSecurityReport" />
+        </EntityType>
+        <EntityType Name="Situations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Reports" Relationship="Self.FK_Reports_Situations_SituationId" FromRole="Situations" ToRole="Reports" />
+        </EntityType>
+        <EntityType Name="StatusReports">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Reports" Relationship="Self.FK_Reports_StatusReports_StatusId" FromRole="StatusReports" ToRole="Reports" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UserWorkPlaces">
+          <Key>
+            <PropertyRef Name="WorkPlaceId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="WorkPlaceId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserType" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK_UserWorkPlaces_Accounts_UserId" FromRole="UserWorkPlaces" ToRole="Accounts" />
+          <NavigationProperty Name="WorkPlaces" Relationship="Self.FK_UserWorkPlaces_WorkPlaces_WorkPlaceId" FromRole="UserWorkPlaces" ToRole="WorkPlaces" />
+        </EntityType>
+        <EntityType Name="VisitManagersCommitment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="VisitManagersCommitmentReport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountId" Type="Int32" />
+          <Property Name="WorkPlaceId" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateTime" Type="Time" Precision="7" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK_VisitManagersCommitmentReport_Accounts" FromRole="VisitManagersCommitmentReport" ToRole="Accounts" />
+          <NavigationProperty Name="WorkPlaces" Relationship="Self.FK_VisitManagersCommitmentReport_WorkPlaces" FromRole="VisitManagersCommitmentReport" ToRole="WorkPlaces" />
+          <NavigationProperty Name="VisitManagersCommitmentResults" Relationship="Self.FK_VisitManagersCommitmentResults_VisitManagersCommitmentReport" FromRole="VisitManagersCommitmentReport" ToRole="VisitManagersCommitmentResults" />
+        </EntityType>
+        <EntityType Name="VisitManagersCommitmentResults">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReportId" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Comment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="VisitManagersCommitmentReport" Relationship="Self.FK_VisitManagersCommitmentResults_VisitManagersCommitmentReport" FromRole="VisitManagersCommitmentResults" ToRole="VisitManagersCommitmentReport" />
+        </EntityType>
+        <EntityType Name="VisitSecurityReport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountId" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedTime" Type="Time" Precision="7" />
+          <Property Name="WorkPlaceId" Type="Int32" />
+          <Property Name="SecurityVisitId" Type="Int32" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK_VisitSecurityReport_Accounts" FromRole="VisitSecurityReport" ToRole="Accounts" />
+          <NavigationProperty Name="SecurityVisit" Relationship="Self.FK_VisitSecurityReport_SecurityVisit" FromRole="VisitSecurityReport" ToRole="SecurityVisit" />
+          <NavigationProperty Name="SecurityVisitQuestionsReport" Relationship="Self.FK_SecurityVisitQuestionsReport_VisitSecurityReport" FromRole="VisitSecurityReport" ToRole="SecurityVisitQuestionsReport" />
+          <NavigationProperty Name="WorkPlaces" Relationship="Self.FK_VisitSecurityReport_WorkPlaces" FromRole="VisitSecurityReport" ToRole="WorkPlaces" />
+        </EntityType>
+        <EntityType Name="WorkPlaces">
+          <Key>
+            <PropertyRef Name="WorkPlaceId" />
+          </Key>
+          <Property Name="WorkPlaceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreatedTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="CountryId" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Latitude" Type="Double" Nullable="false" />
+          <Property Name="Longitude" Type="Double" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Countries" Relationship="Self.FK_WorkPlaces_Countries_CountryId" FromRole="WorkPlaces" ToRole="Countries" />
+          <NavigationProperty Name="Reports" Relationship="Self.FK_Reports_WorkPlaces_WorkPlaceId" FromRole="WorkPlaces" ToRole="Reports" />
+          <NavigationProperty Name="UserWorkPlaces" Relationship="Self.FK_UserWorkPlaces_WorkPlaces_WorkPlaceId" FromRole="WorkPlaces" ToRole="UserWorkPlaces" />
+          <NavigationProperty Name="VisitManagersCommitmentReport" Relationship="Self.FK_VisitManagersCommitmentReport_WorkPlaces" FromRole="WorkPlaces" ToRole="VisitManagersCommitmentReport" />
+          <NavigationProperty Name="VisitSecurityReport" Relationship="Self.FK_VisitSecurityReport_WorkPlaces" FromRole="WorkPlaces" ToRole="VisitSecurityReport" />
+        </EntityType>
+        <Association Name="FK_Accounts_Countries_CountryId">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Alerts_Accounts_CreatorUser">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="Alerts" Type="Self.Alerts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Alerts">
+              <PropertyRef Name="CreatorUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AlertUsers_Accounts_UserId">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="AlertUsers" Type="Self.AlertUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AlertUsers">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Accounts_UserId">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_Accounts_AccountId">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evidences_Accounts_UserId">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="Evidences" Type="Self.Evidences" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Evidences">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RefreshToken_Accounts_AccountId">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="RefreshToken" Type="Self.RefreshToken" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RefreshToken">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_Accounts_UserId">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserWorkPlaces_Accounts_UserId">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="UserWorkPlaces" Type="Self.UserWorkPlaces" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserWorkPlaces">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VisitManagersCommitmentReport_Accounts">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+          <End Role="VisitManagersCommitmentReport" Type="Self.VisitManagersCommitmentReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VisitManagersCommitmentReport">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VisitSecurityReport_Accounts">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+          <End Role="VisitSecurityReport" Type="Self.VisitSecurityReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VisitSecurityReport">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Alerts_AlertTypes_AlertTypeId">
+          <End Role="AlertTypes" Type="Self.AlertTypes" Multiplicity="1" />
+          <End Role="Alerts" Type="Self.Alerts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AlertTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Alerts">
+              <PropertyRef Name="AlertTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AlertUsers_Alerts_AlertId">
+          <End Role="Alerts" Type="Self.Alerts" Multiplicity="1" />
+          <End Role="AlertUsers" Type="Self.AlertUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alerts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AlertUsers">
+              <PropertyRef Name="AlertId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AlertUsers_AlertStatus_AlertStatusId">
+          <End Role="AlertStatus" Type="Self.AlertStatus" Multiplicity="1" />
+          <End Role="AlertUsers" Type="Self.AlertUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AlertStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AlertUsers">
+              <PropertyRef Name="AlertStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_Categories_CategoryId">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Reports_ReportId">
+          <End Role="Reports" Type="Self.Reports" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="ReportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkPlaces_Countries_CountryId">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
+          <End Role="WorkPlaces" Type="Self.WorkPlaces" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="WorkPlaces">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_Reports_ReportId">
+          <End Role="Reports" Type="Self.Reports" Multiplicity="1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="ReportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evidences_Reports_ReportId">
+          <End Role="Reports" Type="Self.Reports" Multiplicity="1" />
+          <End Role="Evidences" Type="Self.Evidences" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Evidences">
+              <PropertyRef Name="ReportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_Factors_FatorId">
+          <End Role="Factors" Type="Self.Factors" Multiplicity="1" />
+          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Factors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="FatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_Killers_KillerId">
+          <End Role="Killers" Type="Self.Killers" Multiplicity="1" />
+          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Killers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="KillerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionSecurityVisit_SecurityVisit">
+          <End Role="SecurityVisit" Type="Self.SecurityVisit" Multiplicity="0..1" />
+          <End Role="QuestionSecurityVisit" Type="Self.QuestionSecurityVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SecurityVisit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionSecurityVisit">
+              <PropertyRef Name="IdSecurityVisit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportFollowUp_Reports_ReportId">
+          <End Role="Reports" Type="Self.Reports" Multiplicity="1" />
+          <End Role="ReportFollowUp" Type="Self.ReportFollowUp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReportFollowUp">
+              <PropertyRef Name="ReportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_Situations_SituationId">
+          <End Role="Situations" Type="Self.Situations" Multiplicity="1" />
+          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Situations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="SituationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_StatusReports_StatusId">
+          <End Role="StatusReports" Type="Self.StatusReports" Multiplicity="1" />
+          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusReports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_WorkPlaces_WorkPlaceId">
+          <End Role="WorkPlaces" Type="Self.WorkPlaces" Multiplicity="1" />
+          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkPlaces">
+              <PropertyRef Name="WorkPlaceId" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="WorkPlaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VisitSecurityReport_SecurityVisit">
+          <End Role="SecurityVisit" Type="Self.SecurityVisit" Multiplicity="0..1" />
+          <End Role="VisitSecurityReport" Type="Self.VisitSecurityReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SecurityVisit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VisitSecurityReport">
+              <PropertyRef Name="SecurityVisitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SecurityVisitQuestionsReport_VisitSecurityReport">
+          <End Role="VisitSecurityReport" Type="Self.VisitSecurityReport" Multiplicity="0..1" />
+          <End Role="SecurityVisitQuestionsReport" Type="Self.SecurityVisitQuestionsReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VisitSecurityReport">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SecurityVisitQuestionsReport">
+              <PropertyRef Name="ReportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserWorkPlaces_WorkPlaces_WorkPlaceId">
+          <End Role="WorkPlaces" Type="Self.WorkPlaces" Multiplicity="1" />
+          <End Role="UserWorkPlaces" Type="Self.UserWorkPlaces" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkPlaces">
+              <PropertyRef Name="WorkPlaceId" />
+            </Principal>
+            <Dependent Role="UserWorkPlaces">
+              <PropertyRef Name="WorkPlaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VisitManagersCommitmentReport_WorkPlaces">
+          <End Role="WorkPlaces" Type="Self.WorkPlaces" Multiplicity="0..1" />
+          <End Role="VisitManagersCommitmentReport" Type="Self.VisitManagersCommitmentReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkPlaces">
+              <PropertyRef Name="WorkPlaceId" />
+            </Principal>
+            <Dependent Role="VisitManagersCommitmentReport">
+              <PropertyRef Name="WorkPlaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VisitManagersCommitmentResults_VisitManagersCommitmentReport">
+          <End Role="VisitManagersCommitmentReport" Type="Self.VisitManagersCommitmentReport" Multiplicity="0..1" />
+          <End Role="VisitManagersCommitmentResults" Type="Self.VisitManagersCommitmentResults" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VisitManagersCommitmentReport">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VisitManagersCommitmentResults">
+              <PropertyRef Name="ReportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VisitSecurityReport_WorkPlaces">
+          <End Role="WorkPlaces" Type="Self.WorkPlaces" Multiplicity="0..1" />
+          <End Role="VisitSecurityReport" Type="Self.VisitSecurityReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkPlaces">
+              <PropertyRef Name="WorkPlaceId" />
+            </Principal>
+            <Dependent Role="VisitSecurityReport">
+              <PropertyRef Name="WorkPlaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RSDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__EFMigrationsHistory" EntityType="Self.C__EFMigrationsHistory" />
+          <EntitySet Name="Accounts" EntityType="Self.Accounts" />
+          <EntitySet Name="Alerts" EntityType="Self.Alerts" />
+          <EntitySet Name="AlertStatus" EntityType="Self.AlertStatus" />
+          <EntitySet Name="AlertTypes" EntityType="Self.AlertTypes" />
+          <EntitySet Name="AlertUsers" EntityType="Self.AlertUsers" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" />
+          <EntitySet Name="Comments" EntityType="Self.Comments" />
+          <EntitySet Name="Countries" EntityType="Self.Countries" />
+          <EntitySet Name="Events" EntityType="Self.Events" />
+          <EntitySet Name="EventTypes" EntityType="Self.EventTypes" />
+          <EntitySet Name="Evidences" EntityType="Self.Evidences" />
+          <EntitySet Name="Factors" EntityType="Self.Factors" />
+          <EntitySet Name="Killers" EntityType="Self.Killers" />
+          <EntitySet Name="QuestionSecurityVisit" EntityType="Self.QuestionSecurityVisit" />
+          <EntitySet Name="RefreshToken" EntityType="Self.RefreshToken" />
+          <EntitySet Name="ReportFollowUp" EntityType="Self.ReportFollowUp" />
+          <EntitySet Name="Reports" EntityType="Self.Reports" />
+          <EntitySet Name="SecurityVisit" EntityType="Self.SecurityVisit" />
+          <EntitySet Name="SecurityVisitQuestionsReport" EntityType="Self.SecurityVisitQuestionsReport" />
+          <EntitySet Name="Situations" EntityType="Self.Situations" />
+          <EntitySet Name="StatusReports" EntityType="Self.StatusReports" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="UserWorkPlaces" EntityType="Self.UserWorkPlaces" />
+          <EntitySet Name="VisitManagersCommitment" EntityType="Self.VisitManagersCommitment" />
+          <EntitySet Name="VisitManagersCommitmentReport" EntityType="Self.VisitManagersCommitmentReport" />
+          <EntitySet Name="VisitManagersCommitmentResults" EntityType="Self.VisitManagersCommitmentResults" />
+          <EntitySet Name="VisitSecurityReport" EntityType="Self.VisitSecurityReport" />
+          <EntitySet Name="WorkPlaces" EntityType="Self.WorkPlaces" />
+          <AssociationSet Name="FK_Accounts_Countries_CountryId" Association="Self.FK_Accounts_Countries_CountryId">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Alerts_Accounts_CreatorUser" Association="Self.FK_Alerts_Accounts_CreatorUser">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Alerts" EntitySet="Alerts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AlertUsers_Accounts_UserId" Association="Self.FK_AlertUsers_Accounts_UserId">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="AlertUsers" EntitySet="AlertUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Accounts_UserId" Association="Self.FK_Comments_Accounts_UserId">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_Accounts_AccountId" Association="Self.FK_Events_Accounts_AccountId">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evidences_Accounts_UserId" Association="Self.FK_Evidences_Accounts_UserId">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Evidences" EntitySet="Evidences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RefreshToken_Accounts_AccountId" Association="Self.FK_RefreshToken_Accounts_AccountId">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="RefreshToken" EntitySet="RefreshToken" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_Accounts_UserId" Association="Self.FK_Reports_Accounts_UserId">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Reports" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserWorkPlaces_Accounts_UserId" Association="Self.FK_UserWorkPlaces_Accounts_UserId">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="UserWorkPlaces" EntitySet="UserWorkPlaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitManagersCommitmentReport_Accounts" Association="Self.FK_VisitManagersCommitmentReport_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="VisitManagersCommitmentReport" EntitySet="VisitManagersCommitmentReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitSecurityReport_Accounts" Association="Self.FK_VisitSecurityReport_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="VisitSecurityReport" EntitySet="VisitSecurityReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Alerts_AlertTypes_AlertTypeId" Association="Self.FK_Alerts_AlertTypes_AlertTypeId">
+            <End Role="AlertTypes" EntitySet="AlertTypes" />
+            <End Role="Alerts" EntitySet="Alerts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AlertUsers_Alerts_AlertId" Association="Self.FK_AlertUsers_Alerts_AlertId">
+            <End Role="Alerts" EntitySet="Alerts" />
+            <End Role="AlertUsers" EntitySet="AlertUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AlertUsers_AlertStatus_AlertStatusId" Association="Self.FK_AlertUsers_AlertStatus_AlertStatusId">
+            <End Role="AlertStatus" EntitySet="AlertStatus" />
+            <End Role="AlertUsers" EntitySet="AlertUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_Categories_CategoryId" Association="Self.FK_Reports_Categories_CategoryId">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Reports" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Reports_ReportId" Association="Self.FK_Comments_Reports_ReportId">
+            <End Role="Reports" EntitySet="Reports" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkPlaces_Countries_CountryId" Association="Self.FK_WorkPlaces_Countries_CountryId">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="WorkPlaces" EntitySet="WorkPlaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_Reports_ReportId" Association="Self.FK_Events_Reports_ReportId">
+            <End Role="Reports" EntitySet="Reports" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evidences_Reports_ReportId" Association="Self.FK_Evidences_Reports_ReportId">
+            <End Role="Reports" EntitySet="Reports" />
+            <End Role="Evidences" EntitySet="Evidences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_Factors_FatorId" Association="Self.FK_Reports_Factors_FatorId">
+            <End Role="Factors" EntitySet="Factors" />
+            <End Role="Reports" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_Killers_KillerId" Association="Self.FK_Reports_Killers_KillerId">
+            <End Role="Killers" EntitySet="Killers" />
+            <End Role="Reports" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionSecurityVisit_SecurityVisit" Association="Self.FK_QuestionSecurityVisit_SecurityVisit">
+            <End Role="SecurityVisit" EntitySet="SecurityVisit" />
+            <End Role="QuestionSecurityVisit" EntitySet="QuestionSecurityVisit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportFollowUp_Reports_ReportId" Association="Self.FK_ReportFollowUp_Reports_ReportId">
+            <End Role="Reports" EntitySet="Reports" />
+            <End Role="ReportFollowUp" EntitySet="ReportFollowUp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_Situations_SituationId" Association="Self.FK_Reports_Situations_SituationId">
+            <End Role="Situations" EntitySet="Situations" />
+            <End Role="Reports" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_StatusReports_StatusId" Association="Self.FK_Reports_StatusReports_StatusId">
+            <End Role="StatusReports" EntitySet="StatusReports" />
+            <End Role="Reports" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_WorkPlaces_WorkPlaceId" Association="Self.FK_Reports_WorkPlaces_WorkPlaceId">
+            <End Role="WorkPlaces" EntitySet="WorkPlaces" />
+            <End Role="Reports" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitSecurityReport_SecurityVisit" Association="Self.FK_VisitSecurityReport_SecurityVisit">
+            <End Role="SecurityVisit" EntitySet="SecurityVisit" />
+            <End Role="VisitSecurityReport" EntitySet="VisitSecurityReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SecurityVisitQuestionsReport_VisitSecurityReport" Association="Self.FK_SecurityVisitQuestionsReport_VisitSecurityReport">
+            <End Role="VisitSecurityReport" EntitySet="VisitSecurityReport" />
+            <End Role="SecurityVisitQuestionsReport" EntitySet="SecurityVisitQuestionsReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserWorkPlaces_WorkPlaces_WorkPlaceId" Association="Self.FK_UserWorkPlaces_WorkPlaces_WorkPlaceId">
+            <End Role="WorkPlaces" EntitySet="WorkPlaces" />
+            <End Role="UserWorkPlaces" EntitySet="UserWorkPlaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitManagersCommitmentReport_WorkPlaces" Association="Self.FK_VisitManagersCommitmentReport_WorkPlaces">
+            <End Role="WorkPlaces" EntitySet="WorkPlaces" />
+            <End Role="VisitManagersCommitmentReport" EntitySet="VisitManagersCommitmentReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitManagersCommitmentResults_VisitManagersCommitmentReport" Association="Self.FK_VisitManagersCommitmentResults_VisitManagersCommitmentReport">
+            <End Role="VisitManagersCommitmentReport" EntitySet="VisitManagersCommitmentReport" />
+            <End Role="VisitManagersCommitmentResults" EntitySet="VisitManagersCommitmentResults" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitSecurityReport_WorkPlaces" Association="Self.FK_VisitSecurityReport_WorkPlaces">
+            <End Role="WorkPlaces" EntitySet="WorkPlaces" />
+            <End Role="VisitSecurityReport" EntitySet="VisitSecurityReport" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RSDBModelStoreContainer" CdmEntityContainer="RSDBEntities">
+          <EntitySetMapping Name="C__EFMigrationsHistory">
+            <EntityTypeMapping TypeName="RSDBModel.C__EFMigrationsHistory">
+              <MappingFragment StoreEntitySet="__EFMigrationsHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="RSDBModel.Accounts">
+              <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="VerificationToken" ColumnName="VerificationToken" />
+                <ScalarProperty Name="Verified" ColumnName="Verified" />
+                <ScalarProperty Name="ResetToken" ColumnName="ResetToken" />
+                <ScalarProperty Name="ResetTokenExpires" ColumnName="ResetTokenExpires" />
+                <ScalarProperty Name="PasswordReset" ColumnName="PasswordReset" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Updated" ColumnName="Updated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Alerts">
+            <EntityTypeMapping TypeName="RSDBModel.Alerts">
+              <MappingFragment StoreEntitySet="Alerts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CreatorUser" ColumnName="CreatorUser" />
+                <ScalarProperty Name="AlertTypeId" ColumnName="AlertTypeId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="SubTitle" ColumnName="SubTitle" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlertStatus">
+            <EntityTypeMapping TypeName="RSDBModel.AlertStatus">
+              <MappingFragment StoreEntitySet="AlertStatus">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlertTypes">
+            <EntityTypeMapping TypeName="RSDBModel.AlertTypes">
+              <MappingFragment StoreEntitySet="AlertTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlertUsers">
+            <EntityTypeMapping TypeName="RSDBModel.AlertUsers">
+              <MappingFragment StoreEntitySet="AlertUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="AlertId" ColumnName="AlertId" />
+                <ScalarProperty Name="AlertStatusId" ColumnName="AlertStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="RSDBModel.Categories">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="RSDBModel.Comments">
+              <MappingFragment StoreEntitySet="Comments">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="RSDBModel.Countries">
+              <MappingFragment StoreEntitySet="Countries">
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="RSDBModel.Events">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+                <ScalarProperty Name="TypeEventId" ColumnName="TypeEventId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventTypes">
+            <EntityTypeMapping TypeName="RSDBModel.EventTypes">
+              <MappingFragment StoreEntitySet="EventTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Evidences">
+            <EntityTypeMapping TypeName="RSDBModel.Evidences">
+              <MappingFragment StoreEntitySet="Evidences">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="UploadedDate" ColumnName="UploadedDate" />
+                <ScalarProperty Name="UploadedTime" ColumnName="UploadedTime" />
+                <ScalarProperty Name="EvidenceType" ColumnName="EvidenceType" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Factors">
+            <EntityTypeMapping TypeName="RSDBModel.Factors">
+              <MappingFragment StoreEntitySet="Factors">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Killers">
+            <EntityTypeMapping TypeName="RSDBModel.Killers">
+              <MappingFragment StoreEntitySet="Killers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionSecurityVisit">
+            <EntityTypeMapping TypeName="RSDBModel.QuestionSecurityVisit">
+              <MappingFragment StoreEntitySet="QuestionSecurityVisit">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdSecurityVisit" ColumnName="IdSecurityVisit" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RefreshToken">
+            <EntityTypeMapping TypeName="RSDBModel.RefreshToken">
+              <MappingFragment StoreEntitySet="RefreshToken">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="Expires" ColumnName="Expires" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="CreatedByIp" ColumnName="CreatedByIp" />
+                <ScalarProperty Name="Revoked" ColumnName="Revoked" />
+                <ScalarProperty Name="RevokedByIp" ColumnName="RevokedByIp" />
+                <ScalarProperty Name="ReplacedByToken" ColumnName="ReplacedByToken" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReportFollowUp">
+            <EntityTypeMapping TypeName="RSDBModel.ReportFollowUp">
+              <MappingFragment StoreEntitySet="ReportFollowUp">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reports">
+            <EntityTypeMapping TypeName="RSDBModel.Reports">
+              <MappingFragment StoreEntitySet="Reports">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="WorkPlaceId" ColumnName="WorkPlaceId" />
+                <ScalarProperty Name="SituationId" ColumnName="SituationId" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="KillerId" ColumnName="KillerId" />
+                <ScalarProperty Name="FatorId" ColumnName="FatorId" />
+                <ScalarProperty Name="CorrectiveComment" ColumnName="CorrectiveComment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SecurityVisit">
+            <EntityTypeMapping TypeName="RSDBModel.SecurityVisit">
+              <MappingFragment StoreEntitySet="SecurityVisit">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SecurityVisitQuestionsReport">
+            <EntityTypeMapping TypeName="RSDBModel.SecurityVisitQuestionsReport">
+              <MappingFragment StoreEntitySet="SecurityVisitQuestionsReport">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Si" ColumnName="Si" />
+                <ScalarProperty Name="No" ColumnName="No" />
+                <ScalarProperty Name="Np" ColumnName="Np" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="InitialDate" ColumnName="InitialDate" />
+                <ScalarProperty Name="RealDate" ColumnName="RealDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Situations">
+            <EntityTypeMapping TypeName="RSDBModel.Situations">
+              <MappingFragment StoreEntitySet="Situations">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusReports">
+            <EntityTypeMapping TypeName="RSDBModel.StatusReports">
+              <MappingFragment StoreEntitySet="StatusReports">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="RSDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserWorkPlaces">
+            <EntityTypeMapping TypeName="RSDBModel.UserWorkPlaces">
+              <MappingFragment StoreEntitySet="UserWorkPlaces">
+                <ScalarProperty Name="WorkPlaceId" ColumnName="WorkPlaceId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VisitManagersCommitment">
+            <EntityTypeMapping TypeName="RSDBModel.VisitManagersCommitment">
+              <MappingFragment StoreEntitySet="VisitManagersCommitment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VisitManagersCommitmentReport">
+            <EntityTypeMapping TypeName="RSDBModel.VisitManagersCommitmentReport">
+              <MappingFragment StoreEntitySet="VisitManagersCommitmentReport">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="WorkPlaceId" ColumnName="WorkPlaceId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VisitManagersCommitmentResults">
+            <EntityTypeMapping TypeName="RSDBModel.VisitManagersCommitmentResults">
+              <MappingFragment StoreEntitySet="VisitManagersCommitmentResults">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VisitSecurityReport">
+            <EntityTypeMapping TypeName="RSDBModel.VisitSecurityReport">
+              <MappingFragment StoreEntitySet="VisitSecurityReport">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
+                <ScalarProperty Name="WorkPlaceId" ColumnName="WorkPlaceId" />
+                <ScalarProperty Name="SecurityVisitId" ColumnName="SecurityVisitId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkPlaces">
+            <EntityTypeMapping TypeName="RSDBModel.WorkPlaces">
+              <MappingFragment StoreEntitySet="WorkPlaces">
+                <ScalarProperty Name="WorkPlaceId" ColumnName="WorkPlaceId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

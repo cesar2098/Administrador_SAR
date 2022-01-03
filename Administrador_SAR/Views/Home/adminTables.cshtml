@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<Administrador_SAR.DBContext.Countries>
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Administrar Recursos";
 }
@@ -38,13 +39,20 @@
     </div>
 </div>
 
-<div class="card-box mb-30">
+<div class="container">
+    @Html.ActionLink("Categorias", "GetCategoriasController", null, new { @class = "btn btn-danger" })
+    @Html.ActionLink("Paises", "GetCountriesController", null, new { @class = "btn btn-danger" })
+    @Html.ActionLink("Killers", "", null, new { @class = "btn btn-danger" })
+    @Html.ActionLink("Factores", "", null, new { @class = "btn btn-danger" })
+</div>
+
+<!--<div class="card-box mb-30">
     <div class="pd-20">
     </div>
     <div class="row">
         <div class="col-md-6">
-                    <button type="button" data-toggle="modal" data-target="#bd-example-modal-lg" class="btn btn-success">Agregar</button>
-                
+            <button type="button" data-toggle="modal" data-target="#bd-example-modal-lg" class="btn btn-success">Agregar</button>
+
             <table class="data-table checkbox-datatable table stripe hover nowrap" style="font-size:10px">
                 <thead>
                     <tr>
@@ -289,13 +297,14 @@
                 </thead>
                 <tr>
                     <td class="table-plus">1</td>
-                    <td>El Salvador</td>
-                    <td>
-                        <div class="dt-checkbox">
-                            <input type="checkbox" name="select_all" value="1" id="example-select-all" checked>
-                            <span class="dt-checkbox-label"></span>
-                        </div>
-                    </td>
+                    <td>-->
+                        @*@Html.DisplayFor(modelItem => item.Name)*@
+                    <!--</td>
+                    <td>-->
+                        @*@Html.ActionLink("Edit", "Edit", new { id = item.CountryId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.CountryId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.CountryId })*@
+                    <!--</td>
                 </tr>
                 <tr>
                     <td class="table-plus">2</td>
@@ -371,9 +380,9 @@
                     </td>
                 </tr>
             </table>
-        </div>        
+        </div>
     </div>
-</div>
+</div>-->
 
 
 

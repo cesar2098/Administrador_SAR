@@ -46,5 +46,15 @@ namespace Administrador_SAR.Controllers
             return View();
         }
 
+        public ActionResult GetCountriesController()
+        {
+            return RedirectToAction("Index", "Countries");
+        }
+
+        public ActionResult GetCategoriasController()
+        {
+            return  RedirectToAction("Index", "Categories");
+        }
+
     }
 }

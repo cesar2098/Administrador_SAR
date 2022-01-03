@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b2f326f3f26d4c9b920bb498b5e37276" Name="Diagram1">
+        <EntityTypeShape EntityType="RSDBModel.C__EFMigrationsHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RSDBModel.Accounts" Width="1.5" PointX="3" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RSDBModel.Alerts" Width="1.5" PointX="5.25" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="RSDBModel.AlertStatus" Width="1.5" PointX="11.25" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RSDBModel.AlertTypes" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RSDBModel.AlertUsers" Width="1.5" PointX="13.5" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RSDBModel.Categories" Width="1.5" PointX="6" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RSDBModel.Comments" Width="1.5" PointX="8.25" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RSDBModel.Countries" Width="1.5" PointX="0.75" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RSDBModel.Events" Width="1.5" PointX="5.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RSDBModel.EventTypes" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RSDBModel.Evidences" Width="1.5" PointX="5.25" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RSDBModel.Factors" Width="1.5" PointX="6" PointY="29.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RSDBModel.Killers" Width="1.5" PointX="6" PointY="37.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RSDBModel.QuestionSecurityVisit" Width="1.5" PointX="8.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="RSDBModel.RefreshToken" Width="1.5" PointX="5.25" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RSDBModel.ReportFollowUp" Width="1.5" PointX="10.5" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RSDBModel.Reports" Width="1.5" PointX="8.25" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RSDBModel.SecurityVisit" Width="1.5" PointX="6" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="RSDBModel.SecurityVisitQuestionsReport" Width="1.5" PointX="10.5" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RSDBModel.Situations" Width="1.5" PointX="6" PointY="39.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RSDBModel.StatusReports" Width="1.5" PointX="6" PointY="42.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RSDBModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RSDBModel.UserWorkPlaces" Width="1.5" PointX="5.25" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RSDBModel.VisitManagersCommitment" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RSDBModel.VisitManagersCommitmentReport" Width="1.5" PointX="11.25" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RSDBModel.VisitManagersCommitmentResults" Width="1.5" PointX="13.5" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RSDBModel.VisitSecurityReport" Width="1.5" PointX="8.25" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RSDBModel.WorkPlaces" Width="1.5" PointX="3" PointY="23.625" IsExpanded="true" />
+        <AssociationConnector Association="RSDBModel.FK_Accounts_Countries_CountryId" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_Alerts_Accounts_CreatorUser" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_AlertUsers_Accounts_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_Comments_Accounts_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_Events_Accounts_AccountId" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_Evidences_Accounts_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_RefreshToken_Accounts_AccountId" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_Reports_Accounts_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_UserWorkPlaces_Accounts_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_VisitManagersCommitmentReport_Accounts" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_VisitSecurityReport_Accounts" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_Alerts_AlertTypes_AlertTypeId" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_AlertUsers_Alerts_AlertId" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_AlertUsers_AlertStatus_AlertStatusId" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_Reports_Categories_CategoryId" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_Comments_Reports_ReportId" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_WorkPlaces_Countries_CountryId" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_Events_Reports_ReportId" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_Evidences_Reports_ReportId" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_Reports_Factors_FatorId" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_Reports_Killers_KillerId" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_QuestionSecurityVisit_SecurityVisit" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_ReportFollowUp_Reports_ReportId" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_Reports_Situations_SituationId" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_Reports_StatusReports_StatusId" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_Reports_WorkPlaces_WorkPlaceId" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_VisitSecurityReport_SecurityVisit" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_SecurityVisitQuestionsReport_VisitSecurityReport" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_UserWorkPlaces_WorkPlaces_WorkPlaceId" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_VisitManagersCommitmentReport_WorkPlaces" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_VisitManagersCommitmentResults_VisitManagersCommitmentReport" ManuallyRouted="false" />
+        <AssociationConnector Association="RSDBModel.FK_VisitSecurityReport_WorkPlaces" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
