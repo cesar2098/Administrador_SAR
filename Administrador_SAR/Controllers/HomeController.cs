@@ -14,6 +14,10 @@ namespace Administrador_SAR.Controllers
         }
         public ActionResult dashboard()
         {
+            if (Session["UserName"] == null)
+            {
+                return RedirectToAction("login", "Login");
+            }
             return View();
         }
 
@@ -42,6 +46,11 @@ namespace Administrador_SAR.Controllers
 
         public ActionResult adminTables()
         {
+            //if (Session["UserName"] == null)
+            //{
+            //    return RedirectToAction("login", "Login");
+            //}
+
             ViewBag.Message = "Admin page.";
             return View();
         }
@@ -54,6 +63,14 @@ namespace Administrador_SAR.Controllers
         public ActionResult GetCategoriasController()
         {
             return  RedirectToAction("Index", "Categories");
+        }
+
+        public ActionResult CerrarSesion()
+        {
+            Session["UserId"] = 0;
+            Session["UserName"] = null;
+            Session["Rol"] = 0;
+            return RedirectToAction("login", "Login");
         }
 
     }

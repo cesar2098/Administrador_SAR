@@ -1,82 +1,121 @@
 ﻿@model IEnumerable<Administrador_SAR.DBContext.WorkPlaces>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Obras";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="header">
+    <div class="header-left">
+        <div class="menu-icon dw dw-menu"></div>
+        <div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
+    </div>
+    <div class="header-right">
+        <div class="user-info-dropdown">
+            <div class="dropdown">
+                <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                    <span class="user-icon">
+                        <img src="vendors/images/photo1.jpg" alt="">
+                    </span>
+                    @if (Session["UserName"] != null)
+                    {
+                        <span class="user-name">@Session["UserName"]</span>
+                    }
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                    <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i>Perfil</a>
+                    <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Configuraciones</a>
+                    <a class="dropdown-item" href="faq.html">@*<i class="dw dw-help"></i> Help*@</a>
+                    <a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i>Cerrar Sesión</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-header">
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <h1>Administración de Obras</h1>
+        </div>
+    </div>
+</div>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nueva Obra", "Create", null, new { @class = "btn btn-success" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Latitude)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Longitude)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Countries.Name)
-        </th>
-        <th></th>
-    </tr>
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Latitude)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Longitude)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsActive)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Countries.Name)
+                    </th>
+                    <th> </th>
+                </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Latitude)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Longitude)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsActive)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Countries.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.WorkPlaceId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.WorkPlaceId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.WorkPlaceId })
-        </td>
-    </tr>
-}
+                @foreach (var item in Model)
+                {
+                    <tr class="active">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Latitude)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Longitude)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsActive)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Countries.Name)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Editar", "Edit", new { id = item.WorkPlaceId }, new { @class = " btn btn-warning" }) |
+                            @Html.ActionLink("Informacion", "Details", new { id = item.WorkPlaceId }, new { @class = " btn btn-info" })
+                        </td>
+                    </tr>
+                }
 
-</table>
+            </table>
+        </div>
+    </div>
+</div>

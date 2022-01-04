@@ -20,12 +20,19 @@ namespace Administrador_SAR.Controllers
             {
                 return RedirectToAction("Dashboard", "Home");
             }
+
+            ViewBag.Title = "Iniciar Sesion";
             return View();
         }
 
         [HttpPost]
         public async Task<ActionResult> login(LoginModelRequest model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
             //Hacer validaciones
             var result = await  _service.SigIn(model);
             if (result != null)
@@ -36,6 +43,8 @@ namespace Administrador_SAR.Controllers
                 Session["Rol"] = result.RolId;
                 return RedirectToAction("Dashboard", "Home");
             }
+
+            ModelState.AddModelError("NotFound", "Usuario o Contraseña incorrectos");
 
             return View(model);
             

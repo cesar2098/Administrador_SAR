@@ -18,7 +18,7 @@
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <title>@ViewBag.Title - SAR </title>
 </head>
-<body>    
+<body>
     <div class="right-sidebar">
         <div class="sidebar-title">
             <h3 class="weight-600 font-16 text-blue">
@@ -96,7 +96,7 @@
 
     <div class="left-side-bar">
         <div class="brand-logo">
-            <a href="index.html">
+            <a href="/Home/dashboard">
                 <img src="~/vendors/images/rodio2.png" alt="" class="dark-logo">
                 <img src="~/vendors/images/rodio2.png" alt="" class="light-logo">
             </a>
@@ -118,7 +118,7 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="@Url.Action("adminProject","Home")" class="dropdown-toggle no-arrow">
+                        <a href="@Url.Action("Index","WorkPlaces")" class="dropdown-toggle no-arrow">
                             <span class="micon dw dw-edit-1"></span><span class="mtext">Obras</span>
                         </a>
                     </li>
@@ -132,7 +132,7 @@
                             <span class="micon dw dw-edit-file"></span><span class="mtext"> Admin Recursos </span>
                         </a>
                     </li>
-                    
+
                 </ul>
             </div>
         </div>
@@ -141,7 +141,7 @@
     <div class="main-container">
         @RenderBody()
     </div>
-    <div class="footer-wrap pd-20 mb-20 card-box">
+    <div class="footer-wrap pd-20 mt-30 card-box ">
         Administración SAR - Create Power By César
     </div>
 
@@ -168,5 +168,6 @@
     <!-- Datatable Setting js -->
     <script src="~/vendors/scripts/datatable-setting.js"></script>
     @*Bootstrap*@
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

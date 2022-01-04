@@ -1,11 +1,44 @@
 ﻿@model IEnumerable<Administrador_SAR.DBContext.Factors>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Factores";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="header">
+    <div class="header-left">
+        <div class="menu-icon dw dw-menu"></div>
+        <div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
+    </div>
+    <div class="header-right">
+        <div class="user-info-dropdown">
+            <div class="dropdown">
+                <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                    <span class="user-icon">
+                        <img src="vendors/images/photo1.jpg" alt="">
+                    </span>
+                    @if (Session["UserName"] != null)
+                    {
+                        <span class="user-name">@Session["UserName"]</span>
+                    }
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                    <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i>Perfil</a>
+                    <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Configuraciones</a>
+                    <a class="dropdown-item" href="faq.html">@*<i class="dw dw-help"></i> Help*@</a>
+                    <a class="dropdown-item" href="/Home/CerrarSesion"><i class="dw dw-logout"></i>Cerrar Sesión</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-header">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <h1>Administración de Factores</h1>
+        </div>
+    </div>
+</div>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -21,20 +54,21 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsActive)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>

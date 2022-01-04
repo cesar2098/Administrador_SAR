@@ -1889,9 +1889,9 @@ body.IE .register-page-wrap .container{
 /*==============================================================
 	Register Page End
 ==============================================================*/
-.main-container{
-	padding: 80px 20px 2px 300px;
-}
+/*.main-container{
+	padding: 5px 0px 2px 300px;
+}*/
 .page-header .dropdown-menu{
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
