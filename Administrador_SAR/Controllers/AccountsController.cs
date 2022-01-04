@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BC = BCrypt.Net.BCrypt;
 using Administrador_SAR.DBContext;
 
 namespace Administrador_SAR.Controllers
@@ -52,6 +53,8 @@ namespace Administrador_SAR.Controllers
         {
             if (ModelState.IsValid)
             {
+                accounts.Created = DateTime.Now;
+                accounts.Password = BC.HashPassword("12345678");//Contraseña por defecto
                 db.Accounts.Add(accounts);
                 db.SaveChanges();
                 return RedirectToAction("Index");

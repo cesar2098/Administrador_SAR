@@ -28,11 +28,12 @@ namespace Administrador_SAR.Controllers
         {
             //Hacer validaciones
             var result = await  _service.SigIn(model);
-            if (result == null)
+            if (result != null)
             {
                 //Agrgar usuario a session
-                Session["UserId"] = 1;
-                Session["UserName"] = "Daniel";
+                Session["UserId"] = result.UserId;
+                Session["UserName"] = result.FirstName;
+                Session["Rol"] = result.RolId;
                 return RedirectToAction("Dashboard", "Home");
             }
 
