@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using Administrador_SAR.DBContext;
+using Administrador_SAR.Models.WorkPlace;
 
 namespace Administrador_SAR.Controllers
 {
@@ -40,6 +39,11 @@ namespace Administrador_SAR.Controllers
         public ActionResult Create()
         {
             ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
+            var accounts = db.Accounts.Where(x => x.IsActive).ToList();
+            accounts.ForEach(e => { 
+                e.FirstName = e.FirstName + " " + e.LastName;
+            });
+            ViewBag.UserId = new SelectList(accounts, "Id", "FirstName");
             return View();
         }
 
@@ -48,17 +52,46 @@ namespace Administrador_SAR.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "WorkPlaceId,Name,Description,CreatedDate,CreatedTime,CountryId,Address,Latitude,Longitude,IsActive")] WorkPlaces workPlaces)
+        public ActionResult Create(CreateWorkPlaceRequestModel model)
         {
             if (ModelState.IsValid)
             {
-                db.WorkPlaces.Add(workPlaces);
+                WorkPlaces workPlace = new WorkPlaces()
+                {
+                    Name = model.Name,
+                    Description = model.Description,
+                    CountryId = model.CountryId,
+                    CreatedDate = DateTime.Today,
+                    CreatedTime = new TimeSpan(0,0,0),
+                    Address = model.Address,
+                    Latitude = model.Latitude,
+                    Longitude = model.Longitude,
+                    IsActive = true
+                };
+
+                db.WorkPlaces.Add(workPlace);
+
+                UserWorkPlaces userWorkPlaces = new UserWorkPlaces()
+                {
+                    IsActive = true,
+                    UserId = model.UserId,
+                    WorkPlaceId = workPlace.WorkPlaceId,
+                    UserType = 0
+                };
+
+                db.UserWorkPlaces.Add(userWorkPlaces);
+                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", workPlaces.CountryId);
-            return View(workPlaces);
+            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", model.CountryId);
+            var accounts = db.Accounts.Where(x => x.IsActive).ToList();
+            accounts.ForEach(e => {
+                e.FirstName = e.FirstName + " " + e.LastName;
+            });
+            ViewBag.UserId = new SelectList(accounts, "Id", "FirstName", model.UserId);
+            return View(model);
         }
 
         // GET: WorkPlaces/Edit/5
