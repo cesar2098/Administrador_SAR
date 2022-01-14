@@ -28,7 +28,7 @@ namespace Administrador_SAR.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            WorkPlaces workPlaces = db.WorkPlaces.Find(id);
+            WorkPlaces workPlaces = db.WorkPlaces.Include(x => x.Countries).FirstOrDefault(x => x.WorkPlaceId == id);
             if (workPlaces == null)
             {
                 return HttpNotFound();
