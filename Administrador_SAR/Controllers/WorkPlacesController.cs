@@ -6,6 +6,7 @@ using System.Net;
 using System.Web.Mvc;
 using Administrador_SAR.DBContext;
 using Administrador_SAR.Models.WorkPlace;
+using AutoMapper;
 
 namespace Administrador_SAR.Controllers
 {
@@ -56,18 +57,10 @@ namespace Administrador_SAR.Controllers
         {
             if (ModelState.IsValid)
             {
-                WorkPlaces workPlace = new WorkPlaces()
-                {
-                    Name = model.Name,
-                    Description = model.Description,
-                    CountryId = model.CountryId,
-                    CreatedDate = DateTime.Today,
-                    CreatedTime = new TimeSpan(0,0,0),
-                    Address = model.Address,
-                    Latitude = model.Latitude,
-                    Longitude = model.Longitude,
-                    IsActive = true
-                };
+                var workPlace = Mapper.Map<WorkPlaces>(model);
+                workPlace.CreatedDate = DateTime.Today;
+                workPlace.CreatedTime = new TimeSpan(0, 0, 0);
+                workPlace.IsActive = true;
 
                 db.WorkPlaces.Add(workPlace);
 

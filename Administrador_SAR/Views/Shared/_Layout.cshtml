@@ -3,6 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
+    <meta lang="es" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -11,11 +12,31 @@
     <link href="~/vendors/styles/icon-font.min.css" rel="stylesheet" />
     <link href="~/vendors/fonts/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link href="~/vendors/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="~/src/plugins/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
-    <link href="~/src/plugins/datatables/css/responsive.bootstrap4.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
     <link href="~/vendors/styles/style.css" rel="stylesheet" />
+    @*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/autofill/2.3.7/css/autoFill.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.1.1/css/buttons.bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css" />
+    <link rel="stylesheet" type="text/c*@<!--ss" href="https://cdn.datatables.net/scroller/2.0.5/css/scroller.bootstrap.min.css" />-->
+<style>
+    .paginate_button {
+        padding: 10px !important;
+    }
 
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    a:not([href]) {
+        margin-left:5px;
+        background-color: grey !important;
+        cursor:pointer;
+    }
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+        background-color: white !important;
+    }
+    a .current {
+        background-color: white !important;
+    }
+</style>
     <title>@ViewBag.Title - SAR </title>
 </head>
 <body>
@@ -95,16 +116,15 @@
     </div>
 
     <div class="left-side-bar">
-        <div class="brand-logo">
+        <div class="brand-logo text-center" style="height:120px">
             <a href="/Home/dashboard">
-                <img src="~/vendors/images/rodio2.png" alt="" class="dark-logo">
-                <img src="~/vendors/images/rodio2.png" alt="" class="light-logo">
+                <img src="~/vendors/images/rodio3.jpg" alt="">
             </a>
             <div class="close-sidebar" data-toggle="left-sidebar-close">
                 <i class="ion-close-round"></i>
             </div>
         </div>
-        <div class="menu-block customscroll">
+        <div class="menu-block">
             <div class="sidebar-menu">
                 <ul id="accordion-menu">
                     <li class="dropdown">
@@ -132,6 +152,16 @@
                             <span class="micon dw dw-edit-file"></span><span class="mtext"> Admin Recursos </span>
                         </a>
                     </li>
+                    <li class="dropdown">
+                        <a href="@Url.Action("Index","Reports")" class="dropdown-toggle no-arrow">
+                            <span class="micon dw dw-edit-1"></span><span class="mtext">Reportes SAR</span>
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="@Url.Action("Index","VisitManagersReports")" class="dropdown-toggle no-arrow">
+                            <span class="micon dw dw-edit-1"></span><span class="mtext">Visita Gerencial</span>
+                        </a>
+                    </li>
 
                 </ul>
             </div>
@@ -146,27 +176,10 @@
     </div>
 
     <!-- js -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script src="~/vendors/scripts/core.js"></script>
-    <script src="~/vendors/scripts/script.min.js"></script>
-    <script src="~/vendors/scripts/process.js"></script>
-    <script src="~/vendors/scripts/layout-settings.js"></script>
-    <script src="~/vendors/scripts/dashboard.js"></script>
-    <script src="~/src/plugins/apexcharts/apexcharts.min.js"></script>
-    <script src="~/src/plugins/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="~/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
-    <script src="~/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
-    <script src="~/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
-    <!-- buttons for Export datatable -->
-    <script src="~/src/plugins/datatables/js/dataTables.buttons.min.js"></script>
-    <script src="~/src/plugins/datatables/js/buttons.bootstrap4.min.js"></script>
-    <script src="~/src/plugins/datatables/js/buttons.print.min.js"></script>
-    <script src="~/src/plugins/datatables/js/buttons.html5.min.js"></script>
-    <script src="~/src/plugins/datatables/js/buttons.flash.min.js"></script>
-    <script src="~/src/plugins/datatables/js/pdfmake.min.js"></script>
-    <script src="~/src/plugins/datatables/js/vfs_fonts.js"></script>
-    <!-- Datatable Setting js -->
-    <script src="~/vendors/scripts/datatable-setting.js"></script>
+    @*<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.11.3/af-2.3.7/b-2.1.1/b-colvis-2.1.1/b-html5-2.1.1/r-2.2.9/sc-2.0.5/datatables.min.js"></script>*@
+
     @*Bootstrap*@
     @RenderSection("Scripts", required: false)
 </body>

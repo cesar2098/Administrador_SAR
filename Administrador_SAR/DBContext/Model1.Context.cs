@@ -18,6 +18,7 @@ namespace Administrador_SAR.DBContext
         public RSDBEntities()
             : base("name=RSDBEntities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -1,0 +1,115 @@
+﻿@model Administrador_SAR.DBContext.Reports
+
+@{
+    ViewBag.Title = "Detalle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Reports</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CorrectiveComment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CorrectiveComment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Accounts.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Accounts.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Categories.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categories.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Factors.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Factors.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Killers.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Killers.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Situations.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Situations.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StatusReports.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StatusReports.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkPlaces.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkPlaces.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
