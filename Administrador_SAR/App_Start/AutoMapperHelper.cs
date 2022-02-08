@@ -1,4 +1,5 @@
 ﻿using Administrador_SAR.DBContext;
+using Administrador_SAR.Models.Account;
 using Administrador_SAR.Models.Reports;
 using Administrador_SAR.Models.WorkPlace;
 using AutoMapper;
@@ -25,6 +26,10 @@ namespace Administrador_SAR.App_Start
                             opt => opt.MapFrom(src => src.StatusReports.Description))
                 .ForMember(dest => dest.WorkPlace,
                             opt => opt.MapFrom(src => src.WorkPlaces.Name));
+            //Account Views
+            Mapper.CreateMap<Accounts, AccountResponseViewModel>()
+                .ForMember(dest => dest.Country,
+                            opt => opt.MapFrom(src => src.Countries.Name));
         }
     }
 }

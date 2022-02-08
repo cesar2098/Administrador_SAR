@@ -5,111 +5,85 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<div class="header">
+    <div class="header-left">
+        <div class="menu-icon dw dw-menu"></div>
+        <div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
+    </div>
+    <div class="header-right">
+        <div class="user-info-dropdown">
+            <div class="dropdown">
+                <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                    <span class="user-icon">
+                        <img src="vendors/images/photo1.jpg" alt="">
+                    </span>
+                    @if (Session["UserName"] != null)
+                    {
+                        <span class="user-name">@Session["UserName"]</span>
+                    }
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                    <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i>Perfil</a>
+                    <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Configuraciones</a>
+                    <a class="dropdown-item" href="faq.html">@*<i class="dw dw-help"></i> Help*@</a>
+                    <a class="dropdown-item" href="/Home/CerrarSesion"><i class="dw dw-logout"></i>Cerrar Sesión</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-header">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <h1>Información de Obra</h1>
+        </div>
+    </div>
+</div>
 
 <div>
-    <h4>Reports</h4>
+    <h4>@Html.DisplayFor(model => model.Description)</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedTime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Comment)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Comment)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CorrectiveComment)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CorrectiveComment)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Accounts.FirstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Accounts.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Categories.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Categories.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Factors.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Factors.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Killers.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Killers.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Situations.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Situations.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StatusReports.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StatusReports.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.WorkPlaces.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.WorkPlaces.Name)
-        </dd>
-
-    </dl>
+    <div class="container-fluid">
+        <h3>Informacion General</h3>
+        <br />
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Accounts.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.Accounts.FirstName, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control", @readonly = true, @type = "datetime" } })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p>
+            @Html.ActionLink("Editar Informacion", "Edit", new { id = Model.WorkPlaceId }, new { @class = " btn btn-warning" })
+            @Html.ActionLink("Volver", "Index", null, new { @class = " btn btn-dark" })
+        </p>
+    </div>
+    <br />
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
