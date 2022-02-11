@@ -14,9 +14,14 @@ namespace Administrador_SAR.Controllers
         private RSDBEntities db = new RSDBEntities();
 
         // GET: Reports
-        public ActionResult Index()
+        public ActionResult Index(int workPlaceId = 0)
         {
             var reports = db.Reports.Include(r => r.Accounts).Include(r => r.Categories).Include(r => r.Factors).Include(r => r.Killers).Include(r => r.Situations).Include(r => r.StatusReports).Include(r => r.WorkPlaces).ToList();
+            if (workPlaceId != 0)
+            {
+                reports = reports.Where(x => x.WorkPlaceId == workPlaceId).ToList();
+            }
+
             var viewModel = Mapper.Map<IList<ReportResponseViewModel>>(reports);
             
             return View(viewModel);

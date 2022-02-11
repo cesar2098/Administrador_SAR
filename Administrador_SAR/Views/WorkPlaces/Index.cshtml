@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Administrador_SAR.DBContext.WorkPlaces>
+﻿@model IEnumerable<Administrador_SAR.Models.WorkPlace.WorkPlaceResponseViewModel>
 
 @{
     ViewBag.Title = "Obras";
@@ -60,10 +60,10 @@
                             @Html.DisplayNameFor(model => model.CreatedDate)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.IsActive)
+                            @Html.DisplayNameFor(model => model.Status)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Countries.Name)
+                            @Html.DisplayNameFor(model => model.Country)
                         </th>
                     </tr>
                 </thead>
@@ -85,10 +85,10 @@
                                 @Html.DisplayFor(modelItem => item.CreatedDate)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.IsActive)
+                                @Html.DisplayFor(modelItem => item.Status)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Countries.Name)
+                                @Html.DisplayFor(modelItem => item.Country)
                             </td>
                         </tr>
                     }

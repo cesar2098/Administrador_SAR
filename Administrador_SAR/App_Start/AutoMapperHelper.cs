@@ -25,6 +25,9 @@ namespace Administrador_SAR.App_Start
                             opt => opt.MapFrom(src => src.StatusReports.Description))
                 .ForMember(dest => dest.WorkPlace,
                             opt => opt.MapFrom(src => src.WorkPlaces.Name));
+            Mapper.CreateMap<WorkPlaces, WorkPlaceResponseViewModel>()
+                .ForMember(dest => dest.Country,
+                            opt => opt.MapFrom(src => src.Countries.Name));
         }
     }
 }

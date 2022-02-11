@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -17,8 +18,16 @@ namespace Administrador_SAR.Controllers
         // GET: WorkPlaces
         public ActionResult Index()
         {
-            var workPlaces = db.WorkPlaces.Include(w => w.Countries);
-            return View(workPlaces.ToList());
+            var workPlaces = db.WorkPlaces.Include(w => w.Countries).ToList();
+            var viewModel = Mapper.Map<IList<WorkPlaceResponseViewModel>>(workPlaces);
+            foreach (var item in viewModel)
+            {
+                if (item.IsActive)
+                    item.Status = "ACTIVO";
+                else
+                    item.Status = "INACTIVO";
+            }
+            return View(viewModel);
         }
 
         // GET: WorkPlaces/Details/5

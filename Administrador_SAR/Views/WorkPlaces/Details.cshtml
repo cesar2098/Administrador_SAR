@@ -103,7 +103,7 @@
     </div>
     <br />
     <h3>Acciones</h3>
-    @Html.ActionLink("Ver Reportes SAR", "Index", "Reports", null, new { @class = "btn btn-dark", @style = "padding:50px" })
+    @Html.ActionLink("Ver Reportes SAR", "Index", "Reports", new { WorkPlaceId = Model.WorkPlaceId }, new { @class = "btn btn-dark", @style = "padding:50px" })
     @Html.ActionLink("Administrar Usuarios", "Index", "WorkPlaces", null, new { @class = "btn btn-dark", @style = "padding:50px" })
 </div>
 
