@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
-using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using BC = BCrypt.Net.BCrypt;
 using Administrador_SAR.DBContext;
+using AutoMapper;
+using Administrador_SAR.Models.Account;
 
 namespace Administrador_SAR.Controllers
 {
@@ -19,7 +18,20 @@ namespace Administrador_SAR.Controllers
         public ActionResult Index()
         {
             var accounts = db.Accounts.Include(a => a.Countries);
-            return View(accounts.ToList());
+            var viewModel = Mapper.Map<IList<AccountResponseViewModel>>(accounts);
+            foreach (var item in viewModel)
+            {
+                if (item.Gender.Equals(0))
+                    item.GenderDescription = "HOMBRE";
+                else
+                    item.GenderDescription = "MUJER";
+
+                if (item.IsActive)
+                    item.StatusDescription = "ACTIVO";
+                else
+                    item.StatusDescription = "INACTIVO";
+            }
+            return View(viewModel);
         }
 
         // GET: Accounts/Details/5
@@ -40,7 +52,19 @@ namespace Administrador_SAR.Controllers
         // GET: Accounts/Create
         public ActionResult Create()
         {
+            List<GenderModel> genders = new List<GenderModel>();
+            List<RolModel> rols = new List<RolModel>();
+            genders.Add(new GenderModel() { Id = 0, Description = "HOMBRE" });
+            genders.Add(new GenderModel() { Id = 1, Description = "MUJER" });
+
+            rols.Add(new RolModel() { Id = 0, Description = "Administrador" });
+            rols.Add(new RolModel() { Id = 1, Description = "Gerente" });
+            rols.Add(new RolModel() { Id = 2, Description = "Default" });
+
             ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
+            ViewBag.Gender = new SelectList(genders, "Id", "Description");
+            ViewBag.Roles = new SelectList(rols, "Id", "Description");
+
             return View();
         }
 

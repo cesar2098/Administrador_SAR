@@ -34,7 +34,14 @@ namespace Administrador_SAR.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reports reports = db.Reports.Find(id);
+            Reports reports  = db.Reports.Include(r => r.Accounts)
+                                .Include(r => r.Categories)
+                                .Include(r => r.Factors)
+                                .Include(r => r.Killers)
+                                .Include(r => r.Situations)
+                                .Include(r => r.StatusReports)
+                                .Include(r => r.Evidences)
+                                .Include(r => r.WorkPlaces).FirstOrDefault(x => x.Id == id);
             if (reports == null)
             {
                 return HttpNotFound();
