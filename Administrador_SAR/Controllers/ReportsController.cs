@@ -42,11 +42,14 @@ namespace Administrador_SAR.Controllers
                                 .Include(r => r.StatusReports)
                                 .Include(r => r.Evidences)
                                 .Include(r => r.WorkPlaces).FirstOrDefault(x => x.Id == id);
+
             if (reports == null)
             {
                 return HttpNotFound();
             }
-            return View(reports);
+
+            var viewModel = Mapper.Map<ReportResponseViewModel>(reports);
+            return View(viewModel);
         }
 
         // GET: Reports/Create

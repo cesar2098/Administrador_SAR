@@ -1,5 +1,6 @@
 ﻿using Administrador_SAR.DBContext;
 using Administrador_SAR.Models.Account;
+using Administrador_SAR.Models.Evidences;
 using Administrador_SAR.Models.Reports;
 using Administrador_SAR.Models.WorkPlace;
 using AutoMapper;
@@ -13,6 +14,7 @@ namespace Administrador_SAR.App_Start
             //SOURCE - DESTINATION
 
             Mapper.CreateMap<CreateWorkPlaceRequestModel, WorkPlaces>();
+            //Report view
             Mapper.CreateMap<Reports, ReportResponseViewModel>()
                 .ForMember(dest => dest.Account,
                             opt => opt.MapFrom(src => src.Accounts.FirstName + " " + src.Accounts.LastName))
@@ -26,6 +28,7 @@ namespace Administrador_SAR.App_Start
                             opt => opt.MapFrom(src => src.StatusReports.Description))
                 .ForMember(dest => dest.WorkPlace,
                             opt => opt.MapFrom(src => src.WorkPlaces.Name));
+            Mapper.CreateMap<Evidences, EvidenceResponseViewModel>();
             //Account Views
             Mapper.CreateMap<Accounts, AccountResponseViewModel>()
                 .ForMember(dest => dest.Country,

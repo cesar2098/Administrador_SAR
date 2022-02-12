@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Administrador_SAR.Models.Evidences;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Administrador_SAR.Models.Reports
@@ -28,5 +30,7 @@ namespace Administrador_SAR.Models.Reports
         public string Status { get; set; }
         [Display(Name = "Obra")]
         public string WorkPlace { get; set; }
+
+        public List<EvidenceResponseViewModel> Evidences { get; set; }
     }
 }

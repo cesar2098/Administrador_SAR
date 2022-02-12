@@ -266,6 +266,7 @@
     <Compile Include="Models\Account\AccountResponseViewModel.cs" />
     <Compile Include="Models\Account\GenderModel.cs" />
     <Compile Include="Models\Account\RolModel.cs" />
+    <Compile Include="Models\Evidences\EvidenceResponseViewModel.cs" />
     <Compile Include="Models\Login\LoginModelRequest.cs" />
     <Compile Include="Models\Login\LoginModelResponse.cs" />
     <Compile Include="Models\Reports\ReportResponseViewModel.cs" />
@@ -826,6 +827,8 @@
     <Content Include="DBContext\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\asministradorsar - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\asministradorsar - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
