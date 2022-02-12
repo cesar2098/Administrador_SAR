@@ -43,63 +43,67 @@
 <p>
     @Html.ActionLink("Nueva Obra", "Create", null, new { @class = "btn btn-success" })
 </p>
-<div class="row">
-    <div class="col-md-12">
-        <div class="table-responsive">
-            <table class="table table-hover" id="table_reports">
-                <thead>
-                    <tr>
-                        <th> Acciones </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Name)
-                        </th>
-                        <th style="max-width:150px">
-                            @Html.DisplayNameFor(model => model.Description)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.CreatedDate)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Status)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Country)
-                        </th>
+
+<div class="card-box mb-30">
+    <div class="pd-20 table-responsive">
+        <table class="table table-hover" id="table_reports">
+            <thead>
+                <tr>
+                    <th> Acciones </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th style="max-width:150px">
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Country)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="active">
+                        <td>
+                            @Html.ActionLink("Editar", "Edit", new { id = item.WorkPlaceId }, new { @class = " btn btn-warning" }) |
+                            @Html.ActionLink("Ver más", "Details", new { id = item.WorkPlaceId }, new { @class = " btn btn-info" })
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td style="max-width:150px">
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Country)
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr class="active">
-                            <td>
-                                @Html.ActionLink("Editar", "Edit", new { id = item.WorkPlaceId }, new { @class = " btn btn-warning" }) |
-                                @Html.ActionLink("Ver más", "Details", new { id = item.WorkPlaceId }, new { @class = " btn btn-info" })
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Name)
-                            </td>
-                            <td style="max-width:150px">
-                                @Html.DisplayFor(modelItem => item.Description)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CreatedDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Status)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Country)
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+                }
+            </tbody>
+        </table>
     </div>
 </div>
 
+
+
 @section Scripts
 {
+
+
+
     <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/autofill/2.3.7/js/dataTables.autoFill.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.1.1/js/dataTables.buttons.min.js"></script>
@@ -108,17 +112,16 @@
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/scroller/2.0.5/js/dataTables.scroller.min.js"></script>
     <script>
-            $(document).ready(function () {
-                $('#table_reports').DataTable({
-                    "lengthMenu": [[5,10, 25, 50, -1], [5,10, 25, 50, "All"]],
-                    "language": {
-                        "lengthMenu": "Mostrar _MENU_ items por página",
-                        "zeroRecords": "Sin data ",
-                        "info": "Mostrando pagina _PAGE_ de _PAGES_",
-                        "infoEmpty": "No records available",
-                        "infoFiltered": "(filtrando de un total de  _MAX_ registros)"
-                    }
-                });
+        $(document).ready(function () {
+            $('#table_reports').DataTable({
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ items por página",
+                    "zeroRecords": "Sin data ",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No records available",
+                    "infoFiltered": "(filtrando de un total de  _MAX_ registros)"
+                }
             });
+        });
     </script>
 }
