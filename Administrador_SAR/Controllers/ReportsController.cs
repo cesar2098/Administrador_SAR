@@ -25,6 +25,7 @@ namespace Administrador_SAR.Controllers
                 reports = reports.Where(x => x.WorkPlaceId == workPlaceId).ToList();
             }
 
+            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
             var viewModel = Mapper.Map<IList<ReportResponseViewModel>>(reports);
             
             return View(viewModel);

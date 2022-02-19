@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Administrador_SAR.DBContext;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ namespace Administrador_SAR.Controllers
 {
     public class HomeController : Controller
     {
+        private RSDBEntities db = new RSDBEntities();
         public ActionResult Index()
         {
             return View();
@@ -18,6 +20,8 @@ namespace Administrador_SAR.Controllers
             {
                 return RedirectToAction("login", "Login");
             }
+
+            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
             return View();
         }
 
