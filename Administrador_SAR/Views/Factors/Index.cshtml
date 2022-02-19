@@ -50,10 +50,10 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.Description)
+                       Descripción
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.IsActive)
+                        Estado
                     </th>
                     <th></th>
                 </tr>
@@ -69,8 +69,8 @@
                             @Html.DisplayFor(modelItem => item.IsActive)
                         </td>
                         <td>
-                            @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" }) |
-                            @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-info" })
+                            @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning w-100" })
+                            @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-info w-100" })
                         </td>
                     </tr>
                 }

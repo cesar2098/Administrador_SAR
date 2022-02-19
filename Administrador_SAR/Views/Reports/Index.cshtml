@@ -87,8 +87,8 @@
                         @Html.DisplayFor(modelItem => item.CorrectiveComment)
                     </td>
                     <td>
-                        @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" }) |
-                        @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-info" })
+                        @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning w-100" })
+                        @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-info w-100" })
                     </td>
                 </tr>
                 }
@@ -96,6 +96,12 @@
         </table>
     </div>
 </div>
+
+<style>
+    .w-100{
+        width:100px !important;
+    }
+</style>
 
 @section Scripts
 {
@@ -112,7 +118,14 @@
     <script>
             $(document).ready(function () {
                 $('#table_reports').DataTable({
-                    "lengthMenu": [[5,10, 25, 50, -1], [5,10, 25, 50, "All"]]
+                    "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+                    "language": {
+                        "lengthMenu": "Mostrar _MENU_ items por página",
+                        "zeroRecords": "Sin data ",
+                        "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                        "infoEmpty": "No records available",
+                        "infoFiltered": "(filtrando de un total de  _MAX_ registros)"
+                    }
                 });
             });
     </script>
