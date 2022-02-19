@@ -46,7 +46,9 @@ namespace Administrador_SAR.Controllers
             {
                 return HttpNotFound();
             }
-            return View(accounts);
+
+            var viewModel = Mapper.Map<AccountResponseViewModel>(accounts);
+            return View(viewModel);
         }
 
         // GET: Accounts/Create
@@ -95,13 +97,25 @@ namespace Administrador_SAR.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Accounts accounts = db.Accounts.Find(id);
-            if (accounts == null)
+            Accounts account = db.Accounts.Find(id);
+            if (account == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", accounts.CountryId);
-            return View(accounts);
+
+            List<GenderModel> genders = new List<GenderModel>();
+            List<RolModel> rols = new List<RolModel>();
+            genders.Add(new GenderModel() { Id = 0, Description = "HOMBRE" });
+            genders.Add(new GenderModel() { Id = 1, Description = "MUJER" });
+
+            rols.Add(new RolModel() { Id = 0, Description = "Administrador" });
+            rols.Add(new RolModel() { Id = 1, Description = "Gerente" });
+            rols.Add(new RolModel() { Id = 2, Description = "Default" });
+
+            ViewBag.Gender = new SelectList(genders, "Id", "Description", account.Gender);
+            ViewBag.Roles = new SelectList(rols, "Id", "Description", account.Role);
+            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", account.CountryId);
+            return View(account);
         }
 
         // POST: Accounts/Edit/5
@@ -109,16 +123,27 @@ namespace Administrador_SAR.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CountryId,FirstName,LastName,Gender,Email,Phone,Password,IsActive,Role,VerificationToken,Verified,ResetToken,ResetTokenExpires,PasswordReset,Created,Updated")] Accounts accounts)
+        public ActionResult Edit([Bind(Include = "Id,CountryId,FirstName,LastName,Gender,Email,Phone,Password,IsActive,Role,VerificationToken,Verified,ResetToken,ResetTokenExpires,PasswordReset,Created,Updated")] Accounts account)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(accounts).State = EntityState.Modified;
+                db.Entry(account).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", accounts.CountryId);
-            return View(accounts);
+            List<GenderModel> genders = new List<GenderModel>();
+            List<RolModel> rols = new List<RolModel>();
+            genders.Add(new GenderModel() { Id = 0, Description = "HOMBRE" });
+            genders.Add(new GenderModel() { Id = 1, Description = "MUJER" });
+
+            rols.Add(new RolModel() { Id = 0, Description = "Administrador" });
+            rols.Add(new RolModel() { Id = 1, Description = "Gerente" });
+            rols.Add(new RolModel() { Id = 2, Description = "Default" });
+
+            ViewBag.Gender = new SelectList(genders, "Id", "Description", account.Gender);
+            ViewBag.Roles = new SelectList(rols, "Id", "Description", account.Role);
+            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", account.CountryId);
+            return View(account);
         }
 
         // GET: Accounts/Delete/5

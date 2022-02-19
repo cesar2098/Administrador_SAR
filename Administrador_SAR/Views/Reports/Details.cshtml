@@ -35,7 +35,7 @@
 <div class="page-header">
     <div class="row">
         <div class="col-md-12 col-sm-12">
-            <h1>Información de Reporte</h1>
+            <h1>Información de Reporte  @Html.ActionLink("Generar PDF", "CreatePDF", new { id = Model.Id }, new { @class = "btn btn-info" })</h1>
         </div>
     </div>
 </div>
@@ -43,10 +43,11 @@
 <div class="card-box mb-30">
     <div class="pd-30">
 
-    <h4>@Html.DisplayFor(model => model.Description)</h4>
+    <h4>@Html.DisplayFor(model => model.Description) </h4>
     <hr />
     <div class="container-fluid">
         <h3>Informacion General</h3>
+       
         <br />
         <div class="row">
             <div class="col-md-12">

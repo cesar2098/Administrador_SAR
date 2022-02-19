@@ -8,7 +8,7 @@ namespace Administrador_SAR.Models.Reports
     public class ReportResponseViewModel
     {
         public int Id { get; set; }
-        [Display(Name = "Fecha Creación")]
+        [Display(Name = "Fecha/Hora")]
         public DateTime CreatedDate { get; set; }
         [Display(Name = "Hora Creación")]
         public TimeSpan CreatedTime { get; set; }

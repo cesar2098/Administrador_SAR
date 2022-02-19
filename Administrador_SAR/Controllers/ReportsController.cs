@@ -2,9 +2,11 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using Administrador_SAR.DBContext;
 using Administrador_SAR.Models.Reports;
+using Administrador_SAR.Services;
 using AutoMapper;
 
 namespace Administrador_SAR.Controllers
@@ -12,6 +14,7 @@ namespace Administrador_SAR.Controllers
     public class ReportsController : Controller
     {
         private RSDBEntities db = new RSDBEntities();
+        private ReportService _reportService = new ReportService();
 
         // GET: Reports
         public ActionResult Index(int workPlaceId = 0)
@@ -87,6 +90,15 @@ namespace Administrador_SAR.Controllers
             ViewBag.StatusId = new SelectList(db.StatusReports, "Id", "Description", reports.StatusId);
             ViewBag.WorkPlaceId = new SelectList(db.WorkPlaces, "WorkPlaceId", "Name", reports.WorkPlaceId);
             return View(reports);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> CreatePDF(int id)
+        {          
+            byte [] result = await _reportService.getReport(id);
+            var output = new FileContentResult(result, "application/octet-stream");
+            output.FileDownloadName = "download.pdf";
+            return output;
         }
 
         // GET: Reports/Edit/5
