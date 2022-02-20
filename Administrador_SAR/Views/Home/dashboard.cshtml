@@ -13,7 +13,7 @@
             <div class="dropdown">
                 <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                     <span class="user-icon">
-                        <img src="vendors/images/photo1.jpg" alt="">
+                        <img src="~/vendors/images/photo1.jpg" alt="">
                     </span>
                     <span class="user-name">César Martínez</span>
                 </a>
@@ -33,11 +33,11 @@
                 <div class="row">
                     <div class="col-md-4 col-sm-12">
                         <label for="CountryId">Seleccione un país</label>
-                        @Html.DropDownList("CountryId", null, htmlAttributes: new { @class = "form-control", @style = "text-transform: uppercase;" })
+                        @Html.DropDownList("CountryId", null, "Seleccione un país", htmlAttributes: new { @class = "form-control", @style = "text-transform: uppercase;" })
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <label for="CountryId">Seleccione una obra</label>
-                        @Html.DropDownList("CountryId", null, htmlAttributes: new { @class = "form-control", @style = "text-transform: uppercase;" })
+                        @Html.DropDownList("WorkPlace", new List<SelectListItem>(), "Seleccionar Obra", htmlAttributes: new { @class = "form-control", @style = "text-transform: uppercase;" })
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <label for="CountryId">Seleccione rango de fechas</label>
@@ -64,15 +64,30 @@
     </div>
     <br>
 </div>
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/highcharts-more.js"></script>
-<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/modules/export-data.js"></script>
-<script src="https://code.highcharts.com/modules/accessibility.js"></script>
-<script src="~/src/scripts/funciones.js"></script>
-@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+@section Scripts{
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="~/src/scripts/funciones.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#CountryId").change(function () {
+                $.get("/Reports/GetWorkPlacesByCountry", { id: $("#CountryId").val() }, function (data) {
+                    // VACIAMOS EL DropDownList
+                    $("#WorkPlace").empty();
+                    // AÑADIMOS UN NUEVO label CON EL NOMBRE DEL ELEMENTO SELECCIONADO
+                    $("#WorkPlace").append("<option value> -- Seleccionar Obra de " + $("#CountryId option:selected").text() + " --</option>")
+                    // CONSTRUIMOS EL DropDownList A PARTIR DEL RESULTADO Json (data)
+                    $.each(data, function (index, row) {
+                        $("#WorkPlace").append("<option value='" + row.WorkPlaceId + "'>" + row.Name + "</option>")
+                    });
+                });
+            });
+        });
+    </script>
 
+}
 

@@ -47,31 +47,36 @@
 <div class="card-box mb-30">
     <div class="page-header">
         <div class="row">
-            <div class="col-md-4 col-sm-12">
+            <div class="col-md-3 col-sm-12">
                 <label for="CountryId">Seleccione un país</label>
-                @Html.DropDownList("CountryId", null, htmlAttributes: new { @class = "form-control", @style = "text-transform: uppercase;" })
+                @Html.DropDownList("CountryId", null, "Seleccione un país", htmlAttributes: new { @class = "form-control", @style = "text-transform: uppercase;" })
             </div>
-            <div class="col-md-4 col-sm-12">
+            <div class="col-md-3 col-sm-12">
                 <label for="CountryId">Seleccione una obra</label>
-                @Html.DropDownList("CountryId", null, htmlAttributes: new { @class = "form-control", @style = "text-transform: uppercase;" })
+                @Html.DropDownList("WorkPlace", new List<SelectListItem>(), "Seleccionar Obra", htmlAttributes: new { @class = "form-control", @style = "text-transform: uppercase;" })
             </div>
-            <div class="col-md-4 col-sm-12">
-                <label for="CountryId">Seleccione rango de fechas</label>
-                @Html.DropDownList("CountryId", null, htmlAttributes: new { @class = "form-control", @style = "text-transform: uppercase;" })
+            
+            <div class="col-md-3 col-sm-12">
+                <label for="startDate">Desde</label>
+                <input type="date" class="form-control" name="startDate" id="startDate" value="" />
+            </div>
+            <div class="col-md-3 col-sm-12">
+                <label for="endDate">Hasta</label>
+                <input type="date" class="form-control" name="endDate" id="endDate" value="" />
             </div>
         </div>
         <div class="row text-center">
             <div class="col-md-12 p-2">
-                @Html.ActionLink("Aplicar Filtros", "Index", null, new { @class = "btn btn-primary" })
+                <input type="button" value="Aplicar Filtros" class="btn btn-primary" id="buttonfilter" />
             </div>
         </div>
     </div>
     <div class="pd-30 table-responsive">
-        <table class="table" id="table_reports">
-            <thead>
+        <table class="table table-striped " id="table_reports">
+            <thead class="thead-dark">
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.Description)
+                        @Html.DisplayNameFor(model => model.WorkPlace)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Account)
@@ -79,21 +84,19 @@
                     <th>
                         @Html.DisplayNameFor(model => model.CreatedDate)
                     </th>
+                    <th>@Html.DisplayNameFor(model => model.Comment)</th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Comment)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.CorrectiveComment)
+                        @Html.DisplayNameFor(model => model.Status)
                     </th>
                     <th> Acciones </th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="tableBody">
                 @foreach (var item in Model)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Description)
+                            @Html.DisplayFor(modelItem => item.WorkPlace)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Account)
@@ -105,7 +108,7 @@
                             @Html.DisplayFor(modelItem => item.Comment)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.CorrectiveComment)
+                            @Html.DisplayFor(modelItem => item.Status)
                         </td>
                         <td>
                             @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning w-100" })
@@ -119,26 +122,29 @@
 </div>
 
 <style>
-    .w-100{
-        width:100px !important;
+    .w-100 {
+        width: 100px !important;
     }
 </style>
 
 @section Scripts
 {
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
-
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/autofill/2.3.7/js/dataTables.autoFill.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.1.1/js/dataTables.buttons.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.1.1/js/buttons.colVis.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.1.1/js/buttons.html5.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/scroller/2.0.5/js/dataTables.scroller.min.js"></script>
-    <script>
+    @*<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/autofill/2.3.7/js/dataTables.autoFill.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.1.1/js/dataTables.buttons.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.1.1/js/buttons.colVis.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.1.1/js/buttons.html5.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/scroller/2.0.5/js/dataTables.scroller.min.js"></script>*@
+    @*<script>
             $(document).ready(function () {
                 $('#table_reports').DataTable({
+                    "order": [[3, "desc"]],
                     "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
                     "language": {
                         "lengthMenu": "Mostrar _MENU_ items por página",
@@ -149,5 +155,50 @@
                     }
                 });
             });
+        </script>*@
+
+    <script>
+        $(document).ready(function () {
+            let date = new Date()
+
+            let day = date.getDate()
+            let month = date.getMonth() + 1
+            let year = date.getFullYear()
+
+            if (month < 10) {
+                $('input[name="startDate"]').val(`${year}-0${month}-${day}`);
+                $('input[name="endDate"]').val(`${year}-0${month}-${day}`);
+            } else {
+                $('input[name="startDate"]').val(`${year}-${month}-${day}`);
+                $('input[name="endDate"]').val(`${year}-${month}-${day}`);
+            }
+           
+            $("#CountryId").change(function () {
+                $.get("/Reports/GetWorkPlacesByCountry", { id: $("#CountryId").val()}, function (data) {
+                    // VACIAMOS EL DropDownList
+                    $("#WorkPlace").empty();
+                    // AÑADIMOS UN NUEVO label CON EL NOMBRE DEL ELEMENTO SELECCIONADO
+                    $("#WorkPlace").append("<option value> -- Seleccionar Obra de " + $("#CountryId option:selected").text() + " --</option>")
+                    // CONSTRUIMOS EL DropDownList A PARTIR DEL RESULTADO Json (data)
+                    $.each(data, function (index, row) {
+                        $("#WorkPlace").append("<option value='" + row.WorkPlaceId + "'>" + row.Name + "</option>")
+                    });
+                });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#buttonfilter").click(function () {
+                $.get("/Reports/GetReports", { workPlaceId: $("#WorkPlace").val(), startDate: $("#startDate").val(), endDate: $("#endDate").val()  }, function (data) {
+                    // VACIAMOS EL DropDownList
+                    $("#tableBody").empty();
+                    // CONSTRUIMOS EL DropDownList A PARTIR DEL RESULTADO Json (data)
+                    $.each(data, function (index, row) {
+                        $("#tableBody").append("<tr><td>" + row.WorkPlace + "</td><td>" + row.Account + "</td><td>" + row.CreatedDate + "</td><td>" + row.Comment + "</td><td>" + row.Status + "</td><td><a class='btn btn-warning w-100' href='/Reports/Edit/" + row.Id + "'>Editar<//a><a class='btn btn-info w-100' href='/Reports/Details/" + row.Id + "'>Detalles<//a>" + "</td></tr>")
+                    });
+                });
+            });
+        });
     </script>
 }

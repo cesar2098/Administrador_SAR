@@ -305,6 +305,7 @@
     <Compile Include="Models\Evidences\EvidenceResponseViewModel.cs" />
     <Compile Include="Models\Login\LoginModelRequest.cs" />
     <Compile Include="Models\Login\LoginModelResponse.cs" />
+    <Compile Include="Models\Reports\ReportIndexViewModel.cs" />
     <Compile Include="Models\Reports\ReportResponseViewModel.cs" />
     <Compile Include="Models\WorkPlace\CreateWorkPlaceRequestModel.cs" />
     <Compile Include="Models\WorkPlace\WorkPlaceResponseViewModel.cs" />

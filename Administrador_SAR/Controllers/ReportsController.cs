@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -19,16 +20,48 @@ namespace Administrador_SAR.Controllers
         // GET: Reports
         public ActionResult Index(int workPlaceId = 0)
         {
-            var reports = db.Reports.Include(r => r.Accounts).Include(r => r.Categories).Include(r => r.Factors).Include(r => r.Killers).Include(r => r.Situations).Include(r => r.StatusReports).Include(r => r.WorkPlaces).ToList();
+            var reports = db.Reports
+                            .Include(r => r.Accounts)
+                            .Include(r => r.Categories)
+                            .Include(r => r.Factors)
+                            .Include(r => r.Killers)
+                            .Include(r => r.Situations)
+                            .Include(r => r.StatusReports)
+                            .Include(r => r.WorkPlaces).OrderByDescending(x => x.CreatedDate).ToList();
             if (workPlaceId != 0)
             {
                 reports = reports.Where(x => x.WorkPlaceId == workPlaceId).ToList();
             }
 
             ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
+            var result = Mapper.Map<IList<ReportResponseViewModel>>(reports); 
+            return View(result);
+        }
+
+        public JsonResult GetReports(DateTime startDate, DateTime endDate, int workPlaceId = 0)
+        {
+            if (startDate == null) startDate = DateTime.Today;
+            if (endDate == null) endDate = DateTime.Today.AddDays(-7);
+            var reports = db.Reports
+                            .Include(r => r.Accounts)
+                            .Include(r => r.Categories)
+                            .Include(r => r.Factors)
+                            .Include(r => r.Killers)
+                            .Include(r => r.Situations)
+                            .Include(r => r.StatusReports)
+                            .Include(r => r.WorkPlaces).OrderByDescending(x => x.CreatedDate)
+                            .Where(x => x.WorkPlaceId == workPlaceId  && x.CreatedDate >= startDate && x.CreatedDate <= endDate)
+                            .ToList();
+
             var viewModel = Mapper.Map<IList<ReportResponseViewModel>>(reports);
-            
-            return View(viewModel);
+            return Json(viewModel, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult GetWorkPlacesByCountry(int id)
+        {
+            var workPlaces = db.WorkPlaces.Where(w => w.CountryId == id).ToList();
+            return Json(workPlaces, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Reports/Details/5

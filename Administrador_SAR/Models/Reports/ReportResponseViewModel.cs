@@ -9,7 +9,7 @@ namespace Administrador_SAR.Models.Reports
     {
         public int Id { get; set; }
         [Display(Name = "Fecha/Hora")]
-        public DateTime CreatedDate { get; set; }
+        public string CreatedDate { get; set; }
         [Display(Name = "Hora Creación")]
         public TimeSpan CreatedTime { get; set; }
         [Display(Name = "Descripción")]
