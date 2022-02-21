@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RSDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="RSDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__EFMigrationsHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -138,6 +138,16 @@
           <Property Name="Description" Type="varchar" MaxLength="150" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="FlashVisitReport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Account" Type="int" />
+          <Property Name="WorkPlaceId" Type="int" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="CreateTime" Type="time" Precision="7" />
+        </EntityType>
         <EntityType Name="Killers">
           <Key>
             <PropertyRef Name="Id" />
@@ -251,6 +261,38 @@
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="UserType" Type="int" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VisitFlashReports">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Bu" Type="varchar" MaxLength="250" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="BirthDay" Type="date" />
+          <Property Name="Antiquity" Type="int" />
+          <Property Name="TypeEmployee" Type="varchar" MaxLength="100" />
+          <Property Name="CategoryEmployee" Type="varchar" MaxLength="100" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" />
+          <Property Name="Nationality" Type="varchar" MaxLength="50" />
+          <Property Name="Position" Type="varchar" MaxLength="100" />
+          <Property Name="AccidentType" Type="varchar" MaxLength="250" />
+          <Property Name="Schedule" Type="varchar" MaxLength="100" />
+          <Property Name="AccidentDate" Type="date" />
+          <Property Name="AccidentTime" Type="time" Precision="7" />
+          <Property Name="WorkPlaceId" Type="int" />
+          <Property Name="DevelopedActivity" Type="varchar" MaxLength="250" />
+          <Property Name="DirectCause" Type="varchar" MaxLength="250" />
+          <Property Name="AffectedBodyPart" Type="varchar" MaxLength="100" />
+          <Property Name="NatureOfInjury" Type="varchar" MaxLength="250" />
+          <Property Name="IsSeriousAccident" Type="varchar" MaxLength="200" />
+          <Property Name="CouldBeSeriousAccident" Type="varchar" MaxLength="200" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="CreatedTime" Type="time" Precision="7" />
+          <Property Name="AccountId" Type="int" />
+          <Property Name="FlashAlertType" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="VisitManagersCommitment">
           <Key>
@@ -452,6 +494,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_FlashVisitReport_Accounts">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+          <End Role="FlashVisitReport" Type="Self.FlashVisitReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlashVisitReport">
+              <PropertyRef Name="Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_QuestionSecurityVisit_SecurityVisit">
           <End Role="SecurityVisit" Type="Self.SecurityVisit" Multiplicity="0..1" />
           <End Role="QuestionSecurityVisit" Type="Self.QuestionSecurityVisit" Multiplicity="*" />
@@ -608,6 +662,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_VisitFlashReport_Accounts">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+          <End Role="VisitFlashReports" Type="Self.VisitFlashReports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VisitFlashReports">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VisitFlashReport_WorkPlaces">
+          <End Role="WorkPlaces" Type="Self.WorkPlaces" Multiplicity="0..1" />
+          <End Role="VisitFlashReports" Type="Self.VisitFlashReports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkPlaces">
+              <PropertyRef Name="WorkPlaceId" />
+            </Principal>
+            <Dependent Role="VisitFlashReports">
+              <PropertyRef Name="WorkPlaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_VisitManagersCommitmentReport_Accounts">
           <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
           <End Role="VisitManagersCommitmentReport" Type="Self.VisitManagersCommitmentReport" Multiplicity="*" />
@@ -706,6 +784,7 @@
           <EntitySet Name="EventTypes" EntityType="Self.EventTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Evidences" EntityType="Self.Evidences" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Factors" EntityType="Self.Factors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FlashVisitReport" EntityType="Self.FlashVisitReport" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Killers" EntityType="Self.Killers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuestionSecurityVisit" EntityType="Self.QuestionSecurityVisit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RefreshToken" EntityType="Self.RefreshToken" Schema="dbo" store:Type="Tables" />
@@ -717,6 +796,7 @@
           <EntitySet Name="StatusReports" EntityType="Self.StatusReports" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserWorkPlaces" EntityType="Self.UserWorkPlaces" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VisitFlashReports" EntityType="Self.VisitFlashReports" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VisitManagersCommitment" EntityType="Self.VisitManagersCommitment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VisitManagersCommitmentReport" EntityType="Self.VisitManagersCommitmentReport" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VisitManagersCommitmentResults" EntityType="Self.VisitManagersCommitmentResults" Schema="dbo" store:Type="Tables" />
@@ -770,6 +850,10 @@
             <End Role="Reports" EntitySet="Reports" />
             <End Role="Evidences" EntitySet="Evidences" />
           </AssociationSet>
+          <AssociationSet Name="FK_FlashVisitReport_Accounts" Association="Self.FK_FlashVisitReport_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="FlashVisitReport" EntitySet="FlashVisitReport" />
+          </AssociationSet>
           <AssociationSet Name="FK_QuestionSecurityVisit_SecurityVisit" Association="Self.FK_QuestionSecurityVisit_SecurityVisit">
             <End Role="SecurityVisit" EntitySet="SecurityVisit" />
             <End Role="QuestionSecurityVisit" EntitySet="QuestionSecurityVisit" />
@@ -822,6 +906,14 @@
             <End Role="WorkPlaces" EntitySet="WorkPlaces" />
             <End Role="UserWorkPlaces" EntitySet="UserWorkPlaces" />
           </AssociationSet>
+          <AssociationSet Name="FK_VisitFlashReport_Accounts" Association="Self.FK_VisitFlashReport_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="VisitFlashReports" EntitySet="VisitFlashReports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitFlashReport_WorkPlaces" Association="Self.FK_VisitFlashReport_WorkPlaces">
+            <End Role="WorkPlaces" EntitySet="WorkPlaces" />
+            <End Role="VisitFlashReports" EntitySet="VisitFlashReports" />
+          </AssociationSet>
           <AssociationSet Name="FK_VisitManagersCommitmentReport_Accounts" Association="Self.FK_VisitManagersCommitmentReport_Accounts">
             <End Role="Accounts" EntitySet="Accounts" />
             <End Role="VisitManagersCommitmentReport" EntitySet="VisitManagersCommitmentReport" />
@@ -851,8 +943,7 @@
             <End Role="WorkPlaces" EntitySet="WorkPlaces" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RSDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -895,6 +986,8 @@
           <NavigationProperty Name="UserWorkPlaces" Relationship="Self.FK_UserWorkPlaces_Accounts_UserId" FromRole="Accounts" ToRole="UserWorkPlaces" />
           <NavigationProperty Name="VisitManagersCommitmentReport" Relationship="Self.FK_VisitManagersCommitmentReport_Accounts" FromRole="Accounts" ToRole="VisitManagersCommitmentReport" />
           <NavigationProperty Name="VisitSecurityReport" Relationship="Self.FK_VisitSecurityReport_Accounts" FromRole="Accounts" ToRole="VisitSecurityReport" />
+          <NavigationProperty Name="FlashVisitReport" Relationship="RSDBModel.FK_FlashVisitReport_Accounts" FromRole="Accounts" ToRole="FlashVisitReport" />
+          <NavigationProperty Name="VisitFlashReports" Relationship="RSDBModel.FK_VisitFlashReport_Accounts" FromRole="Accounts" ToRole="VisitFlashReports" />
         </EntityType>
         <EntityType Name="Alerts">
           <Key>
@@ -1222,6 +1315,7 @@
           <NavigationProperty Name="UserWorkPlaces" Relationship="Self.FK_UserWorkPlaces_WorkPlaces_WorkPlaceId" FromRole="WorkPlaces" ToRole="UserWorkPlaces" />
           <NavigationProperty Name="VisitManagersCommitmentReport" Relationship="Self.FK_VisitManagersCommitmentReport_WorkPlaces" FromRole="WorkPlaces" ToRole="VisitManagersCommitmentReport" />
           <NavigationProperty Name="VisitSecurityReport" Relationship="Self.FK_VisitSecurityReport_WorkPlaces" FromRole="WorkPlaces" ToRole="VisitSecurityReport" />
+          <NavigationProperty Name="VisitFlashReports" Relationship="RSDBModel.FK_VisitFlashReport_WorkPlaces" FromRole="WorkPlaces" ToRole="VisitFlashReports" />
         </EntityType>
         <Association Name="FK_Accounts_Countries_CountryId">
           <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
@@ -1765,7 +1859,102 @@
             <End Role="WorkPlaces" EntitySet="WorkPlaces" />
             <End Role="VisitSecurityReport" EntitySet="VisitSecurityReport" />
           </AssociationSet>
+          <EntitySet Name="FlashVisitReport" EntityType="RSDBModel.FlashVisitReport" />
+          <EntitySet Name="VisitFlashReports" EntityType="RSDBModel.VisitFlashReports" />
+          <AssociationSet Name="FK_FlashVisitReport_Accounts" Association="RSDBModel.FK_FlashVisitReport_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="FlashVisitReport" EntitySet="FlashVisitReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitFlashReport_Accounts" Association="RSDBModel.FK_VisitFlashReport_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="VisitFlashReports" EntitySet="VisitFlashReports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitFlashReport_WorkPlaces" Association="RSDBModel.FK_VisitFlashReport_WorkPlaces">
+            <End Role="WorkPlaces" EntitySet="WorkPlaces" />
+            <End Role="VisitFlashReports" EntitySet="VisitFlashReports" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="FlashVisitReport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Account" Type="Int32" />
+          <Property Name="WorkPlaceId" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="CreateTime" Type="Time" Precision="7" />
+          <NavigationProperty Name="Accounts" Relationship="RSDBModel.FK_FlashVisitReport_Accounts" FromRole="FlashVisitReport" ToRole="Accounts" />
+        </EntityType>
+        <EntityType Name="VisitFlashReports">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Bu" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BirthDay" Type="DateTime" Precision="0" />
+          <Property Name="Antiquity" Type="Int32" />
+          <Property Name="TypeEmployee" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryEmployee" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Position" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AccidentType" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Schedule" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AccidentDate" Type="DateTime" Precision="0" />
+          <Property Name="AccidentTime" Type="Time" Precision="7" />
+          <Property Name="WorkPlaceId" Type="Int32" />
+          <Property Name="DevelopedActivity" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DirectCause" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="AffectedBodyPart" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NatureOfInjury" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="IsSeriousAccident" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CouldBeSeriousAccident" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="CreatedTime" Type="Time" Precision="7" />
+          <Property Name="AccountId" Type="Int32" />
+          <Property Name="FlashAlertType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Accounts" Relationship="RSDBModel.FK_VisitFlashReport_Accounts" FromRole="VisitFlashReports" ToRole="Accounts" />
+          <NavigationProperty Name="WorkPlaces" Relationship="RSDBModel.FK_VisitFlashReport_WorkPlaces" FromRole="VisitFlashReports" ToRole="WorkPlaces" />
+        </EntityType>
+        <Association Name="FK_FlashVisitReport_Accounts">
+          <End Type="RSDBModel.Accounts" Role="Accounts" Multiplicity="0..1" />
+          <End Type="RSDBModel.FlashVisitReport" Role="FlashVisitReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlashVisitReport">
+              <PropertyRef Name="Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VisitFlashReport_Accounts">
+          <End Type="RSDBModel.Accounts" Role="Accounts" Multiplicity="0..1" />
+          <End Type="RSDBModel.VisitFlashReports" Role="VisitFlashReports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VisitFlashReports">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VisitFlashReport_WorkPlaces">
+          <End Type="RSDBModel.WorkPlaces" Role="WorkPlaces" Multiplicity="0..1" />
+          <End Type="RSDBModel.VisitFlashReports" Role="VisitFlashReports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkPlaces">
+              <PropertyRef Name="WorkPlaceId" />
+            </Principal>
+            <Dependent Role="VisitFlashReports">
+              <PropertyRef Name="WorkPlaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2100,6 +2289,50 @@
                 <ScalarProperty Name="Latitude" ColumnName="Latitude" />
                 <ScalarProperty Name="Longitude" ColumnName="Longitude" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FlashVisitReport">
+            <EntityTypeMapping TypeName="RSDBModel.FlashVisitReport">
+              <MappingFragment StoreEntitySet="FlashVisitReport">
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="WorkPlaceId" ColumnName="WorkPlaceId" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VisitFlashReports">
+            <EntityTypeMapping TypeName="RSDBModel.VisitFlashReports">
+              <MappingFragment StoreEntitySet="VisitFlashReports">
+                <ScalarProperty Name="FlashAlertType" ColumnName="FlashAlertType" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CouldBeSeriousAccident" ColumnName="CouldBeSeriousAccident" />
+                <ScalarProperty Name="IsSeriousAccident" ColumnName="IsSeriousAccident" />
+                <ScalarProperty Name="NatureOfInjury" ColumnName="NatureOfInjury" />
+                <ScalarProperty Name="AffectedBodyPart" ColumnName="AffectedBodyPart" />
+                <ScalarProperty Name="DirectCause" ColumnName="DirectCause" />
+                <ScalarProperty Name="DevelopedActivity" ColumnName="DevelopedActivity" />
+                <ScalarProperty Name="WorkPlaceId" ColumnName="WorkPlaceId" />
+                <ScalarProperty Name="AccidentTime" ColumnName="AccidentTime" />
+                <ScalarProperty Name="AccidentDate" ColumnName="AccidentDate" />
+                <ScalarProperty Name="Schedule" ColumnName="Schedule" />
+                <ScalarProperty Name="AccidentType" ColumnName="AccidentType" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="CategoryEmployee" ColumnName="CategoryEmployee" />
+                <ScalarProperty Name="TypeEmployee" ColumnName="TypeEmployee" />
+                <ScalarProperty Name="Antiquity" ColumnName="Antiquity" />
+                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Bu" ColumnName="Bu" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

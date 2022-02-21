@@ -21,6 +21,7 @@ namespace Administrador_SAR.DBContext
             this.UserWorkPlaces = new HashSet<UserWorkPlaces>();
             this.VisitManagersCommitmentReport = new HashSet<VisitManagersCommitmentReport>();
             this.VisitSecurityReport = new HashSet<VisitSecurityReport>();
+            this.VisitFlashReports = new HashSet<VisitFlashReports>();
         }
     
         public int WorkPlaceId { get; set; }
@@ -43,5 +44,7 @@ namespace Administrador_SAR.DBContext
         public virtual ICollection<VisitManagersCommitmentReport> VisitManagersCommitmentReport { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VisitSecurityReport> VisitSecurityReport { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<VisitFlashReports> VisitFlashReports { get; set; }
     }
 }

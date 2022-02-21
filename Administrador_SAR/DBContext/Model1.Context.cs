@@ -55,5 +55,7 @@ namespace Administrador_SAR.DBContext
         public virtual DbSet<VisitManagersCommitmentResults> VisitManagersCommitmentResults { get; set; }
         public virtual DbSet<VisitSecurityReport> VisitSecurityReport { get; set; }
         public virtual DbSet<WorkPlaces> WorkPlaces { get; set; }
+        public virtual DbSet<FlashVisitReport> FlashVisitReport { get; set; }
+        public virtual DbSet<VisitFlashReports> VisitFlashReports { get; set; }
     }
 }

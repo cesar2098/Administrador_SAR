@@ -1,0 +1,108 @@
+﻿@model Administrador_SAR.DBContext.VisitSecurityReport
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="header">
+    <div class="header-left">
+        <div class="menu-icon dw dw-menu"></div>
+        <div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
+    </div>
+    <div class="header-right">
+        <div class="user-info-dropdown">
+            <div class="dropdown">
+                <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                    <span class="user-icon">
+                        <img src="~/vendors/images/photo1.jpg" alt="">
+                    </span>
+                    @if (Session["UserName"] != null)
+                    {
+                        <span class="user-name">@Session["UserName"]</span>
+                    }
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                    <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i>Perfil</a>
+                    <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Configuraciones</a>
+                    <a class="dropdown-item" href="faq.html">@*<i class="dw dw-help"></i> Help*@</a>
+                    <a class="dropdown-item" href="/Home/CerrarSesion"><i class="dw dw-logout"></i>Cerrar Sesión</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-header">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <h1>Detalles Visita de Seguridad</h1>
+        </div>
+    </div>
+</div>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            Fecha de Creación
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+        <dt>
+            Hora de Creación
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedTime)
+        </dd>
+
+        <dt>
+            Usuario
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Accounts.FirstName)
+        </dd>
+
+        <dt>
+            Descripción
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SecurityVisit.Description)
+        </dd>
+
+        <dt>
+            Centro de trabajo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkPlaces.Name)
+        </dd>
+
+    </dl>
+</div>
+
+<div class="card-box mb-30 mt-3 p-3">
+    <h4>Respuestas</h4>
+    @{
+        int count = 1;
+        foreach (var item in Model.SecurityVisitQuestionsReport)
+        {
+
+            <div class="form-group">
+                <label class="label-info p-2">@count-@item.Description</label>
+                <h6>Comentario</h6>
+                <p> @item.Comment</p>
+            </div>
+            count = count + 1;
+        }
+    }
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

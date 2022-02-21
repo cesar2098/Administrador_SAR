@@ -66,6 +66,11 @@
         <AssociationConnector Association="RSDBModel.FK_VisitManagersCommitmentReport_WorkPlaces" ManuallyRouted="false" />
         <AssociationConnector Association="RSDBModel.FK_VisitManagersCommitmentResults_VisitManagersCommitmentReport" ManuallyRouted="false" />
         <AssociationConnector Association="RSDBModel.FK_VisitSecurityReport_WorkPlaces" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="RSDBModel.FlashVisitReport" Width="1.5" PointX="5.25" PointY="45.125" />
+        <EntityTypeShape EntityType="RSDBModel.VisitFlashReports" Width="1.5" PointX="11.25" PointY="26.875" />
+        <AssociationConnector Association="RSDBModel.FK_FlashVisitReport_Accounts" />
+        <AssociationConnector Association="RSDBModel.FK_VisitFlashReport_Accounts" />
+        <AssociationConnector Association="RSDBModel.FK_VisitFlashReport_WorkPlaces" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

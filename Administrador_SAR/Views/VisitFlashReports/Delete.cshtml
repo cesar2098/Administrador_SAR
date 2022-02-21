@@ -1,0 +1,233 @@
+﻿@model Administrador_SAR.DBContext.VisitFlashReports
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>VisitFlashReports</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Bu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthDay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BirthDay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Antiquity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Antiquity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeEmployee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeEmployee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryEmployee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryEmployee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nationality)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nationality)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Position)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Position)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccidentType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccidentType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Schedule)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Schedule)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccidentDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccidentDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccidentTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccidentTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DevelopedActivity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DevelopedActivity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DirectCause)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DirectCause)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AffectedBodyPart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AffectedBodyPart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NatureOfInjury)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NatureOfInjury)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSeriousAccident)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsSeriousAccident)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CouldBeSeriousAccident)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CouldBeSeriousAccident)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FlashAlertType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FlashAlertType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Accounts.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Accounts.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkPlaces.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkPlaces.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

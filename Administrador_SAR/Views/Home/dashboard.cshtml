@@ -31,17 +31,27 @@
         <div>
             <div class="page-header">
                 <div class="row">
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-md-3 col-sm-12">
                         <label for="CountryId">Seleccione un país</label>
                         @Html.DropDownList("CountryId", null, "Seleccione un país", htmlAttributes: new { @class = "form-control", @style = "text-transform: uppercase;" })
                     </div>
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-md-3 col-sm-12">
                         <label for="CountryId">Seleccione una obra</label>
                         @Html.DropDownList("WorkPlace", new List<SelectListItem>(), "Seleccionar Obra", htmlAttributes: new { @class = "form-control", @style = "text-transform: uppercase;" })
                     </div>
-                    <div class="col-md-4 col-sm-12">
-                        <label for="CountryId">Seleccione rango de fechas</label>
-                        @Html.DropDownList("CountryId", null, htmlAttributes: new { @class = "form-control", @style = "text-transform: uppercase;" })
+
+                    <div class="col-md-3 col-sm-12">
+                        <label for="startDate">Desde</label>
+                        <input type="date" class="form-control" name="startDate" id="startDate" value="" />
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <label for="endDate">Hasta</label>
+                        <input type="date" class="form-control" name="endDate" id="endDate" value="" />
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-12 p-2">
+                        <input type="button" value="Aplicar Filtros" class="btn btn-primary" id="buttonfilter" />
                     </div>
                 </div>
             </div>

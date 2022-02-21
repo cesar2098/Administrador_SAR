@@ -1,10 +1,9 @@
-﻿@model IEnumerable<Administrador_SAR.Models.Reports.ReportResponseViewModel>
+﻿@model IEnumerable<Administrador_SAR.Models.VisitFlash.VisitFlashViewModelResponse>
 
 @{
-    ViewBag.Title = "Reportes de SAR";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 
 <div class="header">
     <div class="header-left">
@@ -36,14 +35,13 @@
 <div class="page-header">
     <div class="row">
         <div class="col-md-12 col-sm-12">
-            <h1>Administración de Reportes SAR</h1>
+            <h1>Administración de Reportes Flash</h1>
         </div>
     </div>
 </div>
 <p>
     @Html.ActionLink("Crear Nuevo Reporte", "Create", null, new { @class = "btn btn-success" })
 </p>
-
 <div class="card-box mb-30">
     <div class="page-header">
         <div class="row">
@@ -55,7 +53,7 @@
                 <label for="CountryId">Seleccione una obra</label>
                 @Html.DropDownList("WorkPlace", new List<SelectListItem>(), "Seleccionar Obra", htmlAttributes: new { @class = "form-control", @style = "text-transform: uppercase;" })
             </div>
-            
+
             <div class="col-md-3 col-sm-12">
                 <label for="startDate">Desde</label>
                 <input type="date" class="form-control" name="startDate" id="startDate" value="" />
@@ -79,14 +77,14 @@
                         @Html.DisplayNameFor(model => model.WorkPlace)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Account)
-                    </th>
-                    <th>
                         @Html.DisplayNameFor(model => model.CreatedDate)
                     </th>
-                    <th>@Html.DisplayNameFor(model => model.Comment)</th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Status)
+                        @Html.DisplayNameFor(model => model.Bu)
+                    </th>
+                    <th>@Html.DisplayNameFor(model => model.Name)</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Gender)
                     </th>
                     <th> Acciones </th>
                 </tr>
@@ -99,16 +97,16 @@
                             @Html.DisplayFor(modelItem => item.WorkPlace)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Account)
-                        </td>
-                        <td>
                             @Html.DisplayFor(modelItem => item.CreatedDate)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Comment)
+                            @Html.DisplayFor(modelItem => item.Bu)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Status)
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gender)
                         </td>
                         <td>
                             @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning w-100" })
@@ -147,9 +145,9 @@
                 $('input[name="startDate"]').val(`${year}-${month}-${day}`);
                 $('input[name="endDate"]').val(`${year}-${month}-${day}`);
             }
-           
+
             $("#CountryId").change(function () {
-                $.get("/Reports/GetWorkPlacesByCountry", { id: $("#CountryId").val()}, function (data) {
+                $.get("/VisitFlashReports/GetWorkPlacesByCountry", { id: $("#CountryId").val()}, function (data) {
                     // VACIAMOS EL DropDownList
                     $("#WorkPlace").empty();
                     // AÑADIMOS UN NUEVO label CON EL NOMBRE DEL ELEMENTO SELECCIONADO
@@ -165,15 +163,15 @@
     <script>
         $(document).ready(function () {
             $("#buttonfilter").click(function () {
-                $.get("/Reports/GetReports", { workPlaceId: $("#WorkPlace").val(), startDate: $("#startDate").val(), endDate: $("#endDate").val()  }, function (data) {
+                $.get("/VisitFlashReports/GetReports", { workPlaceId: $("#WorkPlace").val(), startDate: $("#startDate").val(), endDate: $("#endDate").val()  }, function (data) {
                     // VACIAMOS EL DropDownList
                     $("#tableBody").empty();
                     // CONSTRUIMOS EL DropDownList A PARTIR DEL RESULTADO Json (data)
                     $.each(data, function (index, row) {
-                        $("#tableBody").append("<tr><td>" + row.WorkPlace + "</td><td>" + row.Account + "</td><td>" + row.CreatedDate + "</td><td>" + row.Comment + "</td><td>" + row.Status + "</td><td><a class='btn btn-warning w-100' href='/Reports/Edit/" + row.Id + "'>Editar<//a><a class='btn btn-info w-100' href='/Reports/Details/" + row.Id + "'>Detalles<//a>" + "</td></tr>")
+                        $("#tableBody").append("<tr><td>" + row.WorkPlace + "</td><td>" + row.CreatedDate + "</td><td>" + row.Bu + "</td><td>" + row.Name + "</td><td>" + row.Gender + "</td><td><a class='btn btn-warning w-100' href='/VisitFlashReports/Edit/" + row.Id + "'>Editar<//a><a class='btn btn-info w-100' href='/VisitFlashReports/Details/" + row.Id + "'>Detalles<//a>" + "</td></tr>")
                     });
                 });
             });
         });
     </script>
-}
+    }
