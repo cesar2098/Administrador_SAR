@@ -40,8 +40,8 @@ namespace Administrador_SAR.Controllers
 
         public JsonResult GetReports(DateTime startDate, DateTime endDate, int workPlaceId = 0)
         {
-            if (startDate == null) startDate = DateTime.Today;
-            if (endDate == null) endDate = DateTime.Today.AddDays(-7);
+            if (startDate == null) startDate = DateTime.Today.AddDays(-7); 
+            if (endDate == null) endDate = DateTime.Today;
             var reports = db.Reports
                             .Include(r => r.Accounts)
                             .Include(r => r.Categories)

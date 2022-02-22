@@ -30,46 +30,41 @@
     <div>
         <div>
             <div class="page-header">
-                <div class="row">
-                    <div class="col-md-3 col-sm-12">
-                        <label for="CountryId">Seleccione un país</label>
-                        @Html.DropDownList("CountryId", null, "Seleccione un país", htmlAttributes: new { @class = "form-control", @style = "text-transform: uppercase;" })
-                    </div>
-                    <div class="col-md-3 col-sm-12">
-                        <label for="CountryId">Seleccione una obra</label>
-                        @Html.DropDownList("WorkPlace", new List<SelectListItem>(), "Seleccionar Obra", htmlAttributes: new { @class = "form-control", @style = "text-transform: uppercase;" })
-                    </div>
+                @using (Html.BeginForm()) { 
 
-                    <div class="col-md-3 col-sm-12">
-                        <label for="startDate">Desde</label>
-                        <input type="date" class="form-control" name="startDate" id="startDate" value="" />
+                    <div class="row">
+                        <div class="col-md-3 col-sm-12">
+                            <label for="CountryId">Seleccione un país</label>
+                            @Html.DropDownList("CountryId", null, "Seleccione un país", htmlAttributes: new { @class = "form-control", @style = "text-transform: uppercase;" })
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <label for="CountryId">Seleccione una obra</label>
+                            @Html.DropDownList("WorkPlace", new List<SelectListItem>(), "Seleccionar Obra", htmlAttributes: new { @class = "form-control", @style = "text-transform: uppercase;" })
+                        </div>
+
+                        <div class="col-md-3 col-sm-12">
+                            <label for="startDate">Desde</label>
+                            <input type="date" class="form-control" name="startDate" id="startDate" value="" />
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <label for="endDate">Hasta</label>
+                            <input type="date" class="form-control" name="endDate" id="endDate" value="" />
+                        </div>
                     </div>
-                    <div class="col-md-3 col-sm-12">
-                        <label for="endDate">Hasta</label>
-                        <input type="date" class="form-control" name="endDate" id="endDate" value="" />
-                    </div>
-                </div>
                 <div class="row text-center">
                     <div class="col-md-12 p-2">
-                        <input type="button" value="Aplicar Filtros" class="btn btn-primary" id="buttonfilter" />
+                        <input type="submit" value="Aplicar Filtros" class="btn btn-primary" id="buttonfilter" />
                     </div>
                 </div>
+                }
+
             </div>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-6 col-sm-12">
-            <div id="graficoBarras"></div>
-        </div>
-        <div class="col-md-6 col-sm-12">
-            <div id="graficaPorcentaje"></div>
-        </div>
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-md-12 col-sm-12" style="text-align: center;">
-            <div id="graficoPie"></div>
+        <div class="col-md-12 col-md-6">
+            @(Model)
         </div>
     </div>
     <br>
@@ -84,6 +79,19 @@
     <script src="~/src/scripts/funciones.js"></script>
     <script>
         $(document).ready(function () {
+            //let date = new Date()
+
+            //let day = date.getDate()
+            //let month = date.getMonth() + 1
+            //let year = date.getFullYear()
+
+            //if (month < 10) {
+            //    $('input[name="startDate"]').val(`${year}-0${month}-${day}`);
+            //    $('input[name="endDate"]').val(`${year}-0${month}-${day+1}`);
+            //} else {
+            //    $('input[name="startDate"]').val(`${year}-${month}-${day}`);
+            //    $('input[name="endDate"]').val(`${year}-${month}-${day+1}`);
+            //}
             $("#CountryId").change(function () {
                 $.get("/Reports/GetWorkPlacesByCountry", { id: $("#CountryId").val() }, function (data) {
                     // VACIAMOS EL DropDownList

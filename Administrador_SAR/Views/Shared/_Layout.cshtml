@@ -11,32 +11,30 @@
     <link href="~/vendors/styles/core.css" rel="stylesheet" />
     <link href="~/vendors/styles/icon-font.min.css" rel="stylesheet" />
     @*<link href="~/vendors/fonts/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <link href="~/vendors/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" />*@
+        <link href="~/vendors/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" />*@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
     <link href="~/vendors/styles/style.css" rel="stylesheet" />
-    @*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/autofill/2.3.7/css/autoFill.bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.1.1/css/buttons.bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css" />
-    <link rel="stylesheet" type="text/c*@<!--ss" href="https://cdn.datatables.net/scroller/2.0.5/css/scroller.bootstrap.min.css" />-->
-<style>
-    .paginate_button {
-        padding: 10px !important;
-    }
+    @Scripts.Render("~/bundles/jquery")
+    <style>
+        .paginate_button {
+            padding: 10px !important;
+        }
 
-    a:not([href]) {
-        margin-left: 5px;
-        background-color: #198754 !important;
-        cursor: pointer;
-    }
-    .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
-        background-color: white !important;
-    }
-    a .current {
-        background-color: white !important;
-    }
-</style>
+        a:not([href]) {
+            margin-left: 5px;
+            background-color: #198754 !important;
+            cursor: pointer;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+            background-color: white !important;
+        }
+
+        a .current {
+            background-color: white !important;
+        }
+    </style>
     <title>@ViewBag.Title - SAR </title>
 </head>
 <body>
@@ -202,8 +200,8 @@
     <script src="~/src/plugins/datatables/js/vfs_fonts.js"></script>
 
     @*<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.11.3/af-2.3.7/b-2.1.1/b-colvis-2.1.1/b-html5-2.1.1/r-2.2.9/sc-2.0.5/datatables.min.js"></script>*@
-
-    @*Bootstrap*@
+    @*highchar*@
+    <script src="~/Scripts/Highcharts-4.0.1/js/highcharts.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

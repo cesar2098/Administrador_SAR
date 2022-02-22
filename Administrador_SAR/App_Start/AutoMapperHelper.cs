@@ -28,7 +28,12 @@ namespace Administrador_SAR.App_Start
                 .ForMember(dest => dest.Status,
                             opt => opt.MapFrom(src => src.StatusReports.Description))
                 .ForMember(dest => dest.WorkPlace,
-                            opt => opt.MapFrom(src => src.WorkPlaces.Name));
+                            opt => opt.MapFrom(src => src.WorkPlaces.Name))
+                .ForMember(dest => dest.CountryId,
+                            opt => opt.MapFrom(src => src.WorkPlaces.CountryId))
+                .ForMember(dest => dest.WorkPlaceId,
+                            opt => opt.MapFrom(src => src.WorkPlaces.WorkPlaceId));
+
             Mapper.CreateMap<Evidences, EvidenceResponseViewModel>();
             //Account Views
             Mapper.CreateMap<Accounts, AccountResponseViewModel>()
