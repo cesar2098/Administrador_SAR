@@ -1,7 +1,7 @@
-﻿@model IEnumerable<Administrador_SAR.Models.Account.AccountResponseViewModel>
+﻿@model IEnumerable<Administrador_SAR.Models.UserWorkPlace.UserWorkPlaceResponse>
 
 @{
-    ViewBag.Title = "Usuarios";
+    ViewBag.Title = "Usuarios- Obras";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -35,74 +35,52 @@
 <div class="page-header">
     <div class="row">
         <div class="col-md-12 col-sm-12">
-            <h1>Administración de Usuarios</h1>
+            <h1>Administración de usuarios y obras</h1>
         </div>
     </div>
 </div>
-
 <p>
-    @Html.ActionLink("Nuevo Usuario", "Create", null, new { @class = "btn btn-success" })
+    @Html.ActionLink("Asignar Usuario a Obra", "Create", null, new { @class = "btn btn-success" })
 </p>
-
-<div class="card-box mb-30">
-    <div class="pd-20 table-responsive">
-        <table class="table table-hover" id="table_reports">
+<div class="card-box mb-30 p-3">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="table_reports">
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.FirstName)
+                        @Html.DisplayNameFor(model => model.UserName)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.LastName)
+                        @Html.DisplayNameFor(model => model.Type)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.GenderDescription)
+                        @Html.DisplayNameFor(model => model.WorkPlace)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Email)
+                        @Html.DisplayNameFor(model => model.Status)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Phone)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.StatusDescription)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Rol)
-                    </th>
-                    <th>Acciones</th>
+                    <th></th>
                 </tr>
-
-               
             </thead>
+
             <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.FirstName)
+                            @Html.DisplayFor(modelItem => item.UserName)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.LastName)
+                            @Html.DisplayFor(modelItem => item.Type)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.GenderDescription)
+                            @Html.DisplayFor(modelItem => item.WorkPlace)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Email)
+                            @Html.DisplayFor(modelItem => item.Status)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Phone)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.StatusDescription)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Rol)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning w-100" })
-                            @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-info w-100" })
+                            @Html.ActionLink("Editar", "Edit", new { id = item.UserId, workPlace = item.WorkPlaceId }, new { @class = "btn btn-warning w-100" })
                         </td>
                     </tr>
                 }
@@ -110,9 +88,6 @@
         </table>
     </div>
 </div>
-
-
-
 @section Scripts
 {
 
@@ -126,16 +101,17 @@
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/scroller/2.0.5/js/dataTables.scroller.min.js"></script>
     <script>
-        $(document).ready(function () {
-            $('#table_reports').DataTable({
-                "language": {
-                    "lengthMenu": "Mostrar _MENU_ items por página",
-                    "zeroRecords": "Sin data ",
-                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
-                    "infoEmpty": "No records available",
-                    "infoFiltered": "(filtrando de un total de  _MAX_ registros)"
-                }
+            $(document).ready(function () {
+                $('#table_reports').DataTable({
+                    "language": {
+                        "lengthMenu": "Mostrar _MENU_ items por página",
+                        "zeroRecords": "Sin data ",
+                        "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                        "infoEmpty": "No records available",
+                        "infoFiltered": "(filtrando de un total de  _MAX_ registros)"
+                    }
+                });
             });
-        });
     </script>
 }
+

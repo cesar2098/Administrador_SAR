@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using Administrador_SAR.DBContext;
 using Administrador_SAR.Models.VisitFlash;
+using Administrador_SAR.Services;
 using AutoMapper;
 
 namespace Administrador_SAR.Controllers
@@ -13,6 +15,7 @@ namespace Administrador_SAR.Controllers
     public class VisitFlashReportsController : Controller
     {
         private RSDBEntities db = new RSDBEntities();
+        private FlashReportService _reportService = new FlashReportService();
 
         // GET: VisitFlashReports
         public ActionResult Index()
@@ -59,6 +62,15 @@ namespace Administrador_SAR.Controllers
 
             var viewModel = Mapper.Map<VisitFlashViewModelResponse>(visitFlashReports);
             return View(viewModel);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> CreatePDF(int id)
+        {
+            byte[] result = await _reportService.getReport(id);
+            var output = new FileContentResult(result, "application/octet-stream");
+            output.FileDownloadName = "FlashReport.pdf";
+            return output;
         }
 
         // GET: VisitFlashReports/Create

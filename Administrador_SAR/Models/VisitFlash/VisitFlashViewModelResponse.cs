@@ -15,9 +15,11 @@ namespace Administrador_SAR.Models.VisitFlash
         [Display(Name = "F Nacimiento")]
         public string BirthDay { get; set; }
         [Display(Name = "Antiguedad")]
-        public Nullable<int> Antiquity { get; set; }
+        public string Antiquity { get; set; }
         [Display(Name = "Tipo Empleado")]
         public string TypeEmployee { get; set; }
+        [Display(Name = "F Contratación")]
+        public string HiringDate { get; set; }
         [Display(Name = "Cateoría Empleado")]
         public string CategoryEmployee { get; set; }
         [Display(Name = "Genero")]
@@ -33,7 +35,7 @@ namespace Administrador_SAR.Models.VisitFlash
         [Display(Name = "Fecha Accidente")]
         public string AccidentDate { get; set; }
         [Display(Name = "Hora Accidente")]
-        public TimeSpan? AccidentTime { get; set; }
+        public string AccidentTime { get; set; }
         [Display(Name = "Obra")]
         public string WorkPlace { get; set; }
         [Display(Name = "Actividad Desarrollada")]

@@ -7,6 +7,7 @@ using BC = BCrypt.Net.BCrypt;
 using Administrador_SAR.DBContext;
 using AutoMapper;
 using Administrador_SAR.Models.Account;
+using System.Linq;
 
 namespace Administrador_SAR.Controllers
 {
@@ -30,6 +31,11 @@ namespace Administrador_SAR.Controllers
                     item.StatusDescription = "ACTIVO";
                 else
                     item.StatusDescription = "INACTIVO";
+
+                if (item.Role.Equals(0)) item.Rol = "Administrador";
+                if (item.Role.Equals(1)) item.Rol = "Gerente";
+                if (item.Role.Equals(2)) item.Rol = "Técnico";
+                if (item.Role.Equals(3)) item.Rol = "Obrero";
             }
             return View(viewModel);
         }
@@ -61,7 +67,8 @@ namespace Administrador_SAR.Controllers
 
             rols.Add(new RolModel() { Id = 0, Description = "Administrador" });
             rols.Add(new RolModel() { Id = 1, Description = "Gerente" });
-            rols.Add(new RolModel() { Id = 2, Description = "Default" });
+            rols.Add(new RolModel() { Id = 2, Description = "Técnico" });
+            rols.Add(new RolModel() { Id = 3, Description = "Obrero" });
 
             ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
             ViewBag.Gender = new SelectList(genders, "Id", "Description");
@@ -80,6 +87,7 @@ namespace Administrador_SAR.Controllers
             if (ModelState.IsValid)
             {
                 accounts.Created = DateTime.Now;
+                accounts.ResetPassword = false;
                 accounts.Password = BC.HashPassword("12345678");//Contraseña por defecto
                 db.Accounts.Add(accounts);
                 db.SaveChanges();
@@ -110,10 +118,11 @@ namespace Administrador_SAR.Controllers
 
             rols.Add(new RolModel() { Id = 0, Description = "Administrador" });
             rols.Add(new RolModel() { Id = 1, Description = "Gerente" });
-            rols.Add(new RolModel() { Id = 2, Description = "Default" });
+            rols.Add(new RolModel() { Id = 2, Description = "Técnico" });
+            rols.Add(new RolModel() { Id = 3, Description = "Obrero" });
 
             ViewBag.Gender = new SelectList(genders, "Id", "Description", account.Gender);
-            ViewBag.Roles = new SelectList(rols, "Id", "Description", account.Role);
+            ViewBag.Role = new SelectList(rols, "Id", "Description", account.Role);
             ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", account.CountryId);
             return View(account);
         }
@@ -123,14 +132,8 @@ namespace Administrador_SAR.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CountryId,FirstName,LastName,Gender,Email,Phone,Password,IsActive,Role,VerificationToken,Verified,ResetToken,ResetTokenExpires,PasswordReset,Created,Updated")] Accounts account)
+        public ActionResult Edit([Bind(Include = "Id,CountryId,FirstName,LastName,Gender,Email,Phone,Password,IsActive,ResetPassword,Role,VerificationToken,Verified,ResetToken,ResetTokenExpires,PasswordReset,Created,Updated")] Accounts account)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(account).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
             List<GenderModel> genders = new List<GenderModel>();
             List<RolModel> rols = new List<RolModel>();
             genders.Add(new GenderModel() { Id = 0, Description = "HOMBRE" });
@@ -138,10 +141,44 @@ namespace Administrador_SAR.Controllers
 
             rols.Add(new RolModel() { Id = 0, Description = "Administrador" });
             rols.Add(new RolModel() { Id = 1, Description = "Gerente" });
-            rols.Add(new RolModel() { Id = 2, Description = "Default" });
+            rols.Add(new RolModel() { Id = 2, Description = "Técnico" });
+            rols.Add(new RolModel() { Id = 3, Description = "Obrero" });
+            if (ModelState.IsValid)
+            {
+                var currentAccount = db.Accounts.FirstOrDefault(x => x.Id == account.Id);
+                if (currentAccount == null)
+                {
+                    ModelState.AddModelError("", "Ocurrió un error al actualizar la cuenta");
+                    ViewBag.Gender = new SelectList(genders, "Id", "Description", account.Gender);
+                    ViewBag.Role = new SelectList(rols, "Id", "Description", account.Role);
+                    ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", account.CountryId);
+                    return View(account);
+                }
+
+
+                currentAccount.FirstName = account.FirstName;
+                currentAccount.LastName = account.LastName;
+                currentAccount.Email = account.Email;
+                currentAccount.CountryId = account.CountryId;
+                currentAccount.Phone = account.Phone;
+                currentAccount.Role = account.Role;
+                currentAccount.Gender = account.Gender;
+                currentAccount.IsActive = account.IsActive;
+
+                if ((bool)account.ResetPassword)
+                {
+                    currentAccount.Password = BC.HashPassword("12345678");//Contraseña por defecto
+                    currentAccount.ResetPassword = false;
+                }
+
+                db.Entry(currentAccount).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            
 
             ViewBag.Gender = new SelectList(genders, "Id", "Description", account.Gender);
-            ViewBag.Roles = new SelectList(rols, "Id", "Description", account.Role);
+            ViewBag.Role = new SelectList(rols, "Id", "Description", account.Role);
             ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", account.CountryId);
             return View(account);
         }

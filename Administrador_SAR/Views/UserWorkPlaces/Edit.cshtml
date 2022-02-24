@@ -1,0 +1,125 @@
+﻿@model Administrador_SAR.DBContext.UserWorkPlaces
+
+@{
+    ViewBag.Title = "Editar Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="header">
+    <div class="header-left">
+        <div class="menu-icon dw dw-menu"></div>
+        <div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
+    </div>
+    <div class="header-right">
+        <div class="user-info-dropdown">
+            <div class="dropdown">
+                <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                    <span class="user-icon">
+                        <img src="~/vendors/images/photo1.jpg" alt="">
+                    </span>
+                    @if (Session["UserName"] != null)
+                    {
+                        <span class="user-name">@Session["UserName"]</span>
+                    }
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                    <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i>Perfil</a>
+                    <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Configuraciones</a>
+                    <a class="dropdown-item" href="faq.html">@*<i class="dw dw-help"></i> Help*@</a>
+                    <a class="dropdown-item" href="/Home/CerrarSesion"><i class="dw dw-logout"></i>Cerrar Sesión</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-header">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <h1>Edicion de Usuarios y Obras</h1>
+        </div>
+    </div>
+</div>
+
+<div class="card-box mb-30">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Usuario</label>
+            <div class="col-md-10">
+                @Html.HiddenFor(m => m.UserId)
+                @Html.DropDownList("UserId", null, htmlAttributes: new { @class = "form-control", @disabled = "true" })
+                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Obra</label>
+            <div class="col-md-10">
+                @Html.HiddenFor(m => m.WorkPlaceId)
+                @Html.DropDownList("WorkPlaceId", null, htmlAttributes: new { @class = "form-control", @disabled = "true" })
+                @Html.ValidationMessageFor(model => model.WorkPlaceId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Rol</label>
+            <div class="col-md-10">
+                @Html.DropDownList("UserType", null, htmlAttributes: new { @class = "form-control", @style = "text-transform: uppercase;" })
+                @Html.ValidationMessageFor(model => model.UserType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Activo</label>
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.IsActive)
+                    @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-2">
+                    <input type="submit" value="Guardar" class="btn btn-success" />
+                </div>
+                <div class="col-md-2">
+                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-dark" })
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+</div>
+
+
+
+
+@section Scripts
+{
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <script>
+        $(document).ready(function () {
+
+            $("#CountryId").change(function () {
+                $.get("/Reports/GetWorkPlacesByCountry", { id: $("#CountryId").val()}, function (data) {
+                    // VACIAMOS EL DropDownList
+                    $("#WorkPlaceId").empty();
+                    // AÑADIMOS UN NUEVO label CON EL NOMBRE DEL ELEMENTO SELECCIONADO
+                    $("#WorkPlaceId").append("<option value> -- Seleccionar Obra de " + $("#CountryId option:selected").text() + " --</option>")
+                    // CONSTRUIMOS EL DropDownList A PARTIR DEL RESULTADO Json (data)
+                    $.each(data, function (index, row) {
+                        $("#WorkPlaceId").append("<option value='" + row.WorkPlaceId + "'>" + row.Name + "</option>")
+                    });
+                });
+            });
+        });
+    </script>
+}

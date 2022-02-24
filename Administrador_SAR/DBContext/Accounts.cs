@@ -48,6 +48,7 @@ namespace Administrador_SAR.DBContext
         public Nullable<System.DateTime> PasswordReset { get; set; }
         public System.DateTime Created { get; set; }
         public Nullable<System.DateTime> Updated { get; set; }
+        public Nullable<bool> ResetPassword { get; set; }
     
         public virtual Countries Countries { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

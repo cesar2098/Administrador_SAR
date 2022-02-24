@@ -23,6 +23,7 @@ namespace Administrador_SAR.Models.Account
         public string StatusDescription { get; set; }
         public bool IsActive { get; set; }
         [Display(Name = "Rol")]
+        public string Rol { get; set; }
         public int Role { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using Administrador_SAR.Models.Account;
 using Administrador_SAR.Models.Evidences;
 using Administrador_SAR.Models.Reports;
+using Administrador_SAR.Models.UserWorkPlace;
 using Administrador_SAR.Models.VisitFlash;
 using Administrador_SAR.Models.WorkPlace;
 using AutoMapper;
@@ -39,6 +40,7 @@ namespace Administrador_SAR.App_Start
             Mapper.CreateMap<Accounts, AccountResponseViewModel>()
                 .ForMember(dest => dest.Country,
                             opt => opt.MapFrom(src => src.Countries.Name));
+            //WorkPlaces
             Mapper.CreateMap<WorkPlaces, WorkPlaceResponseViewModel>()
                 .ForMember(dest => dest.Country,
                             opt => opt.MapFrom(src => src.Countries.Name));
@@ -48,6 +50,13 @@ namespace Administrador_SAR.App_Start
                             opt => opt.MapFrom(src => src.Accounts.FirstName + " " + src.Accounts.LastName))
                 .ForMember(dest => dest.Name,
                             opt => opt.MapFrom(src => src.Name + " " + src.LastName))
+                .ForMember(dest => dest.WorkPlace,
+                            opt => opt.MapFrom(src => src.WorkPlaces.Name));
+
+            //UserWorkplace
+            Mapper.CreateMap<UserWorkPlaces, UserWorkPlaceResponse>()
+                .ForMember(dest => dest.UserName,
+                            opt => opt.MapFrom(src => src.Accounts.FirstName + " " + src.Accounts.LastName))
                 .ForMember(dest => dest.WorkPlace,
                             opt => opt.MapFrom(src => src.WorkPlaces.Name));
         }

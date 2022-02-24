@@ -33,6 +33,7 @@
           <Property Name="PasswordReset" Type="datetime2" Precision="7" />
           <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="Updated" Type="datetime2" Precision="7" />
+          <Property Name="ResetPassword" Type="bit" />
         </EntityType>
         <EntityType Name="Alerts">
           <Key>
@@ -271,7 +272,8 @@
           <Property Name="Name" Type="varchar" MaxLength="50" />
           <Property Name="LastName" Type="varchar" MaxLength="50" />
           <Property Name="BirthDay" Type="date" />
-          <Property Name="Antiquity" Type="int" />
+          <Property Name="Antiquity" Type="varchar" MaxLength="50" />
+          <Property Name="HiringDate" Type="date" />
           <Property Name="TypeEmployee" Type="varchar" MaxLength="100" />
           <Property Name="CategoryEmployee" Type="varchar" MaxLength="100" />
           <Property Name="Gender" Type="varchar" MaxLength="50" />
@@ -280,7 +282,7 @@
           <Property Name="AccidentType" Type="varchar" MaxLength="250" />
           <Property Name="Schedule" Type="varchar" MaxLength="100" />
           <Property Name="AccidentDate" Type="date" />
-          <Property Name="AccidentTime" Type="time" Precision="7" />
+          <Property Name="AccidentTime" Type="varchar" MaxLength="50" />
           <Property Name="WorkPlaceId" Type="int" />
           <Property Name="DevelopedActivity" Type="varchar" MaxLength="250" />
           <Property Name="DirectCause" Type="varchar" MaxLength="250" />
@@ -988,6 +990,7 @@
           <NavigationProperty Name="VisitSecurityReport" Relationship="Self.FK_VisitSecurityReport_Accounts" FromRole="Accounts" ToRole="VisitSecurityReport" />
           <NavigationProperty Name="FlashVisitReport" Relationship="RSDBModel.FK_FlashVisitReport_Accounts" FromRole="Accounts" ToRole="FlashVisitReport" />
           <NavigationProperty Name="VisitFlashReports" Relationship="RSDBModel.FK_VisitFlashReport_Accounts" FromRole="Accounts" ToRole="VisitFlashReports" />
+          <Property Name="ResetPassword" Type="Boolean" />
         </EntityType>
         <EntityType Name="Alerts">
           <Key>
@@ -1894,7 +1897,7 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="BirthDay" Type="DateTime" Precision="0" />
-          <Property Name="Antiquity" Type="Int32" />
+          <Property Name="Antiquity" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="TypeEmployee" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CategoryEmployee" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -1903,7 +1906,7 @@
           <Property Name="AccidentType" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="Schedule" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="AccidentDate" Type="DateTime" Precision="0" />
-          <Property Name="AccidentTime" Type="Time" Precision="7" />
+          <Property Name="AccidentTime" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="WorkPlaceId" Type="Int32" />
           <Property Name="DevelopedActivity" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="DirectCause" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
@@ -1918,6 +1921,7 @@
           <Property Name="FlashAlertType" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Accounts" Relationship="RSDBModel.FK_VisitFlashReport_Accounts" FromRole="VisitFlashReports" ToRole="Accounts" />
           <NavigationProperty Name="WorkPlaces" Relationship="RSDBModel.FK_VisitFlashReport_WorkPlaces" FromRole="VisitFlashReports" ToRole="WorkPlaces" />
+          <Property Name="HiringDate" Type="DateTime" Precision="0" />
         </EntityType>
         <Association Name="FK_FlashVisitReport_Accounts">
           <End Type="RSDBModel.Accounts" Role="Accounts" Multiplicity="0..1" />
@@ -1972,6 +1976,7 @@
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="RSDBModel.Accounts">
               <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="ResetPassword" ColumnName="ResetPassword" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CountryId" ColumnName="CountryId" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -2306,6 +2311,7 @@
           <EntitySetMapping Name="VisitFlashReports">
             <EntityTypeMapping TypeName="RSDBModel.VisitFlashReports">
               <MappingFragment StoreEntitySet="VisitFlashReports">
+                <ScalarProperty Name="HiringDate" ColumnName="HiringDate" />
                 <ScalarProperty Name="FlashAlertType" ColumnName="FlashAlertType" />
                 <ScalarProperty Name="AccountId" ColumnName="AccountId" />
                 <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />

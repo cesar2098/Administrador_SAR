@@ -196,6 +196,7 @@
     <Compile Include="Controllers\KillersController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\UserWorkPlacesController.cs" />
     <Compile Include="Controllers\VisitFlashReportsController.cs" />
     <Compile Include="Controllers\VisitManagersReportsController.cs" />
     <Compile Include="Controllers\VisitSecurityReportsController.cs" />
@@ -319,11 +320,13 @@
     <Compile Include="Models\Login\LoginModelResponse.cs" />
     <Compile Include="Models\Reports\ReportIndexViewModel.cs" />
     <Compile Include="Models\Reports\ReportResponseViewModel.cs" />
+    <Compile Include="Models\UserWorkPlace\UserWorkPlaceResponse.cs" />
     <Compile Include="Models\VisitFlash\VisitFlashViewModelResponse.cs" />
     <Compile Include="Models\WorkPlace\CreateWorkPlaceRequestModel.cs" />
     <Compile Include="Models\WorkPlace\WorkPlaceResponseViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CountriesServices.cs" />
+    <Compile Include="Services\FlashReportService.cs" />
     <Compile Include="Services\LoginServices.cs" />
     <Compile Include="Services\ReportService.cs" />
   </ItemGroup>
@@ -1060,6 +1063,11 @@
     <Content Include="Views\VisitSecurityReports\Details.cshtml" />
     <Content Include="Views\VisitSecurityReports\Edit.cshtml" />
     <Content Include="Views\VisitSecurityReports\Index.cshtml" />
+    <Content Include="Views\UserWorkPlaces\Create.cshtml" />
+    <Content Include="Views\UserWorkPlaces\Delete.cshtml" />
+    <Content Include="Views\UserWorkPlaces\Details.cshtml" />
+    <Content Include="Views\UserWorkPlaces\Edit.cshtml" />
+    <Content Include="Views\UserWorkPlaces\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

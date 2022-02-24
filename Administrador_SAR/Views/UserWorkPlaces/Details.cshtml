@@ -1,4 +1,4 @@
-﻿@model Administrador_SAR.DBContext.VisitManagersCommitmentReport
+﻿@model Administrador_SAR.DBContext.UserWorkPlaces
 
 @{
     ViewBag.Title = "Details";
@@ -8,23 +8,23 @@
 <h2>Details</h2>
 
 <div>
-    <h4>VisitManagersCommitmentReport</h4>
+    <h4>UserWorkPlaces</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.CreateDate)
+            @Html.DisplayNameFor(model => model.UserType)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CreateDate)
+            @Html.DisplayFor(model => model.UserType)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CreateTime)
+            @Html.DisplayNameFor(model => model.IsActive)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CreateTime)
+            @Html.DisplayFor(model => model.IsActive)
         </dd>
 
         <dt>
@@ -46,5 +46,6 @@
     </dl>
 </div>
 <p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

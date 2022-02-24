@@ -19,7 +19,7 @@ namespace Administrador_SAR.DBContext
         public string Name { get; set; }
         public string LastName { get; set; }
         public Nullable<System.DateTime> BirthDay { get; set; }
-        public Nullable<int> Antiquity { get; set; }
+        public string Antiquity { get; set; }
         public string TypeEmployee { get; set; }
         public string CategoryEmployee { get; set; }
         public string Gender { get; set; }
@@ -28,7 +28,7 @@ namespace Administrador_SAR.DBContext
         public string AccidentType { get; set; }
         public string Schedule { get; set; }
         public Nullable<System.DateTime> AccidentDate { get; set; }
-        public Nullable<System.TimeSpan> AccidentTime { get; set; }
+        public string AccidentTime { get; set; }
         public Nullable<int> WorkPlaceId { get; set; }
         public string DevelopedActivity { get; set; }
         public string DirectCause { get; set; }
@@ -41,6 +41,7 @@ namespace Administrador_SAR.DBContext
         public Nullable<System.TimeSpan> CreatedTime { get; set; }
         public Nullable<int> AccountId { get; set; }
         public int FlashAlertType { get; set; }
+        public Nullable<System.DateTime> HiringDate { get; set; }
     
         public virtual Accounts Accounts { get; set; }
         public virtual WorkPlaces WorkPlaces { get; set; }
