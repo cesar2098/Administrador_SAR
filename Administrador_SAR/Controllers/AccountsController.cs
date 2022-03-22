@@ -72,7 +72,7 @@ namespace Administrador_SAR.Controllers
 
             ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
             ViewBag.Gender = new SelectList(genders, "Id", "Description");
-            ViewBag.Roles = new SelectList(rols, "Id", "Description");
+            ViewBag.Role = new SelectList(rols, "Id", "Description");
 
             return View();
         }
@@ -87,14 +87,31 @@ namespace Administrador_SAR.Controllers
             if (ModelState.IsValid)
             {
                 accounts.Created = DateTime.Now;
+                accounts.IsActive = true;
                 accounts.ResetPassword = false;
+                accounts.FirstName = accounts.FirstName.ToUpper();
+                accounts.LastName = accounts.LastName.ToUpper();
+                accounts.Phone = accounts.Phone ?? "";
                 accounts.Password = BC.HashPassword("12345678");//Contraseña por defecto
                 db.Accounts.Add(accounts);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
+
+            List<GenderModel> genders = new List<GenderModel>();
+            List<RolModel> rols = new List<RolModel>();
+            genders.Add(new GenderModel() { Id = 0, Description = "HOMBRE" });
+            genders.Add(new GenderModel() { Id = 1, Description = "MUJER" });
+
+            rols.Add(new RolModel() { Id = 0, Description = "Administrador" });
+            rols.Add(new RolModel() { Id = 1, Description = "Gerente" });
+            rols.Add(new RolModel() { Id = 2, Description = "Técnico" });
+            rols.Add(new RolModel() { Id = 3, Description = "Obrero" });
+
             ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", accounts.CountryId);
+            ViewBag.Gender = new SelectList(genders, "Id", "Description", accounts.Gender);
+            ViewBag.Role = new SelectList(rols, "Id", "Description", accounts.Role);
             return View(accounts);
         }
 

@@ -169,7 +169,7 @@
                     $("#tableBody").empty();
                     // CONSTRUIMOS EL DropDownList A PARTIR DEL RESULTADO Json (data)
                     $.each(data, function (index, row) {
-                        $("#tableBody").append("<tr><td>" + row.WorkPlace + "</td><td>" + row.Account + "</td><td>" + row.CreatedDate + "</td><td>" + row.Comment + "</td><td>" + row.Status + "</td><td><a class='btn btn-warning w-100' href='/Reports/Edit/" + row.Id + "'>Editar<//a><a class='btn btn-info w-100' href='/Reports/Details/" + row.Id + "'>Detalles<//a>" + "</td></tr>")
+                        $("#tableBody").append("<tr><td>" + row.WorkPlace + "</td><td>" + row.Account + "</td><td>" + row.CreatedDate + "</td><td>" + row.Comment + "</td><td>" + row.Status + "</td><td><a class='btn btn-info w-100' href='/Reports/Details/" + row.Id + "'>Detalles<//a>" + "</td></tr>")
                     });
                 });
             });

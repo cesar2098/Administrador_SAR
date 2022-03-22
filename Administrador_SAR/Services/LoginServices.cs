@@ -20,7 +20,7 @@ namespace Administrador_SAR.Services
             LoginModelResponse repsonse = null;
 
             //Buscar usuario en base de datos
-            var user = await _context.Accounts.FirstOrDefaultAsync(x => x.Email == model.Email);
+            var user = await _context.Accounts.FirstOrDefaultAsync(x => x.Email == model.Email && x.IsActive);
             if (user == null)
                 return repsonse;
             

@@ -50,8 +50,13 @@ namespace Administrador_SAR.Controllers
                             .Include(r => r.Situations)
                             .Include(r => r.StatusReports)
                             .Include(r => r.WorkPlaces).OrderByDescending(x => x.CreatedDate)
-                            .Where(x => x.WorkPlaceId == workPlaceId  && x.CreatedDate >= startDate && x.CreatedDate <= endDate)
+                            .Where(x =>  x.CreatedDate >= startDate && x.CreatedDate <= endDate)
                             .ToList();
+            
+            if (workPlaceId != 0)
+            {
+                reports = reports.Where(x => x.WorkPlaceId == workPlaceId).ToList();
+            }
 
             var viewModel = Mapper.Map<IList<ReportResponseViewModel>>(reports);
             return Json(viewModel, JsonRequestBehavior.AllowGet);
