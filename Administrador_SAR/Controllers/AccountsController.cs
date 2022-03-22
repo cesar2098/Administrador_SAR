@@ -88,6 +88,7 @@ namespace Administrador_SAR.Controllers
             {
                 accounts.Created = DateTime.Now;
                 accounts.IsActive = true;
+                accounts.Verified = DateTime.Today;
                 accounts.ResetPassword = false;
                 accounts.FirstName = accounts.FirstName.ToUpper();
                 accounts.LastName = accounts.LastName.ToUpper();
@@ -177,7 +178,7 @@ namespace Administrador_SAR.Controllers
                 currentAccount.LastName = account.LastName;
                 currentAccount.Email = account.Email;
                 currentAccount.CountryId = account.CountryId;
-                currentAccount.Phone = account.Phone;
+                currentAccount.Phone = account.Phone == null ? "" : account.Phone;
                 currentAccount.Role = account.Role;
                 currentAccount.Gender = account.Gender;
                 currentAccount.IsActive = account.IsActive;
