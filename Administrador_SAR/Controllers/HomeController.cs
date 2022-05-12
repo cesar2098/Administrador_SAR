@@ -11,6 +11,7 @@ using System.Drawing;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
+using System.Text.Json.Serialization;
 
 namespace Administrador_SAR.Controllers
 {
@@ -256,6 +257,22 @@ namespace Administrador_SAR.Controllers
             return RedirectToAction("login", "Login");
         }
 
+        public JsonResult GetData()
+        {
+            List<Dashboard_1> data = new List<Dashboard_1>();
+            data.Add(new Dashboard_1() { Key = "5 DE NOVIEMBRE", Reportes = 25, Porcentaje = 34.3 });
+            data.Add(new Dashboard_1() { Key = "LOS CONOCASTES", Reportes = 45, Porcentaje = 64.3 });
+            data.Add(new Dashboard_1() { Key = "LOS ALMENDROS", Reportes = 5, Porcentaje = 4.3 });
+            return Json(new { data }, JsonRequestBehavior.AllowGet);
+        }
 
+    }
+    
+    public class Dashboard_1
+    {
+        public string Key { get; set; }
+        public int Reportes { get; set; }
+        [JsonPropertyName("Porcentaje Cierres")]
+        public double Porcentaje { get; set; }
     }
 }
