@@ -49,6 +49,7 @@ namespace Administrador_SAR.DBContext
         public System.DateTime Created { get; set; }
         public Nullable<System.DateTime> Updated { get; set; }
         public Nullable<bool> ResetPassword { get; set; }
+        public Nullable<int> PositionId { get; set; }
     
         public virtual Countries Countries { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -75,5 +76,6 @@ namespace Administrador_SAR.DBContext
         public virtual ICollection<FlashVisitReport> FlashVisitReport { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VisitFlashReports> VisitFlashReports { get; set; }
+        public virtual Position Position { get; set; }
     }
 }

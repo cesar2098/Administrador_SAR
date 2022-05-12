@@ -34,6 +34,7 @@
           <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="Updated" Type="datetime2" Precision="7" />
           <Property Name="ResetPassword" Type="bit" />
+          <Property Name="PositionId" Type="int" />
         </EntityType>
         <EntityType Name="Alerts">
           <Key>
@@ -156,6 +157,14 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="150" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Description" Type="int" />
+          <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="QuestionSecurityVisit">
           <Key>
@@ -351,6 +360,7 @@
           <Property Name="Latitude" Type="float" Nullable="false" />
           <Property Name="Longitude" Type="float" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_Accounts_Countries_CountryId">
           <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
@@ -361,6 +371,18 @@
             </Principal>
             <Dependent Role="Accounts">
               <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accounts_Position">
+          <End Role="Position" Type="Self.Position" Multiplicity="0..1" />
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="PositionId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -788,6 +810,7 @@
           <EntitySet Name="Factors" EntityType="Self.Factors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FlashVisitReport" EntityType="Self.FlashVisitReport" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Killers" EntityType="Self.Killers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuestionSecurityVisit" EntityType="Self.QuestionSecurityVisit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RefreshToken" EntityType="Self.RefreshToken" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReportFollowUp" EntityType="Self.ReportFollowUp" Schema="dbo" store:Type="Tables" />
@@ -806,6 +829,10 @@
           <EntitySet Name="WorkPlaces" EntityType="Self.WorkPlaces" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Accounts_Countries_CountryId" Association="Self.FK_Accounts_Countries_CountryId">
             <End Role="Countries" EntitySet="Countries" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounts_Position" Association="Self.FK_Accounts_Position">
+            <End Role="Position" EntitySet="Position" />
             <End Role="Accounts" EntitySet="Accounts" />
           </AssociationSet>
           <AssociationSet Name="FK_Alerts_Accounts_CreatorUser" Association="Self.FK_Alerts_Accounts_CreatorUser">
@@ -991,6 +1018,8 @@
           <NavigationProperty Name="FlashVisitReport" Relationship="RSDBModel.FK_FlashVisitReport_Accounts" FromRole="Accounts" ToRole="FlashVisitReport" />
           <NavigationProperty Name="VisitFlashReports" Relationship="RSDBModel.FK_VisitFlashReport_Accounts" FromRole="Accounts" ToRole="VisitFlashReports" />
           <Property Name="ResetPassword" Type="Boolean" />
+          <Property Name="PositionId" Type="Int32" />
+          <NavigationProperty Name="Position" Relationship="RSDBModel.FK_Accounts_Position" FromRole="Accounts" ToRole="Position" />
         </EntityType>
         <EntityType Name="Alerts">
           <Key>
@@ -1319,6 +1348,7 @@
           <NavigationProperty Name="VisitManagersCommitmentReport" Relationship="Self.FK_VisitManagersCommitmentReport_WorkPlaces" FromRole="WorkPlaces" ToRole="VisitManagersCommitmentReport" />
           <NavigationProperty Name="VisitSecurityReport" Relationship="Self.FK_VisitSecurityReport_WorkPlaces" FromRole="WorkPlaces" ToRole="VisitSecurityReport" />
           <NavigationProperty Name="VisitFlashReports" Relationship="RSDBModel.FK_VisitFlashReport_WorkPlaces" FromRole="WorkPlaces" ToRole="VisitFlashReports" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Accounts_Countries_CountryId">
           <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
@@ -1876,6 +1906,11 @@
             <End Role="WorkPlaces" EntitySet="WorkPlaces" />
             <End Role="VisitFlashReports" EntitySet="VisitFlashReports" />
           </AssociationSet>
+          <EntitySet Name="Position" EntityType="RSDBModel.Position" />
+          <AssociationSet Name="FK_Accounts_Position" Association="RSDBModel.FK_Accounts_Position">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="FlashVisitReport">
           <Key>
@@ -1959,6 +1994,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Accounts" Relationship="RSDBModel.FK_Accounts_Position" FromRole="Position" ToRole="Accounts" />
+        </EntityType>
+        <Association Name="FK_Accounts_Position">
+          <End Type="RSDBModel.Position" Role="Position" Multiplicity="0..1" />
+          <End Type="RSDBModel.Accounts" Role="Accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="PositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1976,6 +2032,7 @@
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="RSDBModel.Accounts">
               <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
                 <ScalarProperty Name="ResetPassword" ColumnName="ResetPassword" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CountryId" ColumnName="CountryId" />
@@ -2284,6 +2341,7 @@
           <EntitySetMapping Name="WorkPlaces">
             <EntityTypeMapping TypeName="RSDBModel.WorkPlaces">
               <MappingFragment StoreEntitySet="WorkPlaces">
+                <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="WorkPlaceId" ColumnName="WorkPlaceId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -2338,6 +2396,15 @@
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Bu" ColumnName="Bu" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Position">
+            <EntityTypeMapping TypeName="RSDBModel.Position">
+              <MappingFragment StoreEntitySet="Position">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

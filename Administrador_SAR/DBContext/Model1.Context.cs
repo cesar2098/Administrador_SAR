@@ -18,7 +18,6 @@ namespace Administrador_SAR.DBContext
         public RSDBEntities()
             : base("name=RSDBEntities")
         {
-            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -57,5 +56,6 @@ namespace Administrador_SAR.DBContext
         public virtual DbSet<WorkPlaces> WorkPlaces { get; set; }
         public virtual DbSet<FlashVisitReport> FlashVisitReport { get; set; }
         public virtual DbSet<VisitFlashReports> VisitFlashReports { get; set; }
+        public virtual DbSet<Position> Position { get; set; }
     }
 }

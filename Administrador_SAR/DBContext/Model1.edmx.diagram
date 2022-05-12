@@ -71,6 +71,8 @@
         <AssociationConnector Association="RSDBModel.FK_FlashVisitReport_Accounts" />
         <AssociationConnector Association="RSDBModel.FK_VisitFlashReport_Accounts" />
         <AssociationConnector Association="RSDBModel.FK_VisitFlashReport_WorkPlaces" />
+        <EntityTypeShape EntityType="RSDBModel.Position" Width="1.5" PointX="5.375" PointY="0.875" />
+        <AssociationConnector Association="RSDBModel.FK_Accounts_Position" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

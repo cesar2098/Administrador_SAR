@@ -34,6 +34,7 @@ namespace Administrador_SAR.DBContext
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public bool IsActive { get; set; }
+        public string Code { get; set; }
     
         public virtual Countries Countries { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

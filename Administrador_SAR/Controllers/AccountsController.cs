@@ -33,9 +33,7 @@ namespace Administrador_SAR.Controllers
                     item.StatusDescription = "INACTIVO";
 
                 if (item.Role.Equals(0)) item.Rol = "Administrador";
-                if (item.Role.Equals(1)) item.Rol = "Gerente";
-                if (item.Role.Equals(2)) item.Rol = "Técnico";
-                if (item.Role.Equals(3)) item.Rol = "Obrero";
+                if (item.Role.Equals(1)) item.Rol = "Operador";
             }
             return View(viewModel);
         }
@@ -66,9 +64,7 @@ namespace Administrador_SAR.Controllers
             genders.Add(new GenderModel() { Id = 1, Description = "MUJER" });
 
             rols.Add(new RolModel() { Id = 0, Description = "Administrador" });
-            rols.Add(new RolModel() { Id = 1, Description = "Gerente" });
-            rols.Add(new RolModel() { Id = 2, Description = "Técnico" });
-            rols.Add(new RolModel() { Id = 3, Description = "Obrero" });
+            rols.Add(new RolModel() { Id = 1, Description = "Operador" });
 
             ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
             ViewBag.Gender = new SelectList(genders, "Id", "Description");
@@ -106,9 +102,7 @@ namespace Administrador_SAR.Controllers
             genders.Add(new GenderModel() { Id = 1, Description = "MUJER" });
 
             rols.Add(new RolModel() { Id = 0, Description = "Administrador" });
-            rols.Add(new RolModel() { Id = 1, Description = "Gerente" });
-            rols.Add(new RolModel() { Id = 2, Description = "Técnico" });
-            rols.Add(new RolModel() { Id = 3, Description = "Obrero" });
+            rols.Add(new RolModel() { Id = 1, Description = "Operador" });
 
             ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", accounts.CountryId);
             ViewBag.Gender = new SelectList(genders, "Id", "Description", accounts.Gender);
@@ -135,9 +129,7 @@ namespace Administrador_SAR.Controllers
             genders.Add(new GenderModel() { Id = 1, Description = "MUJER" });
 
             rols.Add(new RolModel() { Id = 0, Description = "Administrador" });
-            rols.Add(new RolModel() { Id = 1, Description = "Gerente" });
-            rols.Add(new RolModel() { Id = 2, Description = "Técnico" });
-            rols.Add(new RolModel() { Id = 3, Description = "Obrero" });
+            rols.Add(new RolModel() { Id = 1, Description = "Operador" });
 
             ViewBag.Gender = new SelectList(genders, "Id", "Description", account.Gender);
             ViewBag.Role = new SelectList(rols, "Id", "Description", account.Role);
@@ -158,9 +150,8 @@ namespace Administrador_SAR.Controllers
             genders.Add(new GenderModel() { Id = 1, Description = "MUJER" });
 
             rols.Add(new RolModel() { Id = 0, Description = "Administrador" });
-            rols.Add(new RolModel() { Id = 1, Description = "Gerente" });
-            rols.Add(new RolModel() { Id = 2, Description = "Técnico" });
-            rols.Add(new RolModel() { Id = 3, Description = "Obrero" });
+            rols.Add(new RolModel() { Id = 1, Description = "Operador" });
+
             if (ModelState.IsValid)
             {
                 var currentAccount = db.Accounts.FirstOrDefault(x => x.Id == account.Id);
