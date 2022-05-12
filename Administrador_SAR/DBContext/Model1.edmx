@@ -163,7 +163,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Description" Type="int" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="QuestionSecurityVisit">
@@ -1999,7 +1999,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Description" Type="Int32" />
+          <Property Name="Description" Type="String" />
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="Accounts" Relationship="RSDBModel.FK_Accounts_Position" FromRole="Position" ToRole="Accounts" />
         </EntityType>

@@ -51,6 +51,9 @@
                 <tr>
                     <th> Acciones </th>
                     <th>
+                        @Html.DisplayNameFor(model => model.Code)
+                    </th>
+                    <th>
                         @Html.DisplayNameFor(model => model.Name)
                     </th>
                     <th style="max-width:150px">
@@ -74,6 +77,9 @@
                         <td>
                             @Html.ActionLink("Editar", "Edit", new { id = item.WorkPlaceId }, new { @class = " btn btn-warning  w-100" })
                             @Html.ActionLink("Ver más", "Details", new { id = item.WorkPlaceId }, new { @class = " btn btn-info  w-100" })
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Code)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Name)

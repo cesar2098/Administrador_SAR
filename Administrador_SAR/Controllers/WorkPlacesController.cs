@@ -26,6 +26,10 @@ namespace Administrador_SAR.Controllers
                     item.Status = "ACTIVO";
                 else
                     item.Status = "INACTIVO";
+
+
+                if (string.IsNullOrEmpty(item.Code))
+                    item.Code = "N / A";
             }
             return View(viewModel);
         }
@@ -73,6 +77,7 @@ namespace Administrador_SAR.Controllers
 
                 db.WorkPlaces.Add(workPlace);
 
+                //Agregando superviso
                 UserWorkPlaces userWorkPlaces = new UserWorkPlaces()
                 {
                     IsActive = true,
@@ -117,7 +122,7 @@ namespace Administrador_SAR.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "WorkPlaceId,Name,Description,CreatedDate,CreatedTime,CountryId,Address,Latitude,Longitude,IsActive")] WorkPlaces workPlaces)
+        public ActionResult Edit([Bind(Include = "WorkPlaceId,Name,Description,CreatedDate,CreatedTime,CountryId,Address,Latitude,Longitude,IsActive,Code")] WorkPlaces workPlaces)
         {
             if (ModelState.IsValid)
             {

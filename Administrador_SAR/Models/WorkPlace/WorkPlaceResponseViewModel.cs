@@ -19,5 +19,7 @@ namespace Administrador_SAR.Models.WorkPlace
         public bool IsActive { get; set; }
         [Display(Name = "Estado")]
         public string Status { get; set; }
+        [Display(Name = "Código")]
+        public string Code { get; set; }
     }
 }

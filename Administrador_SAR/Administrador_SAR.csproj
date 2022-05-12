@@ -195,6 +195,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KillersController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PositionsController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\UserWorkPlacesController.cs" />
     <Compile Include="Controllers\VisitFlashReportsController.cs" />
@@ -1275,6 +1276,11 @@
     <Content Include="Views\UserWorkPlaces\Details.cshtml" />
     <Content Include="Views\UserWorkPlaces\Edit.cshtml" />
     <Content Include="Views\UserWorkPlaces\Index.cshtml" />
+    <Content Include="Views\Positions\Create.cshtml" />
+    <Content Include="Views\Positions\Delete.cshtml" />
+    <Content Include="Views\Positions\Details.cshtml" />
+    <Content Include="Views\Positions\Edit.cshtml" />
+    <Content Include="Views\Positions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
