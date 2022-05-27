@@ -67,6 +67,7 @@ namespace Administrador_SAR.Controllers
             rols.Add(new RolModel() { Id = 1, Description = "Operador" });
 
             ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
+            ViewBag.PositionId = new SelectList(db.Position, "Id", "Description");
             ViewBag.Gender = new SelectList(genders, "Id", "Description");
             ViewBag.Role = new SelectList(rols, "Id", "Description");
 
@@ -78,7 +79,7 @@ namespace Administrador_SAR.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CountryId,FirstName,LastName,Gender,Email,Phone,Password,IsActive,Role,VerificationToken,Verified,ResetToken,ResetTokenExpires,PasswordReset,Created,Updated")] Accounts accounts)
+        public ActionResult Create([Bind(Include = "Id,CountryId,FirstName,LastName,Gender,Email,Phone,Password,IsActive,Role,VerificationToken,Verified,ResetToken,ResetTokenExpires,PasswordReset,Created,Updated,PositionId")] Accounts accounts)
         {
             if (ModelState.IsValid)
             {
@@ -90,6 +91,7 @@ namespace Administrador_SAR.Controllers
                 accounts.LastName = accounts.LastName.ToUpper();
                 accounts.Phone = accounts.Phone ?? "";
                 accounts.Password = BC.HashPassword("12345678");//Contraseña por defecto
+                accounts.PositionId = accounts.PositionId;
                 db.Accounts.Add(accounts);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -105,6 +107,7 @@ namespace Administrador_SAR.Controllers
             rols.Add(new RolModel() { Id = 1, Description = "Operador" });
 
             ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", accounts.CountryId);
+            ViewBag.PositionId = new SelectList(db.Position, "Id", "Description", accounts.PositionId);
             ViewBag.Gender = new SelectList(genders, "Id", "Description", accounts.Gender);
             ViewBag.Role = new SelectList(rols, "Id", "Description", accounts.Role);
             return View(accounts);
@@ -132,8 +135,12 @@ namespace Administrador_SAR.Controllers
             rols.Add(new RolModel() { Id = 1, Description = "Operador" });
 
             ViewBag.Gender = new SelectList(genders, "Id", "Description", account.Gender);
+            ViewBag.PositionId = new SelectList(db.Position, "Id", "Description", account.PositionId);
             ViewBag.Role = new SelectList(rols, "Id", "Description", account.Role);
             ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", account.CountryId);
+
+            //se setea por defecto ResetPassword en false
+            account.ResetPassword = false;
             return View(account);
         }
 
@@ -142,7 +149,7 @@ namespace Administrador_SAR.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CountryId,FirstName,LastName,Gender,Email,Phone,Password,IsActive,ResetPassword,Role,VerificationToken,Verified,ResetToken,ResetTokenExpires,PasswordReset,Created,Updated")] Accounts account)
+        public ActionResult Edit([Bind(Include = "Id,CountryId,FirstName,LastName,Gender,Email,Phone,Password,IsActive,ResetPassword,Role,VerificationToken,Verified,ResetToken,ResetTokenExpires,PasswordReset,Created,Updated,PositionId")] Accounts account)
         {
             List<GenderModel> genders = new List<GenderModel>();
             List<RolModel> rols = new List<RolModel>();
@@ -159,6 +166,7 @@ namespace Administrador_SAR.Controllers
                 {
                     ModelState.AddModelError("", "Ocurrió un error al actualizar la cuenta");
                     ViewBag.Gender = new SelectList(genders, "Id", "Description", account.Gender);
+                    ViewBag.PositionId = new SelectList(db.Position, "Id", "Description", account.PositionId);
                     ViewBag.Role = new SelectList(rols, "Id", "Description", account.Role);
                     ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", account.CountryId);
                     return View(account);
@@ -173,6 +181,7 @@ namespace Administrador_SAR.Controllers
                 currentAccount.Role = account.Role;
                 currentAccount.Gender = account.Gender;
                 currentAccount.IsActive = account.IsActive;
+                currentAccount.PositionId = account.PositionId;
 
                 if ((bool)account.ResetPassword)
                 {
@@ -187,6 +196,7 @@ namespace Administrador_SAR.Controllers
             
 
             ViewBag.Gender = new SelectList(genders, "Id", "Description", account.Gender);
+            ViewBag.Position = new SelectList(db.Position, "Id", "Description", account.Position);
             ViewBag.Role = new SelectList(rols, "Id", "Description", account.Role);
             ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", account.CountryId);
             return View(account);
