@@ -132,7 +132,7 @@
                         <ul class="submenu">
                             <li><a href="@Url.Action("dashboard","Home")">Graficas Dashboard</a></li>
                             @*<li><a href="index2.html">Descarga de Reportes 1</a></li>
-                            <li><a href="index3.html">Descarga de Reportes 2</a></li>*@
+                                <li><a href="index3.html">Descarga de Reportes 2</a></li>*@
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -145,7 +145,7 @@
                             <span class="micon dw dw-user1"></span><span class="mtext">Usuarios</span>
                         </a>
                     </li>
-                     <li>
+                    <li>
                         <a href="@Url.Action("Index","UserWorkPlaces")" class="dropdown-toggle no-arrow">
                             <span class="micon dw dw-user1"></span><span class="mtext">Usuarios/Obras</span>
                         </a>
@@ -177,6 +177,38 @@
     </div>
     <div class="mobile-menu-overlay"></div>
     <div class="main-container">
+        <div class="header">
+            <div class="header-left">
+                <div class="menu-icon dw dw-menu"></div>
+                <div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
+            </div>
+            <div class="header-right">
+                <div class="user-info-dropdown">
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                            <span class="user-icon">
+                                <img src="~/vendors/images/photo1.jpg" alt="">
+                            </span>
+                            @if (Session["UserName"] != null)
+                            {
+                                <span class="user-name">@Session["UserName"]</span>
+                            }
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                            <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i>Perfil</a>
+                            <a class="dropdown-item" href="/Home/CerrarSesion"><i class="dw dw-logout"></i>Cerrar Sesión</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-header">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <h1>@ViewBag.SubTitle</h1>
+                </div>
+            </div>
+        </div>
         @RenderBody()
     </div>
     <div class="footer-wrap pd-20 mt-30 card-box ">
@@ -210,3 +242,4 @@
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+

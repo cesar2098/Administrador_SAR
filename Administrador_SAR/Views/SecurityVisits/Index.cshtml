@@ -1,41 +1,44 @@
-﻿@model IEnumerable<Administrador_SAR.DBContext.Killers>
+﻿@model IEnumerable<Administrador_SAR.DBContext.SecurityVisit>
 
 @{
-    ViewBag.Title = "Killers";
-    ViewBag.SubTitle = "Administración Killer";
+    ViewBag.Title = "Index";
+    ViewBag.SubTitle = "Administración de Situaciones de Seguridad";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="card-box mb-30">
-    <div class="form-group p-2">
-        <div class="row">
-            <div class="col-md-2">
-                @Html.ActionLink("Nuevo registro", "Create", null, new { @class = "btn btn-success w-10 " })
-            </div>
-            <div class="col-md-2">
-                @Html.ActionLink("Regresar", "adminTables", "Home", null, new { @class = "btn btn-dark w-10" })
-            </div>
+
+<div class="form-group p-2">
+    <div class="row">
+        <div class="col-md-2">
+            @Html.ActionLink("Nuevo registro", "Create", null, new { @class = "btn btn-success w-10 " })
+        </div>
+        <div class="col-md-2">
+            @Html.ActionLink("Regresar", "adminTables", "Home", null, new { @class = "btn btn-dark w-10" })
         </div>
     </div>
+</div>
+
+<div class="card-box mb-30">
     <div class="pd-20 table-responsive">
-        <table class="table table-bordered" id="table_reports">
+        <table class="table table-hover" id="table_reports">
             <thead>
                 <tr>
                     <th>
-                        Nombre
+                        Descripción
                     </th>
                     <th>
-                        Activo
+                        Estado
                     </th>
-                    <th> Acciones </th>
+                    <th>
+                        Acciones
+                    </th>
                 </tr>
             </thead>
             <tbody>
-
                 @foreach (var item in Model)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Name)
+                            @Html.DisplayFor(modelItem => item.Description)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.IsActive)
@@ -51,13 +54,11 @@
     </div>
 </div>
 
-
-
 @section Scripts
 {
 
 
-    
+
     <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/autofill/2.3.7/js/dataTables.autoFill.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.1.1/js/dataTables.buttons.min.js"></script>
@@ -66,16 +67,17 @@
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/scroller/2.0.5/js/dataTables.scroller.min.js"></script>
     <script>
-            $(document).ready(function () {
-                $('#table_reports').DataTable({
-                    "language": {
-                        "lengthMenu": "Mostrar _MENU_ items por página",
-                        "zeroRecords": "Sin data ",
-                        "info": "Mostrando pagina _PAGE_ de _PAGES_",
-                        "infoEmpty": "No records available",
-                        "infoFiltered": "(filtrando de un total de  _MAX_ registros)"
-                    }
-                });
+        $(document).ready(function () {
+            $('#table_reports').DataTable({
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ items por página",
+                    "zeroRecords": "Sin data ",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No records available",
+                    "infoFiltered": "(filtrando de un total de  _MAX_ registros)"
+                }
             });
+        });
     </script>
 }
+

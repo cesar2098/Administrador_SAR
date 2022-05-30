@@ -197,6 +197,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PositionsController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\SecurityVisitQuestionsReportsController.cs" />
     <Compile Include="Controllers\UserWorkPlacesController.cs" />
     <Compile Include="Controllers\VisitFlashReportsController.cs" />
     <Compile Include="Controllers\VisitManagersReportsController.cs" />
@@ -333,6 +334,8 @@
     <Compile Include="Services\FlashReportService.cs" />
     <Compile Include="Services\LoginServices.cs" />
     <Compile Include="Services\ReportService.cs" />
+    <Compile Include="Controllers\QuestionSecurityVisitsController.cs" />
+    <Compile Include="Controllers\SecurityVisitsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\index.html" />
@@ -1281,6 +1284,22 @@
     <Content Include="Views\Positions\Details.cshtml" />
     <Content Include="Views\Positions\Edit.cshtml" />
     <Content Include="Views\Positions\Index.cshtml" />
+    <Content Include="Views\SecurityVisitQuestionsReports\Create.cshtml" />
+    <Content Include="Views\SecurityVisitQuestionsReports\Delete.cshtml" />
+    <Content Include="Views\SecurityVisitQuestionsReports\Details.cshtml" />
+    <Content Include="Views\SecurityVisitQuestionsReports\Edit.cshtml" />
+    <Content Include="Views\SecurityVisitQuestionsReports\Index.cshtml" />
+    <Content Include="Views\Shared\LayoutHeader.cshtml" />
+    <Content Include="Views\SecurityVisits\Create.cshtml" />
+    <Content Include="Views\SecurityVisits\Delete.cshtml" />
+    <Content Include="Views\SecurityVisits\Details.cshtml" />
+    <Content Include="Views\SecurityVisits\Edit.cshtml" />
+    <Content Include="Views\SecurityVisits\Index.cshtml" />
+    <Content Include="Views\QuestionSecurityVisits\Create.cshtml" />
+    <Content Include="Views\QuestionSecurityVisits\Delete.cshtml" />
+    <Content Include="Views\QuestionSecurityVisits\Details.cshtml" />
+    <Content Include="Views\QuestionSecurityVisits\Edit.cshtml" />
+    <Content Include="Views\QuestionSecurityVisits\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

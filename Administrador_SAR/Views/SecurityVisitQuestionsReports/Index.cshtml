@@ -1,10 +1,44 @@
-﻿@model IEnumerable<Administrador_SAR.DBContext.Factors>
+﻿@model IEnumerable<Administrador_SAR.DBContext.SecurityVisitQuestionsReport>
 
 @{
-    ViewBag.Title = "Factores";
-    ViewBag.SubTitle = "Administración de Factores";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<div class="header">
+    <div class="header-left">
+        <div class="menu-icon dw dw-menu"></div>
+        <div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
+    </div>
+    <div class="header-right">
+        <div class="user-info-dropdown">
+            <div class="dropdown">
+                <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                    <span class="user-icon">
+                        <img src="~/vendors/images/photo1.jpg" alt="">
+                    </span>
+                    @if (Session["UserName"] != null)
+                    {
+                        <span class="user-name">@Session["UserName"]</span>
+                    }
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                    <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i>Perfil</a>
+                    <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Configuraciones</a>
+                    <a class="dropdown-item" href="faq.html">@*<i class="dw dw-help"></i> Help*@</a>
+                    <a class="dropdown-item" href="/Home/CerrarSesion"><i class="dw dw-logout"></i>Cerrar Sesión</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-header">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <h1>Administración de Preguntas de Seguridad</h1>
+        </div>
+    </div>
+</div>
 
 <div class="form-group p-2">
     <div class="row">
@@ -23,12 +57,26 @@
             <thead>
                 <tr>
                     <th>
+                        Reporte
+                    </th>
+                    <th>
                         Descripción
                     </th>
                     <th>
-                        Estado
+                        Si
                     </th>
-                    <th></th>
+                    <th>
+                        No
+                    </th>
+                    <th>
+                        Np
+                    </th>
+                    <th>
+                        Comentarios
+                    </th>
+                    <th>
+                        Acciones
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -36,10 +84,22 @@
                 {
                     <tr>
                         <td>
+                            @Html.DisplayFor(modelItem => item.VisitSecurityReport.Id)
+                        </td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.Description)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.IsActive)
+                            @Html.DisplayFor(modelItem => item.Si)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.No)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Np)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Comment)
                         </td>
                         <td>
                             @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" }) |
@@ -52,13 +112,8 @@
     </div>
 </div>
 
-
-
 @section Scripts
 {
-
-
-
     <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/autofill/2.3.7/js/dataTables.autoFill.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.1.1/js/dataTables.buttons.min.js"></script>

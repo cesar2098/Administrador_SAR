@@ -1,8 +1,8 @@
-﻿@model Administrador_SAR.DBContext.Factors
+﻿@model Administrador_SAR.DBContext.SecurityVisit
 
 @{
-    ViewBag.Title = "Crear Factor";
-    ViewBag.SubTitle = "Crear Factor";
+    ViewBag.Title = "Create";
+    ViewBag.SubTitle = "Crear Visita de Seguridad";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,7 +13,7 @@
             @Html.AntiForgeryToken()
 
             <div class="form-horizontal">
-                <h4>Factors</h4>
+                <h4>Visita de Seguridad</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
