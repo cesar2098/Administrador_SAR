@@ -27,7 +27,8 @@ namespace Administrador_SAR.Views
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SecurityVisit securityVisit = db.SecurityVisit.Find(id);
+            SecurityVisit securityVisit = db.SecurityVisit.Include(x => x.QuestionSecurityVisit)
+                                        .FirstOrDefault(predicate: x => x.Id == id);
 
             if (securityVisit == null)
             {
@@ -83,6 +84,12 @@ namespace Administrador_SAR.Views
         {
             if (ModelState.IsValid)
             {
+                if (string.IsNullOrEmpty(securityVisit.Description))
+                {
+                    ModelState.AddModelError("","Ingrese una descripcion por favor");
+                    return View(securityVisit);
+                }
+
                 db.Entry(securityVisit).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

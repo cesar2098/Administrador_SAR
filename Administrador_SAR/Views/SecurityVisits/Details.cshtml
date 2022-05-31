@@ -39,7 +39,7 @@
 <div class="form-group p-2">
     <div class="row">
         <div class="col-md-2">
-            @Html.ActionLink("Nuevo registro", "Create", null, new { @class = "btn btn-success w-10 " })
+            @Html.ActionLink("Nuevo registro","Create", "QuestionSecurityVisits", new { id = Model.Id}, new { @class = "btn btn-success w-10 " })
         </div>
         <div class="col-md-2">
             @Html.ActionLink("Regresar", "adminTables", "Home", null, new { @class = "btn btn-dark w-10" })
@@ -64,11 +64,24 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>                
+                @foreach (var item in Model.QuestionSecurityVisit)
+                {
+                    <tr>
+                        <td>@item.Description</td>
+                        @if ((bool)@item.IsActive)
+                        {
+                            <td>Activa</td>
+                        }
+                        else
+                        {
+                            <td>Inactiva</td>
+                        }
+
+                    <td>@Html.ActionLink("Editar","Edit", "QuestionSecurityVisits", new { id = item.Id }, new { @class = "btn btn-info" }) </td>
+                    </tr>
+
+                }
+
             </tbody>
         </table>
     </div>

@@ -37,9 +37,10 @@ namespace Administrador_SAR.Views
         }
 
         // GET: QuestionSecurityVisits/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
-            ViewBag.IdSecurityVisit = new SelectList(db.SecurityVisit, "Id", "Description");
+            var securityVisit = db.SecurityVisit.FirstOrDefault(x => x.Id == id);
+            ViewBag.IdSecurityVisit = new SelectList(db.SecurityVisit, "Id", "Description", securityVisit);
             return View();
         }
 
@@ -54,7 +55,7 @@ namespace Administrador_SAR.Views
             {
                 db.QuestionSecurityVisit.Add(questionSecurityVisit);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "SecurityVisits", new { id = questionSecurityVisit.IdSecurityVisit });
             }
 
             ViewBag.IdSecurityVisit = new SelectList(db.SecurityVisit, "Id", "Description", questionSecurityVisit.IdSecurityVisit);
@@ -88,7 +89,7 @@ namespace Administrador_SAR.Views
             {
                 db.Entry(questionSecurityVisit).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "SecurityVisits",new {id = questionSecurityVisit.IdSecurityVisit});
             }
             ViewBag.IdSecurityVisit = new SelectList(db.SecurityVisit, "Id", "Description", questionSecurityVisit.IdSecurityVisit);
             return View(questionSecurityVisit);
