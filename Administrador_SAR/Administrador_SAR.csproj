@@ -327,6 +327,7 @@
     <Compile Include="Models\Reports\ReportResponseViewModel.cs" />
     <Compile Include="Models\UserWorkPlace\UserWorkPlaceResponse.cs" />
     <Compile Include="Models\VisitFlash\VisitFlashViewModelResponse.cs" />
+    <Compile Include="Models\WorkPlace\WorkPlacesResultModel.cs" />
     <Compile Include="Models\WorkPlace\CreateWorkPlaceRequestModel.cs" />
     <Compile Include="Models\WorkPlace\WorkPlaceResponseViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1300,6 +1301,9 @@
     <Content Include="Views\QuestionSecurityVisits\Details.cshtml" />
     <Content Include="Views\QuestionSecurityVisits\Edit.cshtml" />
     <Content Include="Views\QuestionSecurityVisits\Index.cshtml" />
+    <Content Include="Views\Home\dashboardPuestoTrabajo.cshtml" />
+    <Content Include="Views\Home\dashboardOtrosFactores.cshtml" />
+    <Content Include="Views\Home\dashboardSituacionesDetectadas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

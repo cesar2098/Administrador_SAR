@@ -1,40 +1,35 @@
 ﻿@model Administrador_SAR.DBContext.QuestionSecurityVisit
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar";
+    ViewBag.SubTitle = "Editar Pregunta";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+<div class="card-box mb-30 p-3">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
     <div class="form-horizontal">
-        <h4>QuestionSecurityVisit</h4>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IdSecurityVisit, "IdSecurityVisit", htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Visita de Seguridad</label>
             <div class="col-md-10">
-                @Html.DropDownList("IdSecurityVisit", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("IdSecurityVisit", null, htmlAttributes: new { @disabled = "disabled", @class = "form-control" } )
                 @Html.ValidationMessageFor(model => model.IdSecurityVisit, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Pregunta</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })                
             </div>
         </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Activo</label>
             <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.IsActive)
@@ -42,15 +37,16 @@
                 </div>
             </div>
         </div>
-
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+            <div class="row">
+                <div class="col-md-2">
+                    <input type="submit" value="Guardar" class="btn btn-success" />
+                </div>
+                <div class="col-md-2">
+                    @Html.ActionLink("Regresar", "Details", "SecurityVisits", new { id = Model.IdSecurityVisit }, new { @class = "btn btn-dark" })
+                </div>
             </div>
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
+    }
 </div>

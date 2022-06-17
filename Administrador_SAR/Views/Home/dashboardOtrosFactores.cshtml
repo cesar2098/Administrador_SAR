@@ -1,6 +1,6 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.SubTitle = "Dashboard de Obras";
+    ViewBag.SubTitle = "Dashboard de Otros Factores";
     ViewBag.Title = "Página de Inicio";
 }
 <link href="~/src/styles/style2.css" rel="stylesheet" />
@@ -17,8 +17,8 @@
                             @Html.DropDownList("CountryId", null, "Seleccione un país", htmlAttributes: new { @class = "form-control", @style = "text-transform: uppercase;" })
                         </div>
                         <div class="col-md-3 col-sm-12">
-                            <label for="CountryId">Seleccione una obra</label>
-                            @Html.DropDownList("WorkPlace", new List<SelectListItem>(), "Seleccionar Obra", htmlAttributes: new { @class = "form-control", @style = "text-transform: uppercase;" })
+                            <label for="CountryId">Seleccione un factor</label>
+                            @Html.DropDownList("WorkPlace", new List<SelectListItem>(), "Seleccionar Factor", htmlAttributes: new { @class = "form-control", @style = "text-transform: uppercase;" })
                         </div>
 
                         <div class="col-md-3 col-sm-12">

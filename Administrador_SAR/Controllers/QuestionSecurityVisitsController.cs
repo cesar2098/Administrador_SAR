@@ -29,6 +29,7 @@ namespace Administrador_SAR.Views
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             QuestionSecurityVisit questionSecurityVisit = db.QuestionSecurityVisit.Find(id);
+            
             if (questionSecurityVisit == null)
             {
                 return HttpNotFound();

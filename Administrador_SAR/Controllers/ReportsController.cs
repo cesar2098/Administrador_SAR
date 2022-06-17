@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using Administrador_SAR.DBContext;
 using Administrador_SAR.Models.Reports;
+using Administrador_SAR.Models.WorkPlace;
 using Administrador_SAR.Services;
 using AutoMapper;
 
@@ -66,7 +67,17 @@ namespace Administrador_SAR.Controllers
         public JsonResult GetWorkPlacesByCountry(int id)
         {
             var workPlaces = db.WorkPlaces.Where(w => w.CountryId == id).ToList();
-            return Json(workPlaces, JsonRequestBehavior.AllowGet);
+            List<WorkPlacesResultModel> reports = new List<WorkPlacesResultModel>();
+            foreach (var workPlace in workPlaces)
+            {
+                var workPlaceResultModel = new WorkPlacesResultModel();
+
+                workPlaceResultModel.workPlaceId = workPlace.WorkPlaceId;
+                workPlaceResultModel.name = workPlace.Name;
+
+                reports.Add(workPlaceResultModel);
+            }
+            return Json(reports, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Reports/Details/5

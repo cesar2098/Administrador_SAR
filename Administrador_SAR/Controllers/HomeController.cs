@@ -62,6 +62,126 @@ namespace Administrador_SAR.Controllers
             return View(columnChart);
         }
 
+        public ActionResult dashboardPuestoTrabajo(DateTime? startDate, DateTime? endDate, int countryId = 0, int workPlace = 0)
+        {
+            if (Session["UserName"] == null)
+            {
+                return RedirectToAction("login", "Login");
+            }
+
+            if (endDate != null) endDate.Value.AddDays(1);
+
+            if (startDate == null) startDate = DateTime.Today.AddDays(-30);
+            if (endDate == null) endDate = DateTime.Today.AddDays(1);
+
+
+
+            var reports = db.Reports
+                            .Include(r => r.StatusReports)
+                            .Include(r => r.WorkPlaces).OrderByDescending(x => x.CreatedDate)
+                            .Where(x => x.CreatedDate >= startDate && x.CreatedDate <= endDate)
+                            .ToList();
+
+            var viewModel = Mapper.Map<IList<ReportResponseViewModel>>(reports).ToList();
+
+
+            if (countryId != 0)
+                viewModel = viewModel.Where(c => c.CountryId == countryId).ToList();
+
+            Highcharts columnChart;
+            //Si se filtra por centro de trabajo se debe obtener lso reportes del centro y agruparlos por estado
+            if (workPlace != 0)
+            {
+                var WorkPlaceName = db.WorkPlaces.FirstOrDefault(x => x.WorkPlaceId == workPlace);
+                columnChart = GetQuantityReportSattussByWorkedPlace(viewModel.ToList(), WorkPlaceName);
+            }
+            else
+                columnChart = GetQuantityReportsByWorkedPlace(viewModel.ToList());
+
+            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
+            return View(columnChart);
+        }
+
+        public ActionResult dashboardSituacionesDetectadas(DateTime? startDate, DateTime? endDate, int countryId = 0, int workPlace = 0)
+        {
+            if (Session["UserName"] == null)
+            {
+                return RedirectToAction("login", "Login");
+            }
+
+            if (endDate != null) endDate.Value.AddDays(1);
+
+            if (startDate == null) startDate = DateTime.Today.AddDays(-30);
+            if (endDate == null) endDate = DateTime.Today.AddDays(1);
+
+
+
+            var reports = db.Reports
+                            .Include(r => r.StatusReports)
+                            .Include(r => r.WorkPlaces).OrderByDescending(x => x.CreatedDate)
+                            .Where(x => x.CreatedDate >= startDate && x.CreatedDate <= endDate)
+                            .ToList();
+
+            var viewModel = Mapper.Map<IList<ReportResponseViewModel>>(reports).ToList();
+
+
+            if (countryId != 0)
+                viewModel = viewModel.Where(c => c.CountryId == countryId).ToList();
+
+            Highcharts columnChart;
+            //Si se filtra por centro de trabajo se debe obtener lso reportes del centro y agruparlos por estado
+            if (workPlace != 0)
+            {
+                var WorkPlaceName = db.WorkPlaces.FirstOrDefault(x => x.WorkPlaceId == workPlace);
+                columnChart = GetQuantityReportSattussByWorkedPlace(viewModel.ToList(), WorkPlaceName);
+            }
+            else
+                columnChart = GetQuantityReportsByWorkedPlace(viewModel.ToList());
+
+            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
+            return View(columnChart);
+        }
+
+        public ActionResult dashboardOtrosFactores(DateTime? startDate, DateTime? endDate, int countryId = 0, int workPlace = 0)
+        {
+            if (Session["UserName"] == null)
+            {
+                return RedirectToAction("login", "Login");
+            }
+
+            if (endDate != null) endDate.Value.AddDays(1);
+
+            if (startDate == null) startDate = DateTime.Today.AddDays(-30);
+            if (endDate == null) endDate = DateTime.Today.AddDays(1);
+
+
+
+            var reports = db.Reports
+                            .Include(r => r.StatusReports)
+                            .Include(r => r.WorkPlaces).OrderByDescending(x => x.CreatedDate)
+                            .Where(x => x.CreatedDate >= startDate && x.CreatedDate <= endDate)
+                            .ToList();
+
+            var viewModel = Mapper.Map<IList<ReportResponseViewModel>>(reports).ToList();
+
+
+            if (countryId != 0)
+                viewModel = viewModel.Where(c => c.CountryId == countryId).ToList();
+
+            Highcharts columnChart;
+            //Si se filtra por centro de trabajo se debe obtener lso reportes del centro y agruparlos por estado
+            if (workPlace != 0)
+            {
+                var WorkPlaceName = db.WorkPlaces.FirstOrDefault(x => x.WorkPlaceId == workPlace);
+                columnChart = GetQuantityReportSattussByWorkedPlace(viewModel.ToList(), WorkPlaceName);
+            }
+            else
+                columnChart = GetQuantityReportsByWorkedPlace(viewModel.ToList());
+
+            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
+            return View(columnChart);
+        }
+
         private static Highcharts GetQuantityReportsByWorkedPlace(List<ReportResponseViewModel> viewModel)
         {
             var reportsByCountry = viewModel.
@@ -263,6 +383,15 @@ namespace Administrador_SAR.Controllers
             data.Add(new Dashboard_1() { Key = "5 DE NOVIEMBRE", Reportes = 25, Porcentaje = 34.3 });
             data.Add(new Dashboard_1() { Key = "LOS CONOCASTES", Reportes = 45, Porcentaje = 64.3 });
             data.Add(new Dashboard_1() { Key = "LOS ALMENDROS", Reportes = 5, Porcentaje = 4.3 });
+            return Json(new { data }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetData1()
+        {
+            List<Dashboard_1> data = new List<Dashboard_1>();
+            data.Add(new Dashboard_1() { Key = "29 AV NORTE", Reportes = 25, Porcentaje = 34.3 });
+            data.Add(new Dashboard_1() { Key = "TRONCAL DEL NORTE", Reportes = 45, Porcentaje = 64.3 });
+            data.Add(new Dashboard_1() { Key = "JUAN PABLO II", Reportes = 5, Porcentaje = 4.3 });
             return Json(new { data }, JsonRequestBehavior.AllowGet);
         }
 
