@@ -18,7 +18,7 @@
                         </div>
                         <div class="col-md-3 col-sm-12">
                             <label for="CountryId">Seleccione un puesto</label>
-                            @Html.DropDownList("WorkPlace", new List<SelectListItem>(), "Seleccionar puesto de trabajo", htmlAttributes: new { @class = "form-control", @style = "text-transform: uppercase;" })
+                            @Html.DropDownList("PositionId", null, "Seleccionar puesto de trabajo", htmlAttributes: new { @class = "form-control", @style = "text-transform: uppercase;" })
                         </div>
 
                         <div class="col-md-3 col-sm-12">
@@ -78,7 +78,7 @@
         PopulateCarProduction(chart1);
         var titles = chart1.getTitles();
         var title = new cfx.TitleDockable();
-        title.setText("REPORTES SAR POR OBRAS");
+        title.setText("REPORTES SAR POR PUESTO DE TRABAJO");
         titles.add(title);
         var series1 = chart1.getSeries().getItem(0);
         var series2 = chart1.getSeries().getItem(1);
@@ -89,7 +89,7 @@
         chart2.create('div_obj2');
         var items = [];
         function PopulateCarProduction(chart1) {
-            $.get("/Home/GetData", function (data) {
+            $.get("/Home/GetDataPosition", function (data) {
 
                 chart1.setDataSource(data.data);
                 chart2.setDataSource(data.data);
@@ -98,18 +98,6 @@
     </script>
     <script>
         $(document).ready(function () {
-            $("#CountryId").change(function () {
-                $.get("/Reports/GetWorkPlacesByCountry", { id: $("#CountryId").val() }, function (data) {                    
-                    // VACIAMOS EL DropDownList
-                    $("#WorkPlace").empty();
-                    // AÑADIMOS UN NUEVO label CON EL NOMBRE DEL ELEMENTO SELECCIONADO
-                    $("#WorkPlace").append("<option value> -- Seleccionar Obra de " + $("#CountryId option:selected").text() + " --</option>")
-                    // CONSTRUIMOS EL DropDownList A PARTIR DEL RESULTADO Json (data)
-                    $.each(data, function (index, row) {
-                        $("#WorkPlace").append("<option value='" + row.workPlaceId + "'>" + row.name + "</option>")
-                    });
-                });
-            });
 
             $("#buttonfilter").click(function () {
                 event.preventDefault();

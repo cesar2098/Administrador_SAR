@@ -144,7 +144,8 @@ namespace Administrador_SAR.Controllers
 
         [HttpGet]
         public async Task<ActionResult> CreatePDF(int id)
-        {          
+        {
+            //System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             byte [] result = await _reportService.getReport(id);
             var output = new FileContentResult(result, "application/octet-stream");
             output.FileDownloadName = "download.pdf";
@@ -159,6 +160,7 @@ namespace Administrador_SAR.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Reports reports = db.Reports.Find(id);
+            
             if (reports == null)
             {
                 return HttpNotFound();

@@ -1,6 +1,6 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.SubTitle = "Dashboard de Situaciones de trabajo";
+    ViewBag.SubTitle = "Dashboard de Situaciones Detectadas";
     ViewBag.Title = "Página de Inicio";
 }
 <link href="~/src/styles/style2.css" rel="stylesheet" />
@@ -18,7 +18,7 @@
                         </div>
                         <div class="col-md-3 col-sm-12">
                             <label for="CountryId">Seleccione una Situación</label>
-                            @Html.DropDownList("WorkPlace", new List<SelectListItem>(), "Seleccionar Situación", htmlAttributes: new { @class = "form-control", @style = "text-transform: uppercase;" })
+                            @Html.DropDownList("SituationsId", null, "Seleccionar Situación", htmlAttributes: new { @class = "form-control", @style = "text-transform: uppercase;" })
                         </div>
 
                         <div class="col-md-3 col-sm-12">
@@ -78,7 +78,7 @@
         PopulateCarProduction(chart1);
         var titles = chart1.getTitles();
         var title = new cfx.TitleDockable();
-        title.setText("REPORTES SAR POR OBRAS");
+        title.setText("REPORTES SAR POR SITUACIONES");
         titles.add(title);
         var series1 = chart1.getSeries().getItem(0);
         var series2 = chart1.getSeries().getItem(1);
@@ -89,7 +89,7 @@
         chart2.create('div_obj2');
         var items = [];
         function PopulateCarProduction(chart1) {
-            $.get("/Home/GetData", function (data) {
+            $.get("/Home/GetDataSituation", function (data) {
 
                 chart1.setDataSource(data.data);
                 chart2.setDataSource(data.data);
@@ -97,19 +97,7 @@
         }
     </script>
     <script>
-        $(document).ready(function () {
-            $("#CountryId").change(function () {
-                $.get("/Reports/GetWorkPlacesByCountry", { id: $("#CountryId").val() }, function (data) {                    
-                    // VACIAMOS EL DropDownList
-                    $("#WorkPlace").empty();
-                    // AÑADIMOS UN NUEVO label CON EL NOMBRE DEL ELEMENTO SELECCIONADO
-                    $("#WorkPlace").append("<option value> -- Seleccionar Obra de " + $("#CountryId option:selected").text() + " --</option>")
-                    // CONSTRUIMOS EL DropDownList A PARTIR DEL RESULTADO Json (data)
-                    $.each(data, function (index, row) {
-                        $("#WorkPlace").append("<option value='" + row.workPlaceId + "'>" + row.name + "</option>")
-                    });
-                });
-            });
+        $(document).ready(function () {            
 
             $("#buttonfilter").click(function () {
                 event.preventDefault();

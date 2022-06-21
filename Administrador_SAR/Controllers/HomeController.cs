@@ -32,18 +32,18 @@ namespace Administrador_SAR.Controllers
             if (endDate != null) endDate.Value.AddDays(1);
 
             if (startDate == null) startDate = DateTime.Today.AddDays(-30);
-            if (endDate == null) endDate = DateTime.Today.AddDays(1); 
+            if (endDate == null) endDate = DateTime.Today.AddDays(1);
 
-           
+
 
             var reports = db.Reports
                             .Include(r => r.StatusReports)
                             .Include(r => r.WorkPlaces).OrderByDescending(x => x.CreatedDate)
-                            .Where(x=> x.CreatedDate >= startDate && x.CreatedDate <= endDate)
+                            .Where(x => x.CreatedDate >= startDate && x.CreatedDate <= endDate)
                             .ToList();
 
             var viewModel = Mapper.Map<IList<ReportResponseViewModel>>(reports).ToList();
-            
+
 
             if (countryId != 0)
                 viewModel = viewModel.Where(c => c.CountryId == countryId).ToList();
@@ -53,7 +53,7 @@ namespace Administrador_SAR.Controllers
             if (workPlace != 0)
             {
                 var WorkPlaceName = db.WorkPlaces.FirstOrDefault(x => x.WorkPlaceId == workPlace);
-                columnChart= GetQuantityReportSattussByWorkedPlace(viewModel.ToList(), WorkPlaceName);
+                columnChart = GetQuantityReportSattussByWorkedPlace(viewModel.ToList(), WorkPlaceName);
             }
             else
                 columnChart = GetQuantityReportsByWorkedPlace(viewModel.ToList());
@@ -62,7 +62,7 @@ namespace Administrador_SAR.Controllers
             return View(columnChart);
         }
 
-        public ActionResult dashboardPuestoTrabajo(DateTime? startDate, DateTime? endDate, int countryId = 0, int workPlace = 0)
+        public ActionResult dashboardPuestoTrabajo(DateTime? startDate, DateTime? endDate, int countryId = 0, int workPlace = 0, int situations = 0)
         {
             if (Session["UserName"] == null)
             {
@@ -99,6 +99,7 @@ namespace Administrador_SAR.Controllers
                 columnChart = GetQuantityReportsByWorkedPlace(viewModel.ToList());
 
             ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
+            ViewBag.PositionId = new SelectList(db.Position, "Id", "Description");
             return View(columnChart);
         }
 
@@ -139,6 +140,7 @@ namespace Administrador_SAR.Controllers
                 columnChart = GetQuantityReportsByWorkedPlace(viewModel.ToList());
 
             ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
+            ViewBag.SituationsId = new SelectList(db.Situations, "Id", "Description");
             return View(columnChart);
         }
 
@@ -179,16 +181,18 @@ namespace Administrador_SAR.Controllers
                 columnChart = GetQuantityReportsByWorkedPlace(viewModel.ToList());
 
             ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
+            ViewBag.FactorId = new SelectList(db.Factors, "Id", "Description");
             return View(columnChart);
         }
 
         private static Highcharts GetQuantityReportsByWorkedPlace(List<ReportResponseViewModel> viewModel)
         {
             var reportsByCountry = viewModel.
-                                        GroupBy(c => c.WorkPlace, (a, b) => new { 
-                                                    Key = a,
-                                                    Lenght = b.Count()
-                                            }).ToList();
+                                        GroupBy(c => c.WorkPlace, (a, b) => new
+                                        {
+                                            Key = a,
+                                            Lenght = b.Count()
+                                        }).ToList();
 
             string[] Categories = new string[reportsByCountry.Count()];
             object[] Values = new object[reportsByCountry.Count()];
@@ -220,7 +224,7 @@ namespace Administrador_SAR.Controllers
             {
                 Type = AxisTypes.Linear,
                 Title = new XAxisTitle() { Text = "Centros de Trabajo", Style = "fontWeight: 'bold', fontSize: '15px'" },
-            }) ;
+            });
             columnChart.SetYAxis(new YAxis()
             {
                 Title = new YAxisTitle()
@@ -256,7 +260,8 @@ namespace Administrador_SAR.Controllers
         private static Highcharts GetQuantityReportSattussByWorkedPlace(List<ReportResponseViewModel> viewModel, WorkPlaces workPlaceName)
         {
             var reportsByCountry = viewModel.
-                                        GroupBy(c => c.Status, (a, b) => new {
+                                        GroupBy(c => c.Status, (a, b) => new
+                                        {
                                             Key = a,
                                             Lenght = b.Count()
                                         }).ToList();
@@ -282,7 +287,7 @@ namespace Administrador_SAR.Controllers
             columnChart.SetTitle(new Title()
             {
                 Text = "OBRA: " + workPlaceName.Name ?? ""
-            }) ;
+            });
             columnChart.SetSubtitle(new Subtitle()
             {
                 Text = "Reportes SAR Por centro de trabajo"
@@ -366,7 +371,7 @@ namespace Administrador_SAR.Controllers
 
         public ActionResult GetCategoriasController()
         {
-            return  RedirectToAction("Index", "Categories");
+            return RedirectToAction("Index", "Categories");
         }
 
         public ActionResult CerrarSesion()
@@ -386,17 +391,47 @@ namespace Administrador_SAR.Controllers
             return Json(new { data }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetData1()
+        public JsonResult GetData1(int pais, int obra, DateTime inicio, DateTime fin)
         {
+            //No tengo claro de que tablas debo de traer la data
             List<Dashboard_1> data = new List<Dashboard_1>();
             data.Add(new Dashboard_1() { Key = "29 AV NORTE", Reportes = 25, Porcentaje = 34.3 });
-            data.Add(new Dashboard_1() { Key = "TRONCAL DEL NORTE", Reportes = 45, Porcentaje = 64.3 });
-            data.Add(new Dashboard_1() { Key = "JUAN PABLO II", Reportes = 5, Porcentaje = 4.3 });
+            return Json(new { data }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetDataSituation()
+        {
+            List<Dashboard_1> data = new List<Dashboard_1>();
+            data.Add(new Dashboard_1() { Key = "ACTO INSEGURO", Reportes = 25, Porcentaje = 14.2 });
+            data.Add(new Dashboard_1() { Key = "CONDICIÓN INSEGURA", Reportes = 45, Porcentaje = 24.5 });
+            data.Add(new Dashboard_1() { Key = "CÁRCABA", Reportes = 5, Porcentaje = 64.3 });
+            return Json(new { data }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetDataPosition()
+        {
+            List<Dashboard_1> data = new List<Dashboard_1>();
+            data.Add(new Dashboard_1() { Key = "Cargo 1", Reportes = 25, Porcentaje = 24.3 });
+            data.Add(new Dashboard_1() { Key = "Cargo 2", Reportes = 45, Porcentaje = 74.3 });
+            data.Add(new Dashboard_1() { Key = "Cargo 3", Reportes = 5, Porcentaje = 24.3 });
+            return Json(new { data }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetDataFactor()
+        {
+            List<Dashboard_1> data = new List<Dashboard_1>();
+            data.Add(new Dashboard_1() { Key = "IMPRUDENCIA DEL TRABAJADOR", Reportes = 25, Porcentaje = 4.3 });
+            data.Add(new Dashboard_1() { Key = "FALTA DE ORDEN Y LIMPIEZA", Reportes = 45, Porcentaje = 7.9 });
+            data.Add(new Dashboard_1() { Key = "DEFECTOS DE MATERIALES", Reportes = 5, Porcentaje = 2.3 });
+            data.Add(new Dashboard_1() { Key = "MANIPULACIÓN DEFICIENTE", Reportes = 5, Porcentaje = 5.7 });
+            data.Add(new Dashboard_1() { Key = "FALLO DE MAQUINARIA", Reportes = 5, Porcentaje = 4.4 });
+            data.Add(new Dashboard_1() { Key = "AUSENCIA DE PROTECCIONES INDIVIDUALES 2", Reportes = 5, Porcentaje = 1.3 });
+            data.Add(new Dashboard_1() { Key = "CAUSAS METEOROLÓGICAS", Reportes = 5, Porcentaje = 10 });
             return Json(new { data }, JsonRequestBehavior.AllowGet);
         }
 
     }
-    
+
     public class Dashboard_1
     {
         public string Key { get; set; }
