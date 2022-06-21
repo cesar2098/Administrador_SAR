@@ -114,7 +114,7 @@
             $("#buttonfilter").click(function () {
                 event.preventDefault();
 
-                $.get("/Home/GetData1", function (data) {
+                $.get("/Home/GetData1", { pais: $("#CountryId").val(), obra: $("#WorkPlace").val(), desde: $("#startDate").val(), hasta: $("#endDate").val() }, function (data) {
 
                     chart1.setDataSource(data.data);
                     chart2.setDataSource(data.data);
@@ -124,4 +124,3 @@
     </script>
 
 }
-

@@ -9,7 +9,8 @@
     <div>
         <div>
             <div class="page-header">
-                @using (Html.BeginForm()) { 
+                @using (Html.BeginForm())
+                {
 
                     <div class="row">
                         <div class="col-md-3 col-sm-12">
@@ -18,7 +19,7 @@
                         </div>
                         <div class="col-md-3 col-sm-12">
                             <label for="CountryId">Seleccione un puesto</label>
-                            @Html.DropDownList("WorkPlace", new List<SelectListItem>(), "Seleccionar puesto de trabajo", htmlAttributes: new { @class = "form-control", @style = "text-transform: uppercase;" })
+                            @Html.DropDownList("PositionId", null, "Seleccionar puesto de trabajo", htmlAttributes: new { @class = "form-control", @style = "text-transform: uppercase;" })
                         </div>
 
                         <div class="col-md-3 col-sm-12">
@@ -30,11 +31,11 @@
                             <input type="date" class="form-control" name="endDate" id="endDate" value="" />
                         </div>
                     </div>
-                <div class="row text-center">
-                    <div class="col-md-12 p-2">
-                        <input type="submit" value="Aplicar Filtros" class="btn btn-primary" id="buttonfilter" />
+                    <div class="row text-center">
+                        <div class="col-md-12 p-2">
+                            <input type="submit" value="Aplicar Filtros" class="btn btn-primary" id="buttonfilter" />
+                        </div>
                     </div>
-                </div>
                 }
 
             </div>
@@ -42,34 +43,34 @@
     </div>
 
     @*<div class="row">
-        <div class="col-md-12 col-md-6">
-            @(Model)
-        </div>
-    </div>*@
+            <div class="col-md-12 col-md-6">
+                @(Model)
+            </div>
+        </div>*@
     <div id='div_obj' style='min-width:100%;height:360px;'></div>
     <div id='div_obj2' style='min-width:100%;height:360px;'></div>
     <br>
 </div>
 @section Scripts{
     @*<script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/highcharts-more.js"></script>
-    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>*@
+        <script src="https://code.highcharts.com/highcharts-more.js"></script>
+        <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+        <script src="https://code.highcharts.com/modules/accessibility.js"></script>*@
     @*<script src="~/src/scripts/funciones.js"></script>*@
     <script src="~/Scripts/jchartfx/js/jchartfx.system.js"></script>
     <script src="~/Scripts/jchartfx/js/jchartfx.coreBasic.js"></script>
     <script src="~/Scripts/jchartfx/js/jchartfx.advanced.js"></script>
-    <script  src="~/Scripts/jchartfx/js/jchartfx.coreVector.js"></script>
-   <script  src="~/Scripts/jchartfx/js/jchartfx.coreVector3d.js"></script>
-     <script type="text/javascript" language="javascript">
-   var chart1;
-   function loadChart() {
-      // Replace this section with the code in the sample Javascript section
-   }
-   // If there are additional data population functions in the Javascript section, copy them here
-   </script>
+    <script src="~/Scripts/jchartfx/js/jchartfx.coreVector.js"></script>
+    <script src="~/Scripts/jchartfx/js/jchartfx.coreVector3d.js"></script>
+    <script type="text/javascript" language="javascript">
+        var chart1;
+        function loadChart() {
+            // Replace this section with the code in the sample Javascript section
+        }
+        // If there are additional data population functions in the Javascript section, copy them here
+    </script>
     <script>
         var chart1 = new cfx.Chart();
         var chart2 = new cfx.Chart();
@@ -78,7 +79,7 @@
         PopulateCarProduction(chart1);
         var titles = chart1.getTitles();
         var title = new cfx.TitleDockable();
-        title.setText("REPORTES SAR POR OBRAS");
+        title.setText("REPORTES SAR POR PUESTO DE TRABAJO");
         titles.add(title);
         var series1 = chart1.getSeries().getItem(0);
         var series2 = chart1.getSeries().getItem(1);
@@ -89,7 +90,7 @@
         chart2.create('div_obj2');
         var items = [];
         function PopulateCarProduction(chart1) {
-            $.get("/Home/GetData", function (data) {
+            $.get("/Home/GetDataPosition", function (data) {
 
                 chart1.setDataSource(data.data);
                 chart2.setDataSource(data.data);
@@ -98,18 +99,6 @@
     </script>
     <script>
         $(document).ready(function () {
-            $("#CountryId").change(function () {
-                $.get("/Reports/GetWorkPlacesByCountry", { id: $("#CountryId").val() }, function (data) {                    
-                    // VACIAMOS EL DropDownList
-                    $("#WorkPlace").empty();
-                    // AÑADIMOS UN NUEVO label CON EL NOMBRE DEL ELEMENTO SELECCIONADO
-                    $("#WorkPlace").append("<option value> -- Seleccionar Obra de " + $("#CountryId option:selected").text() + " --</option>")
-                    // CONSTRUIMOS EL DropDownList A PARTIR DEL RESULTADO Json (data)
-                    $.each(data, function (index, row) {
-                        $("#WorkPlace").append("<option value='" + row.workPlaceId + "'>" + row.name + "</option>")
-                    });
-                });
-            });
 
             $("#buttonfilter").click(function () {
                 event.preventDefault();

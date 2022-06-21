@@ -35,13 +35,13 @@ namespace Administrador_SAR.Controllers
             }
 
             ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
-            var result = Mapper.Map<IList<ReportResponseViewModel>>(reports); 
+            var result = Mapper.Map<IList<ReportResponseViewModel>>(reports);
             return View(result);
         }
 
         public JsonResult GetReports(DateTime startDate, DateTime endDate, int workPlaceId = 0)
         {
-            if (startDate == null) startDate = DateTime.Today.AddDays(-7); 
+            if (startDate == null) startDate = DateTime.Today.AddDays(-7);
             if (endDate == null) endDate = DateTime.Today;
             var reports = db.Reports
                             .Include(r => r.Accounts)
@@ -51,9 +51,9 @@ namespace Administrador_SAR.Controllers
                             .Include(r => r.Situations)
                             .Include(r => r.StatusReports)
                             .Include(r => r.WorkPlaces).OrderByDescending(x => x.CreatedDate)
-                            .Where(x =>  x.CreatedDate >= startDate && x.CreatedDate <= endDate)
+                            .Where(x => x.CreatedDate >= startDate && x.CreatedDate <= endDate)
                             .ToList();
-            
+
             if (workPlaceId != 0)
             {
                 reports = reports.Where(x => x.WorkPlaceId == workPlaceId).ToList();
@@ -87,7 +87,7 @@ namespace Administrador_SAR.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reports reports  = db.Reports.Include(r => r.Accounts)
+            Reports reports = db.Reports.Include(r => r.Accounts)
                                 .Include(r => r.Categories)
                                 .Include(r => r.Factors)
                                 .Include(r => r.Killers)
@@ -144,8 +144,9 @@ namespace Administrador_SAR.Controllers
 
         [HttpGet]
         public async Task<ActionResult> CreatePDF(int id)
-        {          
-            byte [] result = await _reportService.getReport(id);
+        {
+            //System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            byte[] result = await _reportService.getReport(id);
             var output = new FileContentResult(result, "application/octet-stream");
             output.FileDownloadName = "download.pdf";
             return output;
@@ -159,6 +160,7 @@ namespace Administrador_SAR.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Reports reports = db.Reports.Find(id);
+
             if (reports == null)
             {
                 return HttpNotFound();

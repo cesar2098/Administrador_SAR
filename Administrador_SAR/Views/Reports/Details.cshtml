@@ -2,113 +2,105 @@
 
 @{
     ViewBag.Title = "Detalle";
-    
+
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="page-header">
-    <div class="row">
-        <div class="col-md-12 col-sm-12">
-            <h1>Información de Reporte  @Html.ActionLink("Generar PDF", "CreatePDF", new { id = Model.Id }, new { @class = "btn btn-info" })</h1>
-        </div>
-    </div>
-</div>
-
 <div class="card-box mb-30">
     <div class="pd-30">
+        <h4>@Html.DisplayFor(model => model.Description) @Html.ActionLink("Generar PDF", "CreatePDF", new { id = Model.Id }, new { @class = "btn btn-info" })</h4>
+        <hr />
+        <div class="container-fluid">
+            <h3>Informacion General</h3>
 
-    <h4>@Html.DisplayFor(model => model.Description) </h4>
-    <hr />
-    <div class="container-fluid">
-        <h3>Informacion General</h3>
-       
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Account, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.Account, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Situation, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.Situation, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Killer, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.Killer, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Factor, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.Factor, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control", @readonly = true, @type = "datetime" } })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.Comment, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CorrectiveComment, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.CorrectiveComment, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h4>Archivos Adjuntos</h4>
+            <div class="row">
+
+
+                @foreach (var item in Model.Evidences)
+                {
+                    <div class="col-md-4 img-container">
+                        <img src="@item.Url" class="img_report" alt="Alternate Text" />
+                    </div>
+
+                }
+            </div>
+
+            <br />
+            <p>
+                @Html.ActionLink("Volver", "Index", null, new { @class = " btn btn-dark" })
+            </p>
+        </div>
         <br />
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Account, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-12">
-                        @Html.EditorFor(model => model.Account, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Situation, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-12">
-                        @Html.EditorFor(model => model.Situation, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Killer, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-12">
-                        @Html.EditorFor(model => model.Killer, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Factor, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-12">
-                        @Html.EditorFor(model => model.Factor, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-12">
-                        @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control", @readonly = true, @type = "datetime" } })
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-12">
-                        @Html.EditorFor(model => model.Comment, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.CorrectiveComment, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-12">
-                        @Html.EditorFor(model => model.CorrectiveComment, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
-                    </div>
-                </div>
-            </div>
-        </div>
-        <h4>Archivos Adjuntos</h4>
-        <div class="row">
-
-
-            @foreach (var item in Model.Evidences)
-            {
-                <div class="col-md-4 img-container">
-                    <img src="@item.Url" class="img_report" alt="Alternate Text" />
-                </div>
-
-            }
-        </div>
-
-     <br />
-        <p>
-            @Html.ActionLink("Volver", "Index", null, new { @class = " btn btn-dark" })
-        </p>
-    </div>
-    <br />
     </div>
 </div>
 
 <style>
-    .img-container{
-        padding:10px;
+    .img-container {
+        padding: 10px;
     }
+
     .img_report {
-        width:300px;
-        height:350px;
+        width: 300px;
+        height: 350px;
     }
 </style>

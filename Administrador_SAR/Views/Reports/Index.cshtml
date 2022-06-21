@@ -21,7 +21,7 @@
                 <label for="CountryId">Seleccione una obra</label>
                 @Html.DropDownList("WorkPlace", new List<SelectListItem>(), "Seleccionar Obra", htmlAttributes: new { @class = "form-control", @style = "text-transform: uppercase;" })
             </div>
-            
+
             <div class="col-md-3 col-sm-12">
                 <label for="startDate">Desde</label>
                 <input type="date" class="form-control" name="startDate" id="startDate" value="" />
@@ -77,6 +77,7 @@
                             @Html.DisplayFor(modelItem => item.Status)
                         </td>
                         <td>
+                            @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning w-100" })
                             @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-info w-100" })
                         </td>
                     </tr>
@@ -112,9 +113,9 @@
                 $('input[name="startDate"]').val(`${year}-${month}-${day}`);
                 $('input[name="endDate"]').val(`${year}-${month}-${day}`);
             }
-           
+
             $("#CountryId").change(function () {
-                $.get("/Reports/GetWorkPlacesByCountry", { id: $("#CountryId").val()}, function (data) {
+                $.get("/Reports/GetWorkPlacesByCountry", { id: $("#CountryId").val() }, function (data) {
                     // VACIAMOS EL DropDownList
                     $("#WorkPlace").empty();
                     // AÑADIMOS UN NUEVO label CON EL NOMBRE DEL ELEMENTO SELECCIONADO
@@ -130,7 +131,7 @@
     <script>
         $(document).ready(function () {
             $("#buttonfilter").click(function () {
-                $.get("/Reports/GetReports", { workPlaceId: $("#WorkPlace").val(), startDate: $("#startDate").val(), endDate: $("#endDate").val()  }, function (data) {
+                $.get("/Reports/GetReports", { workPlaceId: $("#WorkPlace").val(), startDate: $("#startDate").val(), endDate: $("#endDate").val() }, function (data) {
                     // VACIAMOS EL DropDownList
                     $("#tableBody").empty();
                     // CONSTRUIMOS EL DropDownList A PARTIR DEL RESULTADO Json (data)
