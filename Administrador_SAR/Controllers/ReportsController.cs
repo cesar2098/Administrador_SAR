@@ -165,6 +165,8 @@ namespace Administrador_SAR.Controllers
             {
                 return HttpNotFound();
             }
+
+            //reports.CreatedDate = DateTime.Parse(reports.CreatedDate.ToString("yyy-MM-dd"));
             ViewBag.UserId = new SelectList(db.Accounts, "Id", "FirstName", reports.UserId);
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Description", reports.CategoryId);
             ViewBag.FatorId = new SelectList(db.Factors, "Id", "Description", reports.FatorId);
@@ -184,6 +186,9 @@ namespace Administrador_SAR.Controllers
         {
             if (ModelState.IsValid)
             {
+                var report = db.Reports.AsNoTracking().FirstOrDefault(x => x.Id == reports.Id);
+                reports.CreatedDate = report.CreatedDate;
+                reports.CreatedTime = report.CreatedTime;
                 db.Entry(reports).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

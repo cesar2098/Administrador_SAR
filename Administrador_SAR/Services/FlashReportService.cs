@@ -10,7 +10,7 @@ namespace Administrador_SAR.Services
 {
     public class FlashReportService
     {
-        private string _urlBasic = "https://recuentosar.azurewebsites.net/api/v1/";
+        private string _urlBasic = "http://recuentosar.azurewebsites.net/api/v1/";
 
 
 

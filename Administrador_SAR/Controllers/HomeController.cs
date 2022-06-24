@@ -382,12 +382,37 @@ namespace Administrador_SAR.Controllers
             return RedirectToAction("login", "Login");
         }
 
-        public JsonResult GetData()
+        public JsonResult GetData(int pais = 0, int obra = 0, DateTime? desde = null, DateTime? hasta = null)
         {
+            if (hasta != null) hasta.Value.AddDays(1);
+
+            if (desde == null) desde = DateTime.Today.AddDays(-30);
+            if (hasta == null) hasta = DateTime.Today.AddDays(1);
+
+
+
+            var reports = db.Reports
+                            .Include(r => r.StatusReports)
+                            .Include(r => r.WorkPlaces).OrderByDescending(x => x.CreatedDate)
+                            .Where(x => x.CreatedDate >= desde && x.CreatedDate <= hasta)
+                            .ToList();
+
+            var viewModel = Mapper.Map<IList<ReportResponseViewModel>>(reports).ToList();
+
+
+            if (pais != 0)
+                viewModel = viewModel.Where(c => c.CountryId == pais).ToList();
+
+            var results = viewModel.GroupBy(
+                                        p => p.WorkPlace,
+                                        p => p.StatusId,
+                                        (key, g) => new { WorkPlace = key, Status = g.ToList() });
+
             List<Dashboard_1> data = new List<Dashboard_1>();
-            data.Add(new Dashboard_1() { Key = "5 DE NOVIEMBRE", Reportes = 25, Porcentaje = 34.3 });
-            data.Add(new Dashboard_1() { Key = "LOS CONOCASTES", Reportes = 45, Porcentaje = 64.3 });
-            data.Add(new Dashboard_1() { Key = "LOS ALMENDROS", Reportes = 5, Porcentaje = 4.3 });
+            foreach (var item in results)
+            {
+                data.Add(new Dashboard_1() { Key = item.WorkPlace, Reportes = item.Status.Count, Porcentaje = (Convert.ToDouble(Convert.ToDecimal(item.Status.Count(x => x == 1004)) / Convert.ToDecimal(item.Status.Count)))*1  });
+            }
             return Json(new { data }, JsonRequestBehavior.AllowGet);
         }
 

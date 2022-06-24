@@ -28,6 +28,7 @@ namespace Administrador_SAR.Models.Reports
         public string Situation { get; set; }
         [Display(Name = "Estado")]
         public string Status { get; set; }
+        public int StatusId { get; set; }
         [Display(Name = "Obra")]
         public string WorkPlace { get; set; }
         public string WorkPlaceId { get; set; }
