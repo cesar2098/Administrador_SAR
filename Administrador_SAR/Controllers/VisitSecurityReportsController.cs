@@ -2,15 +2,17 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using Administrador_SAR.DBContext;
+using Administrador_SAR.Services;
 
 namespace Administrador_SAR.Controllers
 {
     public class VisitSecurityReportsController : Controller
     {
         private RSDBEntities db = new RSDBEntities();
-
+        private VisitSecurityReportService _reportService = new VisitSecurityReportService();
         // GET: VisitSecurityReports
         public ActionResult Index()
         {
@@ -126,6 +128,15 @@ namespace Administrador_SAR.Controllers
             ViewBag.SecurityVisitId = new SelectList(db.SecurityVisit, "Id", "Description", visitSecurityReport.SecurityVisitId);
             ViewBag.WorkPlaceId = new SelectList(db.WorkPlaces, "WorkPlaceId", "Name", visitSecurityReport.WorkPlaceId);
             return View(visitSecurityReport);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> CreatePDF(int id)
+        {
+            byte[] result = await _reportService.getReport(id);
+            var output = new FileContentResult(result, "application/octet-stream");
+            output.FileDownloadName = "VisitaSeguridadReport.pdf";
+            return output;
         }
 
         // GET: VisitSecurityReports/Delete/5

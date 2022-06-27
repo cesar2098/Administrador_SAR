@@ -5,7 +5,13 @@
     ViewBag.SubTitle = "Detalle de vista Seguridad";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<div class="page-header">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <h1>Información de Reporte Flash  @Html.ActionLink("Generar PDF", "CreatePDF", new { id = Model.Id }, new { @class = "btn btn-info" })</h1>
+        </div>
+    </div>
+</div>
 <div>
     <dl class="dl-horizontal">
         <dt>

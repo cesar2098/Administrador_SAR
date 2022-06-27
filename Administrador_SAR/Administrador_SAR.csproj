@@ -337,6 +337,7 @@
     <Compile Include="Services\ReportService.cs" />
     <Compile Include="Controllers\QuestionSecurityVisitsController.cs" />
     <Compile Include="Controllers\SecurityVisitsController.cs" />
+    <Compile Include="Services\VisitSecurityReportService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\index.html" />
