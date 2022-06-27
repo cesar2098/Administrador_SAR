@@ -73,24 +73,36 @@
     </script>
     <script>
         var chart1 = new cfx.Chart();
-        var chart2 = new cfx.Chart();
-
-        chart1.setGallery(cfx.Gallery.Bar);
         PopulateCarProduction(chart1);
+        var series0 = chart1.getSeries().getItem(0);
+        series0.setGallery(cfx.Gallery.Bar);
+        var series1 = chart1.getSeries().getItem(1);
+        series1.setAxisY(chart1.getAxisY2());
+        series1.setGallery(cfx.Gallery.Area);
+        chart1.getAxisY2().getLabelsFormat().setDecimals(2);
+        chart1.getAxisY2().getGrids().getMajor().setVisible(false);
         var titles = chart1.getTitles();
         var title = new cfx.TitleDockable();
-        title.setText("REPORTES SAR POR SITUACIONES");
+        title.setText("REPORTES SAR POR SITUACIÓN DETECTADA");
         titles.add(title);
-        var series1 = chart1.getSeries().getItem(0);
-        var series2 = chart1.getSeries().getItem(1);
-        series1.setGallery(cfx.Gallery.Bar);
-        series2.setGallery(cfx.Gallery.Lines);
-        console.log(titles)
+        var fields = chart1.getDataSourceSettings().getFields();
+        var fieldStrength = new cfx.FieldMap();
+        fieldStrength.setName("Reportes");
+        fieldStrength.setUsage(cfx.FieldUsage.Value);
+        fields.add(fieldStrength);
+
+        var fieldPE = new cfx.FieldMap();
+        fieldPE.setName("Porcentaje");
+        fieldPE.setUsage(cfx.FieldUsage.Value);
+        fields.add(fieldPE);
+
+        var SymbolField = new cfx.FieldMap();
+        SymbolField.setName("Key");
+        SymbolField.setUsage(cfx.FieldUsage.Label);
+        fields.add(SymbolField);
         chart1.create('div_obj');
-        chart2.create('div_obj2');
-        var items = [];
         function PopulateCarProduction(chart1) {
-            $.get("/Home/GetDataSituation", function (data) {
+            $.get("/Home/GetDataSituation", { pais: $("#CountryId").val(), situation: $("#SituationsId").val(), desde: $("#startDate").val(), hasta: $("#endDate").val() }, function (data) {
 
                 chart1.setDataSource(data.data);
                 chart2.setDataSource(data.data);
@@ -103,7 +115,7 @@
             $("#buttonfilter").click(function () {
                 event.preventDefault();
 
-                $.get("/Home/GetData1", function (data) {
+                $.get("/Home/GetDataSituation", { pais: $("#CountryId").val(), situation: $("#SituationsId").val(), desde: $("#startDate").val(), hasta: $("#endDate").val() }, function (data) {
 
                     chart1.setDataSource(data.data);
                     chart2.setDataSource(data.data);

@@ -22,9 +22,14 @@
                 Activo
             </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.IsActive)
-            </dd>
+            @if (Model.IsActive == true)
+            {
+                <dd>Si</dd>
+            }
+            else
+            {
+                <dd>No</dd>
+            }
 
         </dl>
     </div>

@@ -22,6 +22,10 @@ namespace Administrador_SAR.App_Start
                             opt => opt.MapFrom(src => src.Accounts.FirstName + " " + src.Accounts.LastName))
                 .ForMember(dest => dest.Factor,
                             opt => opt.MapFrom(src => src.Factors.Description))
+                .ForMember(dest => dest.PositionId,
+                            opt => opt.MapFrom(src => src.Accounts.PositionId))
+                .ForMember(dest => dest.Position,
+                            opt => opt.MapFrom(src => src.Accounts.Position.Description))
                 .ForMember(dest => dest.Killer,
                             opt => opt.MapFrom(src => src.Killers.Name))
                 .ForMember(dest => dest.Situation,

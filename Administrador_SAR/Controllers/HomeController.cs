@@ -397,6 +397,9 @@ namespace Administrador_SAR.Controllers
                             .Where(x => x.CreatedDate >= desde && x.CreatedDate <= hasta)
                             .ToList();
 
+            if (obra != 0)
+                reports = reports.Where(c => c.WorkPlaceId == obra).ToList();
+
             var viewModel = Mapper.Map<IList<ReportResponseViewModel>>(reports).ToList();
 
 
@@ -416,42 +419,121 @@ namespace Administrador_SAR.Controllers
             return Json(new { data }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetData1(int pais, int obra, DateTime inicio, DateTime fin)
+        public JsonResult GetDataSituation(int pais = 0, int situation = 0, DateTime? desde = null, DateTime? hasta = null)
         {
-            //No tengo claro de que tablas debo de traer la data
+            if (hasta != null) hasta.Value.AddDays(1);
+
+            if (desde == null) desde = DateTime.Today.AddDays(-30);
+            if (hasta == null) hasta = DateTime.Today.AddDays(1);
+
+
+
+            var reports = db.Reports
+                            .Include(r => r.StatusReports)
+                            .Include(r => r.Situations)
+                            .Include(r => r.WorkPlaces).OrderByDescending(x => x.CreatedDate)
+                            .Where(x => x.CreatedDate >= desde && x.CreatedDate <= hasta)
+                            .ToList();
+
+            if (situation != 0)
+                reports = reports.Where(c => c.SituationId == situation).ToList();
+
+            var viewModel = Mapper.Map<IList<ReportResponseViewModel>>(reports).ToList();
+
+
+            if (pais != 0)
+                viewModel = viewModel.Where(c => c.CountryId == pais).ToList();
+
+            var results = viewModel.GroupBy(
+                                        p => p.Situation,
+                                        (key, g) => new { Situation = key, Result = g.ToList() });
+
             List<Dashboard_1> data = new List<Dashboard_1>();
-            data.Add(new Dashboard_1() { Key = "29 AV NORTE", Reportes = 25, Porcentaje = 34.3 });
+            foreach (var item in results)
+            {
+                data.Add(new Dashboard_1() { Key = item.Situation, Reportes = item.Result.Count, Porcentaje = (Convert.ToDouble(Convert.ToDecimal(item.Result.Count(x => x.StatusId == 1004)) / Convert.ToDecimal(item.Result.Count))) * 100 });
+            }
             return Json(new { data }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetDataSituation()
+        public JsonResult GetDataPosition(int pais = 0, int obra = 0, DateTime? desde = null, DateTime? hasta = null)
         {
+            if (hasta != null) hasta.Value.AddDays(1);
+
+            if (desde == null) desde = DateTime.Today.AddDays(-30);
+            if (hasta == null) hasta = DateTime.Today.AddDays(1);
+
+
+
+            var reports = db.Reports
+                            .Include(r => r.StatusReports)
+                            .Include(r => r.Accounts)
+                            .Include(r => r.WorkPlaces).OrderByDescending(x => x.CreatedDate)
+                            .Where(x => x.CreatedDate >= desde && x.CreatedDate <= hasta)
+                            .ToList();
+
+            var positions = db.Position.ToList();
+
+
+            if (obra != 0)
+                reports = reports.Where(c => c.WorkPlaceId == obra).ToList();
+
+            foreach (var item in reports)
+            {
+                item.Accounts.Position = positions.FirstOrDefault(x => x.Id == item.Accounts.PositionId);
+            }
+
+            var viewModel = Mapper.Map<IList<ReportResponseViewModel>>(reports).ToList();
+
+
+            if (pais != 0)
+                viewModel = viewModel.Where(c => c.CountryId == pais).ToList();
+
+            var results = viewModel.GroupBy(
+                                        p => p.Position,
+                                        (key, g) => new { Position = key, Result = g.ToList() });
+
             List<Dashboard_1> data = new List<Dashboard_1>();
-            data.Add(new Dashboard_1() { Key = "ACTO INSEGURO", Reportes = 25, Porcentaje = 14.2 });
-            data.Add(new Dashboard_1() { Key = "CONDICIÓN INSEGURA", Reportes = 45, Porcentaje = 24.5 });
-            data.Add(new Dashboard_1() { Key = "CÁRCABA", Reportes = 5, Porcentaje = 64.3 });
+            foreach (var item in results)
+            {
+                data.Add(new Dashboard_1() { Key = item.Position, Reportes = item.Result.Count, Porcentaje = (Convert.ToDouble(Convert.ToDecimal(item.Result.Count(x => x.StatusId == 1004)) / Convert.ToDecimal(item.Result.Count))) * 100 });
+            }
             return Json(new { data }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetDataPosition()
+        public JsonResult GetDataFactor(int pais = 0, int obra = 0, DateTime? desde = null, DateTime? hasta = null)
         {
-            List<Dashboard_1> data = new List<Dashboard_1>();
-            data.Add(new Dashboard_1() { Key = "Cargo 1", Reportes = 25, Porcentaje = 24.3 });
-            data.Add(new Dashboard_1() { Key = "Cargo 2", Reportes = 45, Porcentaje = 74.3 });
-            data.Add(new Dashboard_1() { Key = "Cargo 3", Reportes = 5, Porcentaje = 24.3 });
-            return Json(new { data }, JsonRequestBehavior.AllowGet);
-        }
+            if (hasta != null) hasta.Value.AddDays(1);
 
-        public JsonResult GetDataFactor()
-        {
+            if (desde == null) desde = DateTime.Today.AddDays(-30);
+            if (hasta == null) hasta = DateTime.Today.AddDays(1);
+
+
+
+            var reports = db.Reports
+                            .Include(r => r.StatusReports)
+                            .Include(r => r.WorkPlaces).OrderByDescending(x => x.CreatedDate)
+                            .Where(x => x.CreatedDate >= desde && x.CreatedDate <= hasta)
+                            .ToList();
+
+            if (obra != 0)
+                reports = reports.Where(c => c.WorkPlaceId == obra).ToList();
+
+            var viewModel = Mapper.Map<IList<ReportResponseViewModel>>(reports).ToList();
+
+
+            if (pais != 0)
+                viewModel = viewModel.Where(c => c.CountryId == pais).ToList();
+
+            var results = viewModel.GroupBy(
+                                        p => p.Factor,
+                                        (key, g) => new { Factor = key, Result = g.ToList() });
+
             List<Dashboard_1> data = new List<Dashboard_1>();
-            data.Add(new Dashboard_1() { Key = "IMPRUDENCIA DEL TRABAJADOR", Reportes = 25, Porcentaje = 4.3 });
-            data.Add(new Dashboard_1() { Key = "FALTA DE ORDEN Y LIMPIEZA", Reportes = 45, Porcentaje = 7.9 });
-            data.Add(new Dashboard_1() { Key = "DEFECTOS DE MATERIALES", Reportes = 5, Porcentaje = 2.3 });
-            data.Add(new Dashboard_1() { Key = "MANIPULACIÓN DEFICIENTE", Reportes = 5, Porcentaje = 5.7 });
-            data.Add(new Dashboard_1() { Key = "FALLO DE MAQUINARIA", Reportes = 5, Porcentaje = 4.4 });
-            data.Add(new Dashboard_1() { Key = "AUSENCIA DE PROTECCIONES INDIVIDUALES 2", Reportes = 5, Porcentaje = 1.3 });
-            data.Add(new Dashboard_1() { Key = "CAUSAS METEOROLÓGICAS", Reportes = 5, Porcentaje = 10 });
+            foreach (var item in results)
+            {
+                data.Add(new Dashboard_1() { Key = item.Factor, Reportes = item.Result.Count, Porcentaje = (Convert.ToDouble(Convert.ToDecimal(item.Result.Count(x => x.StatusId == 1004)) / Convert.ToDecimal(item.Result.Count))) * 100 });
+            }
             return Json(new { data }, JsonRequestBehavior.AllowGet);
         }
 
